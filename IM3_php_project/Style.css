@@ -1,0 +1,9568 @@
+/* ==========================================================
+   RESET
+========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    background: #000;
+
+    color: #fff;
+
+    font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+
+/* ==========================================================
+   FARBEN
+========================================================== */
+
+:root {
+    --hero-red: #ff1212;
+    --button-red: #ff1212;
+    --red-solid: #ff1212;
+
+    --white: #ffffff;
+    --grey: #9a9a9a;
+    --black: #000000;
+}
+
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header {
+
+    position: fixed;
+
+    top: 28px;
+    left: 40px;
+    right: 40px;
+
+    z-index: 1000;
+
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+
+
+    /*
+      Am Anfang nicht sichtbar.
+    */
+
+    opacity: 0;
+
+    transform:
+            translateY(-20px);
+
+    pointer-events: none;
+
+
+
+    transition:
+
+            opacity 0.7s ease,
+
+            transform 0.7s ease;
+
+}
+
+
+
+/* Header wird beim Scrollen eingeblendet */
+
+.header.visible {
+
+    opacity: 1;
+
+    transform:
+            translateY(0);
+
+    pointer-events: auto;
+
+}
+
+
+
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+.navigation {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+.nav-button {
+
+    padding:
+
+            7px
+            18px;
+
+
+    border:
+
+            1px solid
+            rgba(255, 255, 255, 0.6);
+
+
+    border-radius: 100px;
+
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.05em;
+
+
+    transition:
+
+            background 0.25s ease,
+
+            color 0.25s ease;
+
+}
+
+
+.nav-button:hover {
+
+    background: white;
+
+    color: black;
+
+}
+
+
+.nav-button.active {
+
+    background: white;
+
+    color: black;
+
+}
+
+
+
+/* ==========================================================
+   LOGO
+========================================================== */
+
+.logo {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+            translateX(-50%);
+
+
+    font-size: 24px;
+
+    font-weight: 400;
+
+    letter-spacing: 0.08em;
+
+}
+
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero {
+
+    position: relative;
+
+
+    width: 100%;
+
+    height: 100vh;
+
+    min-height: 650px;
+
+
+    background: black;
+
+
+    overflow: hidden;
+
+}
+
+
+
+/* ==========================================================
+   VIDEO
+
+   WICHTIG:
+   - keine Deckkraft
+   - kein Overlay
+   - kein Blur
+   - keine Abdunklung
+========================================================== */
+
+.hero-video {
+
+    position: absolute;
+
+    inset: 0;
+
+
+    width: 100%;
+
+    height: 100%;
+
+
+    object-fit: cover;
+
+
+    opacity: 1;
+
+    filter: none;
+
+    transform: none;
+
+
+    z-index: 0;
+
+}
+
+
+
+/* ==========================================================
+   HERO SEQUENCE
+========================================================== */
+
+.hero-sequence {
+
+    position: absolute;
+
+    inset: 0;
+
+
+    z-index: 10;
+
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    text-align: center;
+
+
+    pointer-events: none;
+
+}
+
+
+
+/* ==========================================================
+   HERO TEXT
+
+   Alle Texte haben:
+   - gleiche Position
+   - gleiche Farbe
+   - gleiche Schrift
+   - gleiche Stärke
+========================================================== */
+
+.hero-text {
+
+    position: absolute;
+
+
+    top: 50%;
+
+    left: 50%;
+
+
+    width:
+            min(1200px, 90vw);
+
+
+    transform:
+            translate(-50%, -50%);
+
+
+    opacity: 0;
+
+
+    color:
+            var(--hero-red);
+
+
+    /*
+      Etwas größer und kräftiger
+    */
+
+    font-size:
+
+            clamp(
+                    42px,
+                    5.5vw,
+                    90px
+            );
+
+
+    font-weight: 700;
+
+
+    line-height: 1.05;
+
+
+    letter-spacing:
+            -0.025em;
+
+
+    text-align: center;
+
+}
+
+
+
+/* ==========================================================
+   1 — 2071
+
+   Start bereits nach 2.5 Sekunden.
+
+   Die Zahl ist etwas größer,
+   damit sie optisch dieselbe Präsenz
+   wie die längeren Texte bekommt.
+========================================================== */
+
+.hero-text-1 {
+
+    font-size:
+
+            clamp(
+                    75px,
+                    9vw,
+                    150px
+            );
+
+
+    animation:
+
+            textSequence
+            3.3s
+            ease-in-out
+            2.5s
+            forwards;
+
+}
+
+
+
+/* ==========================================================
+   2 — KINDER UND JUGENDLICHE
+========================================================== */
+
+.hero-text-2 {
+
+    animation:
+
+            textSequence
+            3.3s
+            ease-in-out
+            5.8s
+            forwards;
+
+}
+
+
+
+/* ==========================================================
+   3 — IN DER SCHWEIZ
+========================================================== */
+
+.hero-text-3 {
+
+    animation:
+
+            textSequence
+            3.3s
+            ease-in-out
+            9.1s
+            forwards;
+
+}
+
+
+
+/* ==========================================================
+   4 — WURDEN OPFER VON HÄUSLICHER GEWALT
+========================================================== */
+
+.hero-text-4 {
+
+    animation:
+
+            textSequence
+            3.3s
+            ease-in-out
+            12.4s
+            forwards;
+
+}
+
+
+
+/* ==========================================================
+   TEXT ANIMATION
+========================================================== */
+
+@keyframes textSequence {
+
+
+    /* Start */
+
+    0% {
+
+        opacity: 0;
+
+
+        transform:
+
+                translate(
+                        -50%,
+                        -46%
+                );
+
+
+        filter:
+                blur(4px);
+
+    }
+
+
+
+    /* Einblenden */
+
+    14% {
+
+        opacity: 1;
+
+
+        transform:
+
+                translate(
+                        -50%,
+                        -50%
+                );
+
+
+        filter:
+                blur(0);
+
+    }
+
+
+
+    /* Bleibt sichtbar */
+
+    78% {
+
+        opacity: 1;
+
+
+        transform:
+
+                translate(
+                        -50%,
+                        -50%
+                );
+
+
+        filter:
+                blur(0);
+
+    }
+
+
+
+    /* Ausblenden */
+
+    100% {
+
+        opacity: 0;
+
+
+        transform:
+
+                translate(
+                        -50%,
+                        -54%
+                );
+
+
+        filter:
+                blur(4px);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   5 — HINTER JEDER ZAHL STEHT EINE STIMME
+
+   Dieser Text bleibt stehen.
+========================================================== */
+
+.hero-text-final {
+
+    animation:
+
+            finalText
+            1s
+            ease
+            15.7s
+            forwards;
+
+}
+
+
+
+@keyframes finalText {
+
+
+    from {
+
+        opacity: 0;
+
+
+        transform:
+
+                translate(
+                        -50%,
+                        -46%
+                );
+
+
+        filter:
+                blur(4px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+
+        transform:
+
+                translate(
+                        -50%,
+                        -50%
+                );
+
+
+        filter:
+                blur(0);
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   SCROLL BUTTON
+
+   Der letzte Satz erscheint bei ca. 15.7 Sekunden.
+
+   Drei Sekunden später erscheint der Button.
+========================================================== */
+
+.scroll-more {
+
+    position: absolute;
+
+
+    left: 50%;
+
+
+    top:
+
+            calc(
+                    50% + 130px
+            );
+
+
+    transform:
+
+            translateX(-50%)
+
+            translateY(15px);
+
+
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+
+
+    opacity: 0;
+
+
+
+    color:
+            var(--button-red);
+
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.25em;
+
+
+    white-space: nowrap;
+
+
+    pointer-events: none;
+
+
+
+    animation:
+
+            showScroll
+            0.8s
+            ease
+            18.7s
+            forwards;
+
+}
+
+
+
+@keyframes showScroll {
+
+
+    from {
+
+        opacity: 0;
+
+
+        transform:
+
+                translateX(-50%)
+
+                translateY(15px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+
+        transform:
+
+                translateX(-50%)
+
+                translateY(0);
+
+
+        pointer-events: auto;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   SCROLL KREIS
+========================================================== */
+
+.scroll-circle {
+
+    width: 52px;
+
+    height: 52px;
+
+
+    display: grid;
+
+    place-items: center;
+
+
+    border:
+
+            1px solid
+            var(--button-red);
+
+
+    border-radius: 50%;
+
+
+    font-size: 23px;
+
+
+    transition:
+
+            transform 0.3s ease,
+
+            background 0.3s ease,
+
+            color 0.3s ease;
+
+}
+
+
+
+/* Hover */
+
+.scroll-more:hover
+.scroll-circle {
+
+    transform:
+            translateY(6px);
+
+
+    background:
+            var(--red-solid);
+
+
+    color:
+            black;
+
+}
+
+
+
+/* ==========================================================
+   INTRO
+========================================================== */
+
+.intro {
+
+    position: relative;
+
+
+    min-height: 1600px;
+
+
+    background:
+            black;
+
+
+    padding:
+
+            150px
+            max(7vw, 30px);
+
+
+    overflow: hidden;
+
+}
+
+
+
+/* ==========================================================
+   VOICES TITEL
+========================================================== */
+
+.intro-logo {
+
+    position: absolute;
+
+
+    top: 40px;
+
+    left: 50%;
+
+
+    transform:
+            translateX(-50%);
+
+
+    font-size: 24px;
+
+    font-weight: 400;
+
+    letter-spacing: 0.08em;
+
+}
+
+
+
+/* ==========================================================
+   INTRO GRID
+========================================================== */
+
+.intro-grid {
+
+    display: grid;
+
+
+    grid-template-columns:
+
+    minmax(300px, 1fr)
+
+    minmax(400px, 1fr);
+
+
+    gap: 100px;
+
+}
+
+
+
+/* ==========================================================
+   INTRO TEXT
+========================================================== */
+
+.intro-copy {
+
+    max-width: 520px;
+
+
+    margin-top: 130px;
+
+}
+
+
+
+.intro-copy p {
+
+    margin-bottom: 25px;
+
+
+    color:
+            var(--grey);
+
+
+    font-size: 17px;
+
+
+    line-height: 1.6;
+
+}
+
+
+
+.intro-copy
+.intro-lead {
+
+    color:
+            white;
+
+
+    font-size:
+            20px;
+
+}
+
+
+
+/* ==========================================================
+   VISUAL STORY
+========================================================== */
+
+.visual-story {
+
+    position: relative;
+
+
+    width: 100%;
+
+
+    max-width: 600px;
+
+
+    height: 1500px;
+
+}
+
+
+
+/* ==========================================================
+   ROTER FADEN
+========================================================== */
+
+.red-thread {
+
+    position: absolute;
+
+
+    inset: 0;
+
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+
+
+.red-thread path {
+
+    fill:
+            none;
+
+
+    stroke:
+            var(--red-solid);
+
+
+    stroke-width:
+            7;
+
+
+    stroke-linecap:
+            round;
+
+
+    vector-effect:
+            non-scaling-stroke;
+
+}
+
+
+
+/* ==========================================================
+   PORTRAITS
+========================================================== */
+
+.portrait {
+
+    position: absolute;
+
+
+    z-index: 5;
+
+
+    width: 150px;
+
+
+    aspect-ratio: 1;
+
+
+    border-radius: 50%;
+
+
+    overflow: hidden;
+
+
+    background:
+            #1a1a1a;
+
+}
+
+
+
+.portrait img {
+
+    width: 100%;
+
+    height: 100%;
+
+
+    object-fit: cover;
+
+
+    filter:
+            grayscale(100%);
+
+}
+
+
+
+/* ==========================================================
+   PORTRAIT POSITIONEN
+========================================================== */
+
+.portrait-1 {
+
+    top: 110px;
+
+    left: 270px;
+
+}
+
+
+.portrait-2 {
+
+    top: 410px;
+
+    left: 360px;
+
+}
+
+
+.portrait-3 {
+
+    top: 720px;
+
+    left: 150px;
+
+}
+
+
+.portrait-4 {
+
+    top: 1030px;
+
+    left: 330px;
+
+}
+
+
+
+/* ==========================================================
+   ABOUT
+========================================================== */
+
+.about {
+
+    min-height:
+            100vh;
+
+
+    padding:
+
+            150px
+            max(7vw, 30px);
+
+
+    display: flex;
+
+
+    flex-direction:
+            column;
+
+
+    justify-content:
+            center;
+
+
+    background:
+            black;
+
+
+    border-top:
+
+            1px solid
+            #1c1c1c;
+
+}
+
+
+
+/* kleine rote Überschrift */
+
+.section-label {
+
+    margin-bottom:
+            30px;
+
+
+    color:
+            var(--red-solid);
+
+
+    font-size:
+            12px;
+
+
+    font-weight:
+            600;
+
+
+    letter-spacing:
+            0.3em;
+
+}
+
+
+
+/* Große Überschrift */
+
+.about h2 {
+
+    max-width:
+            1100px;
+
+
+    font-size:
+
+            clamp(
+                    45px,
+                    7vw,
+                    110px
+            );
+
+
+    font-weight:
+            600;
+
+
+    line-height:
+            0.95;
+
+
+    letter-spacing:
+            -0.04em;
+
+}
+
+
+
+/* About Text */
+
+.about-copy {
+
+    max-width:
+            550px;
+
+
+    margin-top:
+            60px;
+
+}
+
+
+.about-copy p {
+
+    margin-bottom:
+            20px;
+
+
+    color:
+            var(--grey);
+
+
+    font-size:
+            17px;
+
+
+    line-height:
+            1.6;
+
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media
+(max-width: 800px) {
+
+
+    /* HEADER */
+
+    .header {
+
+        top: 20px;
+
+        left: 20px;
+
+        right: 20px;
+
+    }
+
+
+
+    .nav-button {
+
+        padding:
+
+                6px
+                11px;
+
+
+        font-size:
+                10px;
+
+    }
+
+
+
+    .logo {
+
+        position:
+                static;
+
+
+        transform:
+                none;
+
+
+        font-size:
+                17px;
+
+    }
+
+
+
+    /* ======================================================
+       HERO
+    ====================================================== */
+
+    .hero {
+
+        height:
+                100svh;
+
+    }
+
+
+
+    .hero-text {
+
+        width:
+                90vw;
+
+
+        font-size:
+
+                clamp(
+                        32px,
+                        9vw,
+                        55px
+                );
+
+
+        line-height:
+                1.1;
+
+    }
+
+
+
+    /* 2071 bleibt auch Mobile größer */
+
+    .hero-text-1 {
+
+        font-size:
+
+                clamp(
+                        75px,
+                        20vw,
+                        125px
+                );
+
+    }
+
+
+
+    /* ======================================================
+       SCROLL
+    ====================================================== */
+
+    .scroll-more {
+
+        top:
+
+                calc(
+                        50% + 120px
+                );
+
+
+        flex-direction:
+                column;
+
+
+        gap:
+                12px;
+
+    }
+
+
+
+    /* ======================================================
+       INTRO
+    ====================================================== */
+
+    .intro {
+
+        min-height:
+                2200px;
+
+
+        padding:
+
+                120px
+                25px;
+
+    }
+
+
+
+    .intro-grid {
+
+        display:
+                block;
+
+    }
+
+
+
+    .intro-copy {
+
+        margin-top:
+                60px;
+
+    }
+
+
+
+    .visual-story {
+
+        margin-top:
+                100px;
+
+
+        width:
+                100%;
+
+    }
+
+
+
+    /* Bilder etwas kleiner */
+
+    .portrait {
+
+        width:
+                120px;
+
+    }
+
+
+
+    .portrait-1 {
+
+        left:
+                45%;
+
+    }
+
+
+    .portrait-2 {
+
+        left:
+                60%;
+
+    }
+
+
+    .portrait-3 {
+
+        left:
+                10%;
+
+    }
+
+
+    .portrait-4 {
+
+        left:
+                55%;
+
+    }
+
+
+
+    /* ======================================================
+       ABOUT
+    ====================================================== */
+
+    .about {
+
+        padding:
+
+                100px
+                25px;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   ACCESSIBILITY
+   Für Nutzer, die Animationen deaktiviert haben.
+========================================================== */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+
+    html {
+
+        scroll-behavior:
+                auto;
+
+    }
+
+
+
+    /*
+      Die ersten Animationstexte ausblenden.
+    */
+
+    .hero-text-1,
+    .hero-text-2,
+    .hero-text-3,
+    .hero-text-4 {
+
+        display:
+                none;
+
+    }
+
+
+
+    /*
+      Schlussbotschaft direkt zeigen.
+    */
+
+    .hero-text-final {
+
+        animation:
+                none;
+
+
+        opacity:
+                1;
+
+
+        filter:
+                none;
+
+    }
+
+
+
+    /*
+      Scroll Button direkt zeigen.
+    */
+
+    .scroll-more {
+
+        animation:
+                none;
+
+
+        opacity:
+                1;
+
+
+        pointer-events:
+                auto;
+
+    }
+
+}
+
+/* =========================================
+   NEUER INTRO BEREICH
+========================================= */
+
+.intro {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 100px 8vw;
+
+    background: #000;
+}
+
+
+.intro-text {
+    width: min(1200px, 100%);
+
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    transition:
+            opacity 1.3s ease,
+            transform 1.3s ease;
+}
+
+
+.intro-text.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.intro-text p {
+    color: #fff;
+
+    font-size: clamp(20px, 2vw, 32px);
+
+    font-weight: 300;
+
+    line-height: 1.35;
+}
+
+
+.intro-first {
+    margin-bottom: 45px;
+}
+
+
+
+/* =========================================
+   ROTER FADEN
+========================================= */
+
+.thread-section {
+    min-height: 2000px;
+
+    background: #000;
+
+    display: flex;
+    justify-content: center;
+}
+
+
+.thread-svg {
+    width: min(600px, 80vw);
+
+    height: 1600px;
+
+    overflow: visible;
+}
+
+
+#red-thread {
+    fill: none;
+
+    stroke: #ff0000;
+
+    stroke-width: 7;
+
+    stroke-linecap: round;
+}
+
+/* ==========================================================
+   INTRO — EDITORIAL LAYOUT
+========================================================== */
+
+.intro {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    background: #000;
+
+    padding:
+            120px
+            8vw;
+}
+
+
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.intro-layout {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+    minmax(180px, 0.75fr)
+    minmax(500px, 1.65fr);
+
+    gap: clamp(70px, 10vw, 180px);
+
+    align-items: start;
+}
+
+
+
+/* ==========================================================
+   LINKE KLEINE INFORMATION
+========================================================== */
+
+.intro-meta {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding-top: 10px;
+
+    opacity: 0;
+
+    transform:
+            translateY(25px);
+
+    transition:
+            opacity 1s ease,
+            transform 1s ease;
+}
+
+
+
+/* 01 */
+
+.intro-number {
+    color: #ff0000;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.18em;
+
+    margin-bottom: 7px;
+}
+
+
+
+/* THE DATA */
+
+.intro-label {
+    color: #ff0000;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+
+
+/* kleines rotes Zeichen */
+
+.intro-symbol {
+    display: block;
+
+    margin-top: 160px;
+
+    color: #ff0000;
+
+    font-size: 28px;
+
+    line-height: 1;
+}
+
+
+
+/* ==========================================================
+   TEXT RECHTS
+========================================================== */
+
+.intro-text {
+    width: 100%;
+
+    max-width: 900px;
+
+    opacity: 0;
+
+    transform:
+            translateY(45px);
+
+    transition:
+            opacity 1.3s ease,
+            transform 1.3s
+            cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+
+/* ERSTER SATZ */
+
+.intro-lead {
+    color: #fff;
+
+    font-size:
+            clamp(
+                    30px,
+                    3.1vw,
+                    52px
+            );
+
+    font-weight: 600;
+
+    line-height: 1.08;
+
+    letter-spacing: -0.035em;
+
+    margin-bottom:
+            clamp(50px, 7vw, 90px);
+}
+
+
+
+/* ZWEITER TEXTBLOCK */
+
+.intro-copy {
+    color: #fff;
+
+    font-size:
+            clamp(
+                    25px,
+                    2.7vw,
+                    46px
+            );
+
+    font-weight: 500;
+
+    line-height: 1.08;
+
+    letter-spacing: -0.03em;
+}
+
+
+
+/* ==========================================================
+   SCROLL REVEAL
+========================================================== */
+
+.intro-text.show,
+.intro-meta.show {
+    opacity: 1;
+
+    transform:
+            translateY(0);
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .intro {
+        min-height: 100svh;
+
+        padding:
+                100px
+                25px;
+    }
+
+
+    .intro-layout {
+        display: block;
+    }
+
+
+    .intro-meta {
+        margin-bottom: 70px;
+    }
+
+
+    .intro-symbol {
+        margin-top: 45px;
+    }
+
+
+    .intro-lead {
+        font-size:
+                clamp(
+                        27px,
+                        8vw,
+                        40px
+                );
+
+        margin-bottom: 45px;
+    }
+
+
+    .intro-copy {
+        font-size:
+                clamp(
+                        23px,
+                        7vw,
+                        34px
+                );
+    }
+
+}
+/* ==========================================================
+   VOICES — NEUE STORY SECTION
+   Diesen gesamten Block ganz unten in style.css einfügen
+========================================================== */
+
+
+/* ==========================================================
+   STORY SECTION
+========================================================== */
+
+.story-section {
+
+    position: relative;
+
+    min-height: 1900px;
+
+    background: #000;
+
+    overflow: hidden;
+
+    padding:
+            110px
+            7vw
+            0;
+
+}
+
+
+
+/* ==========================================================
+   01 / THE DATA
+========================================================== */
+
+.story-meta {
+
+    position: absolute;
+
+    top: 130px;
+
+    left: 7vw;
+
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+
+    z-index: 5;
+
+}
+
+
+
+.story-index {
+
+    color: #ff0000;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+
+}
+
+
+
+.story-meta-line {
+
+    width: 38px;
+
+    height: 1px;
+
+    background: #ff0000;
+
+}
+
+
+
+.story-label {
+
+    color: #ff0000;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+
+}
+
+
+
+/* ==========================================================
+   GROSSE 2071
+========================================================== */
+
+.story-number-wrap {
+
+    position: absolute;
+
+    top: 170px;
+
+    right: 6vw;
+
+
+    width: 66vw;
+
+
+    z-index: 4;
+
+}
+
+
+
+.story-year {
+
+    display: block;
+
+    margin-left: 8px;
+
+    margin-bottom: -10px;
+
+
+    color: #ff0000;
+
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+
+}
+
+
+
+.story-number {
+
+    color: #fff;
+
+
+    font-size:
+
+            clamp(
+                    150px,
+                    22vw,
+                    360px
+            );
+
+
+    font-weight: 600;
+
+
+    line-height: 0.8;
+
+
+    letter-spacing: -0.075em;
+
+
+    white-space: nowrap;
+
+}
+
+
+
+/* ==========================================================
+   TEXT DIREKT UNTER DER ZAHL
+========================================================== */
+
+.story-lead {
+
+    position: absolute;
+
+
+    top: 510px;
+
+    right: 8vw;
+
+
+    width:
+
+            min(
+                    620px,
+                    48vw
+            );
+
+
+    z-index: 5;
+
+}
+
+
+
+.story-lead p {
+
+    color: #fff;
+
+
+    font-size:
+
+            clamp(
+                    27px,
+                    3vw,
+                    48px
+            );
+
+
+    font-weight: 500;
+
+
+    line-height: 1.08;
+
+
+    letter-spacing:
+            -0.035em;
+
+}
+
+
+
+/* ==========================================================
+   KLEINE SEITENINFO
+========================================================== */
+
+.story-side-info {
+
+    position: absolute;
+
+
+    top: 670px;
+
+    left: 8vw;
+
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+
+    color: #ff0000;
+
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    letter-spacing: 0.17em;
+
+
+    z-index: 6;
+
+}
+
+
+
+.side-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+
+    margin-top: 2px;
+
+
+    border-radius: 50%;
+
+
+    background:
+            #ff0000;
+
+}
+
+
+
+/* ==========================================================
+   STORY THREAD
+========================================================== */
+
+.story-thread {
+
+    position: absolute;
+
+    top: 340px;
+
+    left: 0;
+
+
+    width: 100%;
+
+    height: 1500px;
+
+
+    z-index: 2;
+
+
+    pointer-events: none;
+
+}
+
+
+
+.story-thread-svg {
+
+    width: 100%;
+
+    height: 100%;
+
+
+    overflow: visible;
+
+}
+
+
+
+/* schwache Linie */
+
+.story-thread-bg {
+
+    fill: none;
+
+
+    stroke:
+            rgba(
+                    255,
+                    0,
+                    0,
+                    0.07
+            );
+
+
+    stroke-width: 5;
+
+
+    stroke-linecap: round;
+
+}
+
+
+
+/* aktive Linie */
+
+.story-thread-progress {
+
+    fill: none;
+
+
+    stroke:
+            #ff0000;
+
+
+    stroke-width: 5;
+
+
+    stroke-linecap: round;
+
+}
+
+
+
+/* ==========================================================
+   ZWEITER TEXTBLOCK
+========================================================== */
+
+.story-copy {
+
+    position: absolute;
+
+
+    top: 1050px;
+
+    left: 14vw;
+
+
+    width:
+
+            min(
+                    650px,
+                    48vw
+            );
+
+
+    z-index: 5;
+
+}
+
+
+
+.story-copy p {
+
+    color: #fff;
+
+
+    font-size:
+
+            clamp(
+                    25px,
+                    2.7vw,
+                    43px
+            );
+
+
+    font-weight: 400;
+
+
+    line-height: 1.1;
+
+
+    letter-spacing:
+            -0.03em;
+
+}
+
+
+
+.story-copy p + p {
+
+    margin-top:
+            45px;
+
+
+    color:
+            #9d9d9d;
+
+
+    font-size:
+
+            clamp(
+                    17px,
+                    1.45vw,
+                    23px
+            );
+
+
+    line-height:
+            1.4;
+
+
+    letter-spacing:
+            -0.01em;
+
+
+    max-width:
+            540px;
+
+}
+
+
+
+/* ==========================================================
+   NÄCHSTES KAPITEL
+========================================================== */
+
+.story-next {
+
+    position: absolute;
+
+
+    left: 50%;
+
+    bottom: 100px;
+
+
+    transform:
+            translateX(-50%);
+
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+
+    color:
+            #ff0000;
+
+
+    z-index: 5;
+
+}
+
+
+
+.story-next-number {
+
+    width: 38px;
+
+    height: 38px;
+
+
+    display: grid;
+
+    place-items: center;
+
+
+    border:
+            1px solid #ff0000;
+
+
+    border-radius:
+            50%;
+
+
+    font-size:
+            10px;
+
+    font-weight:
+            700;
+
+}
+
+
+
+.story-next-label {
+
+    font-size:
+            10px;
+
+
+    font-weight:
+            700;
+
+
+    letter-spacing:
+            0.2em;
+
+
+    white-space:
+            nowrap;
+
+}
+
+
+
+/* ==========================================================
+   SCROLL REVEAL
+========================================================== */
+
+.story-reveal {
+
+    opacity: 0;
+
+
+    filter:
+            blur(5px);
+
+
+    transform:
+            translateY(40px);
+
+
+    transition:
+
+            opacity
+            1.2s
+            ease,
+
+            transform
+            1.2s
+            cubic-bezier(
+                    0.22,
+                    1,
+                    0.36,
+                    1
+            ),
+
+            filter
+            1.2s
+            ease;
+
+}
+
+
+
+.story-reveal.is-visible {
+
+    opacity: 1;
+
+
+    filter:
+            blur(0);
+
+
+    transform:
+            translateY(0);
+
+}
+
+
+
+/* ==========================================================
+   SPEZIELLE ANIMATION FÜR 2071
+========================================================== */
+
+.story-number-wrap.story-reveal {
+
+    transform:
+            translateY(60px);
+
+}
+
+
+
+.story-number-wrap.story-reveal.is-visible {
+
+    transform:
+            translateY(0);
+
+}
+
+
+
+/* ==========================================================
+   THREAD SECTION DANACH
+========================================================== */
+
+.thread-section {
+
+    position: relative;
+
+
+    min-height:
+            2100px;
+
+
+    background:
+            #000;
+
+
+    overflow:
+            hidden;
+
+}
+
+
+
+.thread-continuation {
+
+    width:
+
+            min(
+                    600px,
+                    80vw
+            );
+
+
+    height:
+            1800px;
+
+
+    margin:
+            0 auto;
+
+}
+
+
+
+.thread-continuation-svg {
+
+    display:
+            block;
+
+
+    width:
+            100%;
+
+
+    height:
+            100%;
+
+
+    overflow:
+            visible;
+
+}
+
+
+
+.thread-background {
+
+    fill:
+            none;
+
+
+    stroke:
+            rgba(
+                    255,
+                    0,
+                    0,
+                    0.07
+            );
+
+
+    stroke-width:
+            6;
+
+
+    stroke-linecap:
+            round;
+
+}
+
+
+
+.thread-progress {
+
+    fill:
+            none;
+
+
+    stroke:
+            #ff0000;
+
+
+    stroke-width:
+            6;
+
+
+    stroke-linecap:
+            round;
+
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media
+(max-width: 800px) {
+
+
+    .story-section {
+
+        min-height:
+                1800px;
+
+
+        padding:
+
+                90px
+                24px
+                0;
+
+    }
+
+
+
+    /* META */
+
+    .story-meta {
+
+        top:
+                90px;
+
+
+        left:
+                24px;
+
+    }
+
+
+
+    /* GROSSE ZAHL */
+
+    .story-number-wrap {
+
+        top:
+                180px;
+
+
+        left:
+                24px;
+
+
+        right:
+                auto;
+
+
+        width:
+                calc(100% - 48px);
+
+    }
+
+
+
+    .story-number {
+
+        font-size:
+
+                clamp(
+                        110px,
+                        38vw,
+                        180px
+                );
+
+    }
+
+
+
+    /* LEAD TEXT */
+
+    .story-lead {
+
+        top:
+                390px;
+
+
+        left:
+                24px;
+
+
+        right:
+                auto;
+
+
+        width:
+                calc(100% - 48px);
+
+    }
+
+
+
+    .story-lead p {
+
+        font-size:
+
+                clamp(
+                        27px,
+                        7vw,
+                        38px
+                );
+
+    }
+
+
+
+    /* SIDE INFO */
+
+    .story-side-info {
+
+        top:
+                650px;
+
+
+        left:
+                24px;
+
+    }
+
+
+
+    /* FADEN */
+
+    .story-thread {
+
+        top:
+                420px;
+
+
+        width:
+                160%;
+
+
+        left:
+                -30%;
+
+    }
+
+
+
+    .story-thread-bg,
+    .story-thread-progress {
+
+        stroke-width:
+                6;
+
+    }
+
+
+
+    /* COPY */
+
+    .story-copy {
+
+        top:
+                1000px;
+
+
+        left:
+                24px;
+
+
+        width:
+                calc(100% - 48px);
+
+    }
+
+
+
+    .story-copy p {
+
+        font-size:
+
+                clamp(
+                        25px,
+                        7vw,
+                        35px
+                );
+
+    }
+
+
+
+    .story-copy p + p {
+
+        font-size:
+                17px;
+
+
+        line-height:
+                1.45;
+
+    }
+
+
+
+    /* NEXT */
+
+    .story-next {
+
+        bottom:
+                80px;
+
+    }
+
+
+
+    .story-next-label {
+
+        font-size:
+                9px;
+
+
+        letter-spacing:
+                0.14em;
+
+    }
+
+
+
+    /* NÄCHSTE LINIE */
+
+    .thread-continuation {
+
+        width:
+                90vw;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+   REDUCED MOTION
+========================================================== */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+
+    .story-reveal {
+
+        opacity:
+                1;
+
+
+        filter:
+                none;
+
+
+        transform:
+                none;
+
+
+        transition:
+                none;
+
+    }
+
+
+    .story-number-wrap.story-reveal {
+
+        transform:
+                none;
+
+    }
+
+}
+/* ==========================================================
+   ABOUT US — FIGMA VERSION
+========================================================== */
+
+.about {
+    position: relative;
+
+    min-height: 100vh;
+
+    background: #000;
+
+    border: none;
+
+    padding:
+            150px
+            7vw
+            140px;
+}
+
+
+.about-inner {
+    width: min(1180px, 100%);
+
+    margin: 0 auto;
+}
+
+
+
+/* ==========================================================
+   TEAM GRID
+========================================================== */
+
+.team-grid {
+    display: grid;
+
+    grid-template-columns:
+    repeat(2, 1fr);
+
+    gap: 18px;
+
+    width: 100%;
+}
+
+
+
+/* ==========================================================
+   TEAM CARD
+========================================================== */
+
+.team-card {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 0.82;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background: #111;
+
+    cursor: pointer;
+}
+
+
+
+/* ==========================================================
+   BILD
+========================================================== */
+
+.team-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transform: scale(1);
+
+    transition:
+            transform 0.8s
+            cubic-bezier(0.22, 1, 0.36, 1),
+            filter 0.8s ease;
+}
+
+
+
+/* ==========================================================
+   HOVER
+
+   Bild zoomt innerhalb der Karte.
+========================================================== */
+
+.team-card:hover .team-image {
+    transform: scale(1.07);
+}
+
+
+
+/* ==========================================================
+   TEAM TEXT AUF DEM BILD
+========================================================== */
+
+.team-info {
+    position: absolute;
+
+    top: 50%;
+    left: 27%;
+
+    z-index: 3;
+
+    transform: translateY(-50%);
+
+    color: #fff;
+
+    pointer-events: none;
+
+    transition:
+            transform 0.6s
+            cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+
+/*
+  Ganz leichte Bewegung des Namens
+  beim Hover.
+*/
+
+.team-card:hover .team-info {
+    transform:
+            translateY(-50%)
+            translateX(8px);
+}
+
+
+
+.team-name,
+.team-role {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(10px, 0.8vw, 13px);
+
+    font-weight: 300;
+
+    line-height: 1.15;
+
+    letter-spacing: 0.015em;
+}
+
+
+
+.team-name {
+    margin-bottom: 2px;
+}
+
+
+
+/* ==========================================================
+   WHO ARE WE?
+========================================================== */
+
+.about-content {
+    width: 100%;
+
+    margin-top:
+            clamp(120px, 14vw, 200px);
+}
+
+
+
+.about-title {
+    margin: 0 0 75px;
+
+    color: #fff;
+
+    text-align: center;
+
+    font-size:
+            clamp(
+                    30px,
+                    3vw,
+                    46px
+            );
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    letter-spacing: -0.025em;
+}
+
+
+
+/* ==========================================================
+   ABOUT TEXT
+========================================================== */
+
+.about-text {
+    width: min(950px, 100%);
+
+    margin: 0 auto;
+}
+
+
+
+.about-text p {
+    margin: 0 0 34px;
+
+    color: #f1f1f1;
+
+    font-size:
+            clamp(
+                    16px,
+                    1.35vw,
+                    21px
+            );
+
+    font-weight: 300;
+
+    line-height: 1.42;
+
+    letter-spacing: -0.01em;
+}
+
+
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+
+
+/* ==========================================================
+   LETZTER SATZ
+========================================================== */
+
+.about-text .about-closing {
+    margin-top: 55px;
+
+    color: #fff;
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .about {
+        padding:
+                110px
+                24px
+                100px;
+    }
+
+
+    .team-grid {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+
+    .team-card {
+        aspect-ratio: 0.9;
+    }
+
+
+    .team-info {
+        left: 25%;
+    }
+
+
+    .team-name,
+    .team-role {
+        font-size: 11px;
+    }
+
+
+    .about-content {
+        margin-top: 100px;
+    }
+
+
+    .about-title {
+        margin-bottom: 55px;
+
+        font-size: 32px;
+    }
+
+
+    .about-text p {
+        font-size: 16px;
+
+        line-height: 1.5;
+
+        margin-bottom: 28px;
+    }
+
+}
+/* ==========================================================
+   ABOUT — EDITORIAL TEXT
+========================================================== */
+
+.about-editorial {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 1500px;
+
+    margin-top:
+            clamp(140px, 15vw, 220px);
+}
+
+
+
+/* ==========================================================
+   03 — ABOUT
+========================================================== */
+
+.about-meta {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    color: #ff0000;
+}
+
+
+.about-meta-number,
+.about-meta-label {
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+}
+
+
+.about-meta-line {
+    width: 40px;
+
+    height: 1px;
+
+    background: #ff0000;
+}
+
+
+
+/* ==========================================================
+   WHO ARE WE
+========================================================== */
+
+.about-headline {
+    position: absolute;
+
+    top: 80px;
+
+    right: 3%;
+}
+
+
+.about-headline h2 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size:
+            clamp(
+                    90px,
+                    12vw,
+                    190px
+            );
+
+    font-weight: 500;
+
+    line-height: 0.78;
+
+    letter-spacing: -0.065em;
+
+    text-align: left;
+}
+
+
+
+/* ==========================================================
+   INTRO
+========================================================== */
+
+.about-intro {
+    position: absolute;
+
+    top: 430px;
+
+    right: 5%;
+
+    width: min(620px, 52%);
+}
+
+
+.about-intro p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size:
+            clamp(
+                    28px,
+                    3vw,
+                    48px
+            );
+
+    font-weight: 400;
+
+    line-height: 1.08;
+
+    letter-spacing: -0.035em;
+}
+
+
+.about-intro span {
+    color: #ff0000;
+}
+
+
+
+/* ==========================================================
+   DESCRIPTION
+========================================================== */
+
+.about-description {
+    position: absolute;
+
+    top: 700px;
+
+    left: 8%;
+
+    width: min(520px, 44%);
+}
+
+
+.about-description p {
+    margin: 0;
+
+    color: #aaa;
+
+    font-size:
+            clamp(
+                    17px,
+                    1.5vw,
+                    23px
+            );
+
+    font-weight: 300;
+
+    line-height: 1.45;
+
+    letter-spacing: -0.01em;
+}
+
+
+
+/* ==========================================================
+   ROLES
+========================================================== */
+
+.about-roles {
+    position: absolute;
+
+    top: 950px;
+
+    left: 8%;
+    right: 5%;
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(2, 1fr);
+
+    gap:
+            clamp(
+                    80px,
+                    12vw,
+                    180px
+            );
+}
+
+
+.about-role {
+    position: relative;
+
+    padding-top: 18px;
+
+    border-top:
+            1px solid
+            rgba(255,255,255,0.3);
+}
+
+
+.role-number {
+    display: block;
+
+    margin-bottom: 35px;
+
+    color: #ff0000;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+}
+
+
+.role-title {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #ff0000;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+}
+
+
+.about-role p {
+    margin: 0 0 25px;
+
+    color: #fff;
+
+    font-size:
+            clamp(
+                    24px,
+                    2.3vw,
+                    36px
+            );
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    letter-spacing: -0.03em;
+}
+
+
+.role-description {
+    display: block;
+
+    max-width: 300px;
+
+    color: #888;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+
+/* ==========================================================
+   ABSCHLUSS
+========================================================== */
+
+.about-statement {
+    position: absolute;
+
+    top: 1300px;
+
+    left: 0;
+
+    width: 100%;
+}
+
+
+.about-statement p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size:
+            clamp(
+                    45px,
+                    6.3vw,
+                    100px
+            );
+
+    font-weight: 500;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.05em;
+}
+
+
+.about-statement .about-statement-second {
+    margin-top: 55px;
+
+    margin-left: 30%;
+
+    color: #ff0000;
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .about-editorial {
+        min-height: auto;
+
+        margin-top: 110px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 70px;
+    }
+
+
+    .about-meta,
+    .about-headline,
+    .about-intro,
+    .about-description,
+    .about-roles,
+    .about-statement {
+        position: static;
+
+        width: 100%;
+    }
+
+
+    .about-headline h2 {
+        font-size:
+                clamp(
+                        75px,
+                        23vw,
+                        120px
+                );
+    }
+
+
+    .about-intro {
+        max-width: none;
+    }
+
+
+    .about-intro p {
+        font-size:
+                clamp(
+                        27px,
+                        8vw,
+                        38px
+                );
+    }
+
+
+    .about-description {
+        max-width: 90%;
+    }
+
+
+    .about-description p {
+        font-size: 17px;
+    }
+
+
+    .about-roles {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 70px;
+    }
+
+
+    .about-statement {
+        margin-top: 40px;
+    }
+
+
+    .about-statement p {
+        font-size:
+                clamp(
+                        42px,
+                        13vw,
+                        70px
+                );
+    }
+
+
+    .about-statement .about-statement-second {
+        margin-top: 45px;
+
+        margin-left: 0;
+    }
+
+}
+/* ==========================================================
+   ROTEN FADEN NAHTLOS VERBINDEN
+========================================================== */
+
+/*
+  Die Story-Section endet ohne zusätzlichen Abstand.
+*/
+.story-section {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+/*
+  Die nächste Thread-Section beginnt direkt
+  an der vorherigen Section.
+*/
+.thread-section {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+
+/*
+  Die zweite SVG-Linie wird etwas nach oben gezogen,
+  sodass sie optisch direkt an die erste anschließt.
+*/
+.thread-continuation {
+    position: relative;
+
+    top: -10px;
+
+    margin-top: 0;
+}
+
+
+/*
+  Kein sichtbarer Spalt zwischen den Sections.
+*/
+.story-section + .thread-section {
+    margin-top: 0;
+}
+.thread-continuation {
+    width: 100%;
+    max-width: none;
+    height: 1800px;
+    margin: 0;
+    position: relative;
+    top: 0;
+}
+
+.thread-continuation-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+/* ==========================================================
+   EIN DURCHGEHENDER ROTER FADEN
+========================================================== */
+
+.continuous-thread {
+    position: relative;
+
+    width: 100%;
+
+    height: 3000px;
+
+    margin-top: 80px;
+
+    background: #000;
+
+    overflow: hidden;
+}
+
+
+/* SVG */
+
+.continuous-thread-svg {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    overflow: visible;
+
+    z-index: 1;
+}
+
+
+/* SCHWACHE LINIE */
+
+.continuous-thread-bg {
+    fill: none;
+
+    stroke: rgba(255, 0, 0, 0.08);
+
+    stroke-width: 12;
+
+    stroke-linecap: round;
+}
+
+
+/* AKTIVE ROTE LINIE */
+
+.continuous-thread-progress {
+    fill: none;
+
+    stroke: #ff0000;
+
+    stroke-width: 12;
+
+    stroke-linecap: round;
+}
+
+
+
+/* ==========================================================
+   02 — THE STORIES BEHIND THE DATA
+========================================================== */
+
+.thread-chapter {
+    position: absolute;
+
+    top: 1050px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+
+    white-space: nowrap;
+}
+
+
+
+/* KREIS */
+
+.thread-chapter-number {
+    width: 76px;
+    height: 76px;
+
+    flex: 0 0 76px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 2px solid #ff0000;
+
+    border-radius: 50%;
+
+    background: #000;
+
+    color: #ff0000;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+
+/* TEXT */
+
+.thread-chapter-title {
+    position: relative;
+
+    padding: 12px 18px;
+
+    /*
+      Ganz wichtig:
+      schwarzer Hintergrund verdeckt den roten
+      Faden hinter dem Text.
+    */
+
+    background: #000;
+
+    color: #ff0000;
+
+    font-size: clamp(15px, 1.5vw, 22px);
+
+    font-weight: 700;
+
+    letter-spacing: 0.22em;
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .continuous-thread {
+        height: 2400px;
+    }
+
+    .thread-chapter {
+        top: 850px;
+
+        width: 90%;
+
+        gap: 18px;
+
+        white-space: normal;
+    }
+
+    .thread-chapter-number {
+        width: 60px;
+        height: 60px;
+
+        flex-basis: 60px;
+
+        font-size: 15px;
+    }
+
+    .thread-chapter-title {
+        font-size: 12px;
+
+        line-height: 1.4;
+
+        letter-spacing: 0.15em;
+    }
+
+}
+/* ==========================================================
+   02 — THE STORIES BEHIND THE DATA
+   POSITION KORRIGIEREN
+========================================================== */
+
+.story-next {
+    position: absolute;
+
+    left: 50%;
+    bottom: 100px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    color: #ff0000;
+
+    z-index: 20;
+}
+
+
+/* schwarzer Hintergrund hinter dem Text,
+   damit die rote Linie NICHT durch die Schrift läuft */
+
+.story-next-label {
+    position: relative;
+
+    padding: 8px 12px;
+
+    background: #000;
+
+    color: #ff0000;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .2em;
+
+    white-space: nowrap;
+
+    z-index: 21;
+}
+
+
+/* Kreis ebenfalls vor die Linie */
+
+.story-next-number {
+    position: relative;
+
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #ff0000;
+    border-radius: 50%;
+
+    background: #000;
+
+    color: #ff0000;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    z-index: 21;
+}
+/* ==========================================================
+   02 — THE STORIES BEHIND THE DATA
+   WEITER NACH OBEN
+========================================================== */
+
+.story-next {
+    position: absolute;
+
+    top: 1600px;
+    bottom: auto;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    color: #ff0000;
+    z-index: 20;
+}
+
+.story-next-number {
+    position: relative;
+
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #ff0000;
+    border-radius: 50%;
+
+    background: #000;
+    color: #ff0000;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    z-index: 21;
+}
+
+.story-next-label {
+    position: relative;
+
+    padding: 8px 12px;
+
+    background: #000;
+    color: #ff0000;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    white-space: nowrap;
+
+    z-index: 21;
+}
+/* ROTER FADEN ETWAS DÜNNER */
+
+.continuous-thread-bg {
+    stroke-width: 6;
+}
+
+.continuous-thread-progress {
+    stroke-width: 6;
+}
+/* ==========================================================
+   VOICES — INTERAKTIVE DATENSTATIONEN
+========================================================== */
+
+.data-journey {
+    position: absolute;
+    top: 1650px;
+    left: 0;
+
+    width: 100%;
+    height: 1550px;
+
+    z-index: 15;
+
+    pointer-events: none;
+}
+
+
+/* ==========================================================
+   STATION
+========================================================== */
+
+.data-station {
+    position: absolute;
+
+    pointer-events: auto;
+}
+
+
+/* Unterschiedliche Positionen entlang des Fadens */
+
+.station-family {
+    top: 90px;
+    left: 49%;
+}
+
+.station-school {
+    top: 390px;
+    left: 34%;
+}
+
+.station-medical {
+    top: 680px;
+    left: 49%;
+}
+
+.station-neighbourhood {
+    top: 970px;
+    left: 61%;
+}
+
+.station-authorities {
+    top: 1270px;
+    left: 48%;
+}
+
+
+/* ==========================================================
+   TRIGGER
+========================================================== */
+
+.station-trigger {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ff0000;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+
+/* Punkt auf dem roten Faden */
+
+.station-dot {
+    width: 16px;
+    height: 16px;
+
+    flex: 0 0 16px;
+
+    border-radius: 50%;
+
+    background: #ff0000;
+
+    box-shadow:
+            0 0 0 5px #000,
+            0 0 0 6px #ff0000;
+
+    transition:
+            transform .4s cubic-bezier(.22,1,.36,1),
+            box-shadow .4s ease;
+}
+
+
+.station-trigger:hover .station-dot {
+    transform: scale(1.45);
+
+    box-shadow:
+            0 0 0 7px #000,
+            0 0 0 8px #ff0000;
+}
+
+
+/* Nummer */
+
+.station-number {
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .15em;
+
+    opacity: .65;
+}
+
+
+/* Gruppenname */
+
+.station-name {
+    font-size: clamp(22px, 2.4vw, 40px);
+
+    font-weight: 500;
+
+    letter-spacing: -.035em;
+
+    color: #fff;
+
+    transition:
+            color .3s ease,
+            transform .4s cubic-bezier(.22,1,.36,1);
+}
+
+
+.station-trigger:hover .station-name {
+    color: #ff0000;
+
+    transform: translateX(5px);
+}
+
+
+/* Hover Hinweis */
+
+.station-hint {
+    position: absolute;
+
+    left: 45px;
+    top: calc(100% + 7px);
+
+    color: #777;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .18em;
+}
+
+
+/* ==========================================================
+   GROSSES PANEL
+========================================================== */
+
+.station-panel {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    width: min(1050px, 84vw);
+    min-height: 610px;
+
+    transform:
+            translate(-50%, -46%)
+            scale(.96);
+
+    padding: 50px;
+
+    border: 1px solid rgba(255, 0, 0, .45);
+
+    background:
+            rgba(5, 5, 5, .97);
+
+    backdrop-filter: blur(18px);
+
+    color: #fff;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 2000;
+
+    transition:
+            opacity .35s ease,
+            transform .5s cubic-bezier(.22,1,.36,1),
+            visibility .35s ease;
+}
+
+
+/* Hover öffnet */
+
+.data-station:hover .station-panel,
+.data-station.is-open .station-panel {
+
+    opacity: 1;
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+            translate(-50%, -50%)
+            scale(1);
+}
+
+
+/* ==========================================================
+   CLOSE
+========================================================== */
+
+.station-close {
+    position: absolute;
+
+    top: 25px;
+    right: 28px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #ff0000;
+    border-radius: 50%;
+
+    background: #000;
+
+    color: #ff0000;
+
+    font-size: 25px;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    transition:
+            background .25s ease,
+            color .25s ease,
+            transform .25s ease;
+}
+
+
+.station-close:hover {
+    background: #ff0000;
+    color: #000;
+
+    transform: rotate(90deg);
+}
+
+
+/* ==========================================================
+   PANEL META
+========================================================== */
+
+.panel-meta {
+    margin-bottom: 65px;
+
+    color: #ff0000;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+/* ==========================================================
+   PANEL GRID
+========================================================== */
+
+.panel-layout {
+    display: grid;
+
+    grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(300px, .9fr);
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+
+/* ==========================================================
+   GRAFIK
+========================================================== */
+
+.panel-visual {
+    position: relative;
+
+    min-height: 360px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+/* Grosse Zahl */
+
+.big-stat {
+    color: #ff0000;
+
+    font-size: clamp(100px, 12vw, 180px);
+
+    font-weight: 500;
+
+    line-height: .8;
+
+    letter-spacing: -.07em;
+}
+
+
+.big-stat span {
+    font-size: .3em;
+
+    vertical-align: top;
+
+    margin-left: 7px;
+}
+
+
+/* ==========================================================
+   TEXT
+========================================================== */
+
+.panel-copy h3 {
+    max-width: 450px;
+
+    margin: 12px 0 25px;
+
+    color: #fff;
+
+    font-size: clamp(27px, 3vw, 43px);
+
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: -.04em;
+}
+
+
+.panel-copy p {
+    max-width: 430px;
+
+    margin: 0;
+
+    color: #aaa;
+
+    font-size: 15px;
+
+    line-height: 1.55;
+}
+
+
+.panel-label {
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.panel-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 35px 0;
+
+    background:
+            rgba(255,255,255,.18);
+}
+
+
+.panel-source {
+    display: block;
+
+    margin-top: 25px;
+
+    color: #555;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .18em;
+}
+
+
+/* ==========================================================
+   FAMILIE — PUNKTE
+========================================================== */
+
+.people-graphic {
+    display: grid;
+
+    grid-template-columns:
+    repeat(5, 24px);
+
+    gap: 13px;
+
+    margin-top: 55px;
+}
+
+
+.person {
+    width: 24px;
+    height: 24px;
+
+    border: 1px solid #555;
+
+    border-radius: 50%;
+}
+
+
+.person.active {
+    border-color: #ff0000;
+
+    background: #ff0000;
+}
+
+
+/* ==========================================================
+   SCHULE — BALKEN
+========================================================== */
+
+.bar-graphic {
+    width: 100%;
+
+    margin-top: 60px;
+}
+
+
+.bar-row {
+    display: grid;
+
+    grid-template-columns:
+    80px 1fr 45px;
+
+    gap: 15px;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    color: #777;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .1em;
+}
+
+
+.bar {
+    height: 5px;
+
+    background: #222;
+
+    overflow: hidden;
+}
+
+
+.bar div {
+    height: 100%;
+
+    background: #ff0000;
+
+    transform-origin: left;
+}
+
+
+/* ==========================================================
+   MEDIZIN — KREIS
+========================================================== */
+
+.circle-stat {
+    position: relative;
+
+    width: 310px;
+    height: 310px;
+}
+
+
+.circle-stat svg {
+    width: 100%;
+    height: 100%;
+
+    transform: rotate(-90deg);
+}
+
+
+.circle-bg {
+    fill: none;
+
+    stroke: #222;
+
+    stroke-width: 4;
+}
+
+
+.circle-value {
+    fill: none;
+
+    stroke: #ff0000;
+
+    stroke-width: 4;
+
+    stroke-linecap: round;
+
+    stroke-dasharray: 553;
+
+    stroke-dashoffset: 254;
+}
+
+
+.circle-number {
+    position: absolute;
+
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: #ff0000;
+
+    font-size: 80px;
+
+    font-weight: 500;
+
+    letter-spacing: -.06em;
+}
+
+
+.circle-number span {
+    font-size: 22px;
+
+    margin-left: -55px;
+    margin-top: 65px;
+}
+
+
+/* ==========================================================
+   UMFELD — NETZWERK
+========================================================== */
+
+.network-graphic {
+    position: relative;
+
+    width: 350px;
+    height: 350px;
+
+    border: 1px solid #222;
+
+    border-radius: 50%;
+}
+
+
+.network-center {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 105px;
+    height: 105px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #ff0000;
+
+    color: #000;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.network-node {
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid #ff0000;
+
+    border-radius: 50%;
+
+    background: #000;
+}
+
+
+.n1 {
+    top: 30px;
+    left: 160px;
+}
+
+.n2 {
+    top: 110px;
+    right: 30px;
+}
+
+.n3 {
+    bottom: 55px;
+    right: 75px;
+}
+
+.n4 {
+    bottom: 45px;
+    left: 70px;
+}
+
+.n5 {
+    top: 105px;
+    left: 25px;
+}
+
+
+/* ==========================================================
+   BEHÖRDEN — TIMELINE
+========================================================== */
+
+.mini-timeline {
+    position: relative;
+
+    width: 100%;
+
+    padding-left: 45px;
+}
+
+
+.timeline-line {
+    position: absolute;
+
+    top: 15px;
+    bottom: 15px;
+    left: 9px;
+
+    width: 2px;
+
+    background: #ff0000;
+}
+
+
+.timeline-event {
+    position: relative;
+
+    min-height: 90px;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: .12em;
+}
+
+
+.timeline-dot {
+    position: absolute;
+
+    left: -43px;
+    top: 0;
+
+    width: 18px;
+    height: 18px;
+
+    border: 3px solid #ff0000;
+
+    border-radius: 50%;
+
+    background: #000;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .data-journey {
+        top: 1600px;
+        height: 1450px;
+    }
+
+
+    .station-family {
+        left: 35%;
+    }
+
+    .station-school {
+        left: 20%;
+    }
+
+    .station-medical {
+        left: 37%;
+    }
+
+    .station-neighbourhood {
+        left: 25%;
+    }
+
+    .station-authorities {
+        left: 35%;
+    }
+
+
+    .station-name {
+        font-size: 22px;
+    }
+
+
+    .station-hint {
+        display: none;
+    }
+
+
+    .station-panel {
+        width: calc(100vw - 30px);
+
+        max-height: 88vh;
+        min-height: 0;
+
+        padding: 55px 25px 35px;
+
+        overflow-y: auto;
+    }
+
+
+    .panel-meta {
+        margin-bottom: 35px;
+    }
+
+
+    .panel-layout {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+
+    .panel-visual {
+        min-height: 240px;
+    }
+
+
+    .big-stat {
+        font-size: 110px;
+    }
+
+
+    .circle-stat {
+        width: 230px;
+        height: 230px;
+    }
+
+
+    .network-graphic {
+        width: 240px;
+        height: 240px;
+    }
+
+
+    .panel-copy h3 {
+        font-size: 29px;
+    }
+
+}
+/* ==========================================================
+   VOICES — KATEGORIEN IM HERO
+========================================================== */
+
+.category-nav {
+    position: absolute;
+
+    top: 35px;
+    left: 40px;
+
+    z-index: 60;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 4px;
+}
+
+
+/* Einzelne Kategorie */
+
+.category-link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    min-height: 35px;
+
+    padding: 5px 14px 5px 6px;
+
+    border-radius: 100px;
+
+    color: rgba(255,255,255,.55);
+
+    transition:
+            color .35s ease,
+            background .35s ease,
+            transform .45s cubic-bezier(.22,1,.36,1);
+}
+
+
+/* Nummer */
+
+.category-number {
+    width: 27px;
+    height: 27px;
+
+    flex: 0 0 27px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 50%;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .05em;
+
+    transition:
+            background .35s ease,
+            border-color .35s ease,
+            color .35s ease,
+            transform .35s ease;
+}
+
+
+/* Titel */
+
+.category-title {
+    font-size: 9px;
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    letter-spacing: .12em;
+
+    text-transform: uppercase;
+
+    transition:
+            transform .4s cubic-bezier(.22,1,.36,1);
+}
+
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.category-link:hover {
+    color: #ff0000;
+
+    background:
+            rgba(0,0,0,.28);
+
+    transform:
+            translateX(7px);
+}
+
+
+.category-link:hover
+.category-number {
+
+    background: #ff0000;
+
+    border-color: #ff0000;
+
+    color: #000;
+
+    transform:
+            scale(1.08);
+}
+
+
+.category-link:hover
+.category-title {
+
+    transform:
+            translateX(3px);
+}
+
+
+/* ==========================================================
+   AKTIVE SEITE
+========================================================== */
+
+.category-link.active {
+    color: #ff0000;
+}
+
+
+.category-link.active
+.category-number {
+
+    background: #ff0000;
+
+    border-color: #ff0000;
+
+    color: #000;
+}
+
+
+
+/* ==========================================================
+   DATENSTATIONEN — LANGE TITEL
+========================================================== */
+
+.station-name {
+    line-height: 1.02;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .category-nav {
+
+        top: 20px;
+        left: 18px;
+
+        gap: 2px;
+
+    }
+
+
+    .category-link {
+
+        gap: 8px;
+
+        min-height: 29px;
+
+        padding: 3px 8px 3px 4px;
+
+    }
+
+
+    .category-number {
+
+        width: 22px;
+        height: 22px;
+
+        flex-basis: 22px;
+
+        font-size: 7px;
+
+    }
+
+
+    .category-title {
+
+        font-size: 7px;
+
+        letter-spacing: .08em;
+
+    }
+
+}
+/* ==========================================================
+   VOICES
+   CATEGORY PAGE
+========================================================== */
+
+.category-page {
+    background: #000;
+    color: #fff;
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.category-hero {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+
+    overflow: hidden;
+
+    background: #000;
+}
+
+
+.category-hero-video {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 0;
+}
+
+
+/* leichte Abdunklung nur auf Unterseite */
+
+.category-hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.48),
+                    rgba(0,0,0,.04) 60%,
+                    rgba(0,0,0,.2)
+            );
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* Navigation bleibt darüber */
+
+.category-page-nav {
+    z-index: 10;
+}
+
+
+/* ==========================================================
+   HERO CONTENT
+========================================================== */
+
+.category-hero-content {
+    position: absolute;
+
+    left: 7vw;
+    right: 7vw;
+    bottom: 7vh;
+
+    z-index: 5;
+}
+
+
+.category-kicker {
+    margin-bottom: 24px;
+
+    color: #ff0000;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.category-hero-content h1 {
+    margin: 0;
+
+    max-width: 1100px;
+
+    color: #fff;
+
+    font-size: clamp(80px, 10.5vw, 170px);
+
+    font-weight: 500;
+
+    line-height: .76;
+
+    letter-spacing: -.065em;
+}
+
+
+.category-hero-content h1 span {
+    color: #ff0000;
+}
+
+
+.category-hero-bottom {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 80px;
+
+    margin-top: 55px;
+}
+
+
+.category-hero-bottom p {
+    width: min(460px, 40vw);
+
+    margin: 0;
+
+    color: rgba(255,255,255,.75);
+
+    font-size: 16px;
+
+    line-height: 1.45;
+}
+
+
+.category-scroll {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .18em;
+}
+
+
+.category-scroll span {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #ff0000;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+
+    transition:
+            background .3s ease,
+            color .3s ease,
+            transform .3s ease;
+}
+
+
+.category-scroll:hover span {
+    background: #ff0000;
+
+    color: #000;
+
+    transform: translateY(5px);
+}
+
+
+/* riesige Kapitelnummer */
+
+.category-hero-index {
+    position: absolute;
+
+    top: 50%;
+    right: -1vw;
+
+    transform: translateY(-50%);
+
+    z-index: 2;
+
+    color: rgba(255,0,0,.18);
+
+    font-size: clamp(280px, 37vw, 600px);
+
+    font-weight: 600;
+
+    line-height: .7;
+
+    letter-spacing: -.1em;
+
+    pointer-events: none;
+}
+
+
+/* ==========================================================
+   DATA STORY
+========================================================== */
+
+.category-story {
+    position: relative;
+
+    min-height: 4400px;
+
+    overflow: hidden;
+
+    background: #000;
+
+    padding:
+            150px
+            7vw
+            200px;
+}
+
+
+/* ==========================================================
+   RED THREAD
+========================================================== */
+
+.category-thread {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+
+.category-thread-background {
+    fill: none;
+
+    stroke: rgba(255,0,0,.08);
+
+    stroke-width: 7;
+
+    vector-effect: non-scaling-stroke;
+}
+
+
+.category-thread-progress {
+    fill: none;
+
+    stroke: #ff0000;
+
+    stroke-width: 7;
+
+    stroke-linecap: round;
+
+    vector-effect: non-scaling-stroke;
+}
+
+
+/* ==========================================================
+   REVEAL
+========================================================== */
+
+.category-reveal {
+    opacity: 0;
+
+    transform:
+            translateY(60px);
+
+    filter: blur(5px);
+
+    transition:
+            opacity 1.1s ease,
+            transform 1.2s cubic-bezier(.22,1,.36,1),
+            filter 1.1s ease;
+}
+
+
+.category-reveal.is-visible {
+    opacity: 1;
+
+    transform:
+            translateY(0);
+
+    filter: blur(0);
+}
+
+
+/* ==========================================================
+   INTRO
+========================================================== */
+
+.chapter-intro {
+    position: relative;
+
+    z-index: 4;
+
+    width: min(900px, 80vw);
+
+    margin-left: 5vw;
+}
+
+
+.chapter-small,
+.stat-label {
+    display: block;
+
+    color: #ff0000;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.chapter-intro h2 {
+    margin: 35px 0;
+
+    color: #fff;
+
+    font-size: clamp(70px, 9vw, 145px);
+
+    font-weight: 500;
+
+    line-height: .82;
+
+    letter-spacing: -.06em;
+}
+
+
+.chapter-intro p {
+    width: min(520px, 50vw);
+
+    margin-left: 35%;
+
+    color: #aaa;
+
+    font-size: clamp(20px, 2vw, 30px);
+
+    line-height: 1.25;
+
+    letter-spacing: -.02em;
+}
+
+
+/* ==========================================================
+   GENERIC CHAPTER
+========================================================== */
+
+.data-chapter {
+    position: absolute;
+
+    z-index: 5;
+}
+
+
+.chapter-marker {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .16em;
+}
+
+
+.chapter-marker span {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #ff0000;
+}
+
+
+.chapter-heading h3,
+.chapter-text h3 {
+    margin: 15px 0 0;
+
+    color: #fff;
+
+    font-size: clamp(45px, 5vw, 80px);
+
+    font-weight: 500;
+
+    line-height: .9;
+
+    letter-spacing: -.05em;
+}
+
+
+.chart-placeholder,
+.placeholder-tag {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    color: #555;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .18em;
+}
+
+
+/* ==========================================================
+   TOTAL
+========================================================== */
+
+.chapter-total {
+    top: 900px;
+    right: 8vw;
+
+    width: min(850px, 67vw);
+
+    display: grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap: 80px;
+
+    align-items: end;
+}
+
+
+.chapter-stat strong {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #ff0000;
+
+    font-size: clamp(150px, 18vw, 280px);
+
+    font-weight: 500;
+
+    line-height: .8;
+
+    letter-spacing: -.08em;
+}
+
+
+.chapter-text p {
+    max-width: 370px;
+
+    margin-top: 30px;
+
+    color: #999;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   YEARS
+========================================================== */
+
+.chapter-years {
+    top: 1450px;
+    left: 8vw;
+
+    width: 84vw;
+}
+
+
+.year-chart {
+    height: 400px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: clamp(8px, 1.5vw, 24px);
+
+    margin-top: 80px;
+
+    padding-bottom: 40px;
+
+    border-bottom:
+            1px solid rgba(255,255,255,.18);
+}
+
+
+.year-column {
+    position: relative;
+
+    height: 100%;
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.year-bar {
+    width: 100%;
+    height: 0;
+
+    max-width: 70px;
+
+    background: #ff0000;
+
+    transition:
+            height 1.4s cubic-bezier(.22,1,.36,1);
+}
+
+
+.year-chart.animate .year-bar {
+    height: var(--height);
+}
+
+
+.year-value {
+    margin-bottom: 10px;
+
+    color: #777;
+
+    font-size: 9px;
+}
+
+
+.year-label {
+    position: absolute;
+
+    bottom: -27px;
+
+    color: #777;
+
+    font-size: 9px;
+
+    transform: rotate(-45deg);
+}
+
+
+/* ==========================================================
+   CASE INTERRUPTION
+========================================================== */
+
+.case-interruption {
+    position: absolute;
+
+    top: 2250px;
+    left: 17vw;
+
+    z-index: 5;
+
+    display: flex;
+
+    gap: 70px;
+}
+
+
+.case-number {
+    color: #777;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.case-number span {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #ff0000;
+
+    font-size: 40px;
+
+    letter-spacing: -.04em;
+}
+
+
+.case-label {
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.case-content p {
+    margin: 22px 0 0;
+
+    color: #fff;
+
+    font-size: clamp(38px, 4vw, 65px);
+
+    font-weight: 500;
+
+    line-height: .95;
+
+    letter-spacing: -.04em;
+}
+
+
+.case-content p + p {
+    margin-left: 15vw;
+}
+
+
+.case-content p span {
+    color: #ff0000;
+}
+
+
+/* ==========================================================
+   AGE
+========================================================== */
+
+.chapter-age {
+    top: 2750px;
+    right: 8vw;
+
+    width: 70vw;
+}
+
+
+.age-visual {
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: clamp(25px, 5vw, 80px);
+
+    margin-top: 70px;
+}
+
+
+.age-group {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 18px;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+.age-group small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #666;
+
+    font-size: 7px;
+
+    letter-spacing: .15em;
+}
+
+
+.age-circle {
+    display: grid;
+
+    place-items: center;
+
+    border: 2px solid #ff0000;
+
+    border-radius: 50%;
+
+    color: #ff0000;
+
+    font-weight: 500;
+}
+
+
+.size-1 {
+    width: 90px;
+    height: 90px;
+}
+
+
+.size-2 {
+    width: 125px;
+    height: 125px;
+}
+
+
+.size-3 {
+    width: 165px;
+    height: 165px;
+
+    background: #ff0000;
+
+    color: #000;
+}
+
+
+.size-4 {
+    width: 105px;
+    height: 105px;
+}
+
+
+/* ==========================================================
+   GENDER
+========================================================== */
+
+.chapter-gender {
+    top: 3350px;
+    left: 8vw;
+
+    width: 70vw;
+}
+
+
+.gender-visual {
+    display: flex;
+
+    align-items: stretch;
+
+    gap: 45px;
+
+    margin-top: 65px;
+}
+
+
+.gender-block strong {
+    display: block;
+
+    color: #fff;
+
+    font-size: clamp(100px, 12vw, 180px);
+
+    font-weight: 500;
+
+    line-height: .8;
+
+    letter-spacing: -.07em;
+}
+
+
+.gender-block strong span {
+    color: #ff0000;
+
+    font-size: .3em;
+}
+
+
+.gender-block p {
+    margin-top: 18px;
+
+    color: #777;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.gender-divider {
+    width: 1px;
+
+    background:
+            rgba(255,255,255,.18);
+}
+
+
+/* ==========================================================
+   OFFENCES
+========================================================== */
+
+.chapter-offences {
+    top: 4000px;
+    left: 12vw;
+
+    width: 76vw;
+}
+
+
+.offence-list {
+    margin-top: 70px;
+}
+
+
+.offence-row {
+    display: grid;
+
+    grid-template-columns:
+    40px
+    minmax(200px, 1.2fr)
+    2fr
+    70px;
+
+    gap: 25px;
+
+    align-items: center;
+
+    min-height: 70px;
+
+    border-top:
+            1px solid rgba(255,255,255,.16);
+}
+
+
+.offence-row:last-child {
+    border-bottom:
+            1px solid rgba(255,255,255,.16);
+}
+
+
+.offence-index {
+    color: #ff0000;
+
+    font-size: 9px;
+}
+
+
+.offence-name {
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: .08em;
+}
+
+
+.offence-bar {
+    height: 4px;
+
+    background: #1c1c1c;
+}
+
+
+.offence-bar span {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: #ff0000;
+
+    transition:
+            width 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+
+.offence-list.animate
+.offence-bar span {
+    width: var(--width);
+}
+
+
+.offence-row strong {
+    color: #fff;
+
+    font-size: 22px;
+
+    font-weight: 500;
+
+    text-align: right;
+}
+
+
+/* ==========================================================
+   OUTRO
+========================================================== */
+
+.category-outro {
+    position: absolute;
+
+    top: 4850px;
+    left: 8vw;
+    right: 8vw;
+
+    z-index: 5;
+}
+
+
+.category-outro > span {
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.category-outro h2 {
+    margin: 40px 0 100px;
+
+    color: #fff;
+
+    font-size: clamp(65px, 8vw, 125px);
+
+    font-weight: 500;
+
+    line-height: .84;
+
+    letter-spacing: -.06em;
+}
+
+
+.category-outro h2 em {
+    color: #ff0000;
+
+    font-style: normal;
+}
+
+
+/* NEXT */
+
+.next-category {
+    display: grid;
+
+    grid-template-columns:
+    150px
+    100px
+    1fr
+    60px;
+
+    gap: 30px;
+
+    align-items: center;
+
+    padding: 30px 0;
+
+    border-top:
+            1px solid rgba(255,255,255,.25);
+
+    border-bottom:
+            1px solid rgba(255,255,255,.25);
+
+    transition:
+            padding .4s cubic-bezier(.22,1,.36,1);
+}
+
+
+.next-category:hover {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.next-category > span {
+    color: #777;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .18em;
+}
+
+
+.next-category strong {
+    color: #ff0000;
+
+    font-size: 42px;
+
+    font-weight: 500;
+}
+
+
+.next-category p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(18px, 2vw, 28px);
+
+    line-height: 1;
+}
+
+
+.next-category b {
+    color: #ff0000;
+
+    font-size: 30px;
+
+    font-weight: 300;
+
+    text-align: right;
+}
+
+
+/* ==========================================================
+   FIX HEIGHT
+========================================================== */
+
+/*
+   Wir brauchen genügend Platz,
+   weil die Kapitel absolut positioniert sind.
+*/
+
+.category-story {
+    min-height: 5550px;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+
+    .category-hero-content {
+        left: 24px;
+        right: 24px;
+        bottom: 50px;
+    }
+
+
+    .category-hero-content h1 {
+        font-size:
+                clamp(58px, 18vw, 100px);
+
+        line-height: .82;
+    }
+
+
+    .category-hero-bottom {
+        display: block;
+
+        margin-top: 35px;
+    }
+
+
+    .category-hero-bottom p {
+        width: 100%;
+
+        max-width: 380px;
+
+        font-size: 14px;
+    }
+
+
+    .category-scroll {
+        margin-top: 30px;
+    }
+
+
+    .category-hero-index {
+        right: -20px;
+
+        font-size: 75vw;
+    }
+
+
+    /* STORY */
+
+    .category-story {
+        min-height: auto;
+
+        padding:
+                100px
+                24px
+                140px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 150px;
+    }
+
+
+    .category-thread {
+        display: none;
+    }
+
+
+    .chapter-intro,
+    .data-chapter,
+    .case-interruption,
+    .category-outro {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        margin: 0;
+
+    }
+
+
+    .chapter-intro {
+        width: 100%;
+    }
+
+
+    .chapter-intro h2 {
+        font-size:
+                clamp(60px, 19vw, 100px);
+    }
+
+
+    .chapter-intro p {
+        width: 100%;
+
+        margin: 30px 0 0;
+    }
+
+
+    /* TOTAL */
+
+    .chapter-total {
+        display: block;
+    }
+
+
+    .chapter-stat strong {
+        font-size: 45vw;
+    }
+
+
+    .chapter-text {
+        margin-top: 60px;
+    }
+
+
+    /* YEARS */
+
+    .year-chart {
+        height: 320px;
+
+        gap: 5px;
+
+        overflow: hidden;
+    }
+
+
+    .year-value {
+        display: none;
+    }
+
+
+    .year-label {
+        font-size: 7px;
+    }
+
+
+    /* CASE */
+
+    .case-interruption {
+        display: block;
+    }
+
+
+    .case-content {
+        margin-top: 50px;
+    }
+
+
+    .case-content p {
+        font-size:
+                clamp(34px, 10vw, 55px);
+    }
+
+
+    .case-content p + p {
+        margin-left: 0;
+    }
+
+
+    /* AGE */
+
+    .age-visual {
+        display: grid;
+
+        grid-template-columns:
+      repeat(2,1fr);
+
+        gap: 40px;
+
+        justify-items: center;
+    }
+
+
+    /* GENDER */
+
+    .gender-visual {
+        display: block;
+    }
+
+
+    .gender-divider {
+        width: 100%;
+        height: 1px;
+
+        margin: 40px 0;
+    }
+
+
+    .gender-block strong {
+        font-size: 30vw;
+    }
+
+
+    /* OFFENCES */
+
+    .offence-row {
+        grid-template-columns:
+      25px 1fr 50px;
+
+        gap: 12px;
+
+        padding: 18px 0;
+    }
+
+
+    .offence-bar {
+        grid-column:
+                2 / 4;
+
+        width: 100%;
+    }
+
+
+    .offence-row strong {
+        grid-column: 3;
+        grid-row: 1;
+
+        font-size: 17px;
+    }
+
+
+    /* OUTRO */
+
+    .category-outro h2 {
+        font-size:
+                clamp(55px, 17vw, 90px);
+    }
+
+
+    .next-category {
+        grid-template-columns:
+      55px 1fr 30px;
+    }
+
+
+    .next-category > span {
+        display: none;
+    }
+
+
+    .next-category strong {
+        font-size: 30px;
+    }
+
+
+    .next-category p {
+        font-size: 15px;
+    }
+
+
+}
+/* ==========================================================
+   CATEGORY PAGE — FINAL FIXES
+   Navigation tiefer + roter Faden bis Seitenende
+========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. Kategorien weiter nach unten
+---------------------------------------------------------- */
+
+.category-page .category-page-nav {
+    top: 165px;
+}
+
+
+/* ----------------------------------------------------------
+   2. Roter Faden über die GANZE Datenstory
+---------------------------------------------------------- */
+
+.category-page .category-thread {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 100%;
+
+    overflow: visible;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+
+/* Die Linien sollen beim längeren SVG sauber bleiben */
+
+.category-page .category-thread-background,
+.category-page .category-thread-progress {
+    vector-effect: non-scaling-stroke;
+}
+
+
+/* ----------------------------------------------------------
+   MOBILE
+---------------------------------------------------------- */
+
+@media (max-width: 800px) {
+
+    .category-page .category-page-nav {
+        top: 135px;
+    }
+
+}
+/* ==========================================================
+   CATEGORY PAGE — NAVIGATION FIX
+========================================================== */
+
+.category-page .category-page-nav {
+    top: 165px;
+}
+
+
+/* Roter Faden über die volle Höhe */
+
+.category-page .category-thread {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+
+.category-page .category-thread-background,
+.category-page .category-thread-progress {
+    vector-effect: non-scaling-stroke;
+}
+
+
+@media (max-width: 800px) {
+
+    .category-page .category-page-nav {
+        top: 135px;
+    }
+
+}
+/* ==========================================================
+   CATEGORY NAV — POSITION FIX
+========================================================== */
+
+.category-page .category-page-nav {
+    top: 75px;
+}
+
+@media (max-width: 800px) {
+    .category-page .category-page-nav {
+        top: 95px;
+    }
+}
+/* ==========================================================
+   VOICES — CATEGORY 02
+   VERBALE / DIGITALE GEWALT
+========================================================== */
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.verbal-page .verbal-hero-title {
+    font-size: clamp(72px, 9.4vw, 155px);
+}
+
+
+/* ==========================================================
+   STORY
+========================================================== */
+
+.verbal-story {
+    min-height: 5550px;
+}
+
+
+/* ==========================================================
+   TOTAL
+========================================================== */
+
+.verbal-total {
+    top: 880px;
+    right: 8vw;
+
+    width: min(900px, 70vw);
+
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+
+    gap: 90px;
+
+    align-items: end;
+}
+
+
+.verbal-total-number strong {
+    display: block;
+
+    margin-top: 12px;
+
+    color: #ff0000;
+
+    font-size: clamp(150px, 18vw, 280px);
+    font-weight: 500;
+
+    line-height: .78;
+    letter-spacing: -.08em;
+}
+
+
+.verbal-total-copy h3 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(50px, 5vw, 82px);
+    font-weight: 500;
+
+    line-height: .88;
+    letter-spacing: -.05em;
+}
+
+
+.verbal-total-copy p {
+    max-width: 360px;
+
+    margin-top: 30px;
+
+    color: #999;
+
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+
+/* ==========================================================
+   VERBAL / DIGITAL
+========================================================== */
+
+.verbal-split {
+    top: 1500px;
+    left: 8vw;
+
+    width: 84vw;
+}
+
+
+.signal-comparison {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8vw;
+
+    margin-top: 80px;
+}
+
+
+.signal-side {
+    position: relative;
+
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255,255,255,.18);
+}
+
+
+.signal-meta {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 30px;
+}
+
+
+.signal-meta span {
+    color: #777;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .18em;
+}
+
+
+.signal-meta strong {
+    color: #fff;
+
+    font-size: clamp(70px, 8vw, 125px);
+    font-weight: 500;
+
+    line-height: .8;
+    letter-spacing: -.07em;
+}
+
+
+.signal-side:first-child .signal-meta strong {
+    color: #ff0000;
+}
+
+
+.signal-lines {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 55px;
+}
+
+
+.signal-lines span {
+    display: block;
+
+    width: 0;
+    height: 3px;
+
+    background: #ff0000;
+
+    transition:
+            width 1.4s cubic-bezier(.22,1,.36,1);
+}
+
+
+.signal-side:nth-child(2) .signal-lines span {
+    background: rgba(255,255,255,.55);
+}
+
+
+.signal-comparison.animate
+.signal-lines span {
+    width: var(--signal);
+}
+
+
+.signal-lines span:nth-child(2) {
+    transition-delay: .08s;
+}
+
+
+.signal-lines span:nth-child(3) {
+    transition-delay: .16s;
+}
+
+
+.signal-lines span:nth-child(4) {
+    transition-delay: .24s;
+}
+
+
+.signal-lines span:nth-child(5) {
+    transition-delay: .32s;
+}
+
+
+.signal-lines span:nth-child(6) {
+    transition-delay: .4s;
+}
+
+
+
+/* ==========================================================
+   MESSAGE INTERRUPTION
+========================================================== */
+
+.verbal-message {
+    position: absolute;
+
+    top: 2250px;
+    left: 14vw;
+
+    z-index: 5;
+
+    width: 72vw;
+}
+
+
+.verbal-message-label {
+    display: block;
+
+    margin-bottom: 45px;
+
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.message-row {
+    display: grid;
+
+    grid-template-columns: 80px 1fr;
+
+    gap: 35px;
+
+    padding: 25px 0;
+
+    border-top: 1px solid rgba(255,255,255,.15);
+}
+
+
+.message-row:last-child {
+    border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+
+.message-time {
+    padding-top: 10px;
+
+    color: #555;
+
+    font-size: 9px;
+
+    letter-spacing: .15em;
+}
+
+
+.message-row p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(38px, 4.5vw, 72px);
+    font-weight: 500;
+
+    line-height: .9;
+    letter-spacing: -.045em;
+}
+
+
+.message-row p span {
+    color: #ff0000;
+}
+
+
+.message-row-two {
+    margin-left: 12vw;
+}
+
+
+
+/* ==========================================================
+   TREND / LINE CHART
+========================================================== */
+
+.verbal-years {
+    top: 2850px;
+    right: 8vw;
+
+    width: 78vw;
+}
+
+
+.verbal-line-chart {
+    position: relative;
+
+    margin-top: 70px;
+}
+
+
+.verbal-line-chart svg {
+    display: block;
+
+    width: 100%;
+    height: 360px;
+
+    overflow: visible;
+}
+
+
+.verbal-axis {
+    stroke: rgba(255,255,255,.16);
+
+    stroke-width: 1;
+}
+
+
+.verbal-trend-line {
+    fill: none;
+
+    stroke: #ff0000;
+
+    stroke-width: 5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-dasharray: 1800;
+    stroke-dashoffset: 1800;
+
+    transition:
+            stroke-dashoffset 2s cubic-bezier(.22,1,.36,1);
+}
+
+
+.verbal-line-chart.animate
+.verbal-trend-line {
+    stroke-dashoffset: 0;
+}
+
+
+.verbal-line-chart circle {
+    fill: #000;
+
+    stroke: #ff0000;
+
+    stroke-width: 4;
+
+    opacity: 0;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    transform: scale(0);
+
+    transition:
+            opacity .4s ease,
+            transform .6s cubic-bezier(.22,1,.36,1);
+}
+
+
+.verbal-line-chart.animate circle {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(1) {
+    transition-delay: .1s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(2) {
+    transition-delay: .2s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(3) {
+    transition-delay: .3s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(4) {
+    transition-delay: .4s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(5) {
+    transition-delay: .5s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(6) {
+    transition-delay: .6s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(7) {
+    transition-delay: .7s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(8) {
+    transition-delay: .8s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(9) {
+    transition-delay: .9s;
+}
+
+
+.verbal-line-chart.animate circle:nth-of-type(10) {
+    transition-delay: 1s;
+}
+
+
+.verbal-year-labels {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 15px;
+}
+
+
+.verbal-year-labels span {
+    color: #666;
+
+    font-size: 8px;
+
+    letter-spacing: .08em;
+}
+
+
+
+/* ==========================================================
+   AGE SIGNALS
+========================================================== */
+
+.verbal-age {
+    top: 3550px;
+    left: 8vw;
+
+    width: 72vw;
+}
+
+
+.age-signals {
+    margin-top: 70px;
+}
+
+
+.age-signal {
+    padding: 22px 0;
+
+    border-top: 1px solid rgba(255,255,255,.15);
+}
+
+
+.age-signal:last-child {
+    border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+
+.age-signal-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 30px;
+}
+
+
+.age-signal-top span {
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: .12em;
+}
+
+
+.age-signal-top strong {
+    color: #ff0000;
+
+    font-size: 34px;
+    font-weight: 500;
+
+    letter-spacing: -.04em;
+}
+
+
+.age-signal-track {
+    height: 3px;
+
+    margin-top: 18px;
+
+    background: #191919;
+
+    overflow: hidden;
+}
+
+
+.age-signal-track span {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: #ff0000;
+
+    transition:
+            width 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+
+.age-signals.animate
+.age-signal-track span {
+    width: var(--age-width);
+}
+
+
+
+/* ==========================================================
+   TYPES
+========================================================== */
+
+.verbal-types {
+    top: 4200px;
+    right: 8vw;
+
+    width: 74vw;
+}
+
+
+.verbal-type-list {
+    margin-top: 70px;
+}
+
+
+.verbal-type-row {
+    display: grid;
+
+    grid-template-columns:
+    45px
+    1fr
+    100px
+    40px;
+
+    gap: 25px;
+
+    align-items: center;
+
+    min-height: 85px;
+
+    border-top:
+            1px solid rgba(255,255,255,.16);
+
+    transition:
+            padding .35s cubic-bezier(.22,1,.36,1);
+}
+
+
+.verbal-type-row:last-child {
+    border-bottom:
+            1px solid rgba(255,255,255,.16);
+}
+
+
+.verbal-type-row:hover {
+    padding-left: 15px;
+}
+
+
+.verbal-type-index {
+    color: #ff0000;
+
+    font-size: 9px;
+}
+
+
+.verbal-type-row p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: .1em;
+}
+
+
+.verbal-type-row strong {
+    color: #fff;
+
+    font-size: 27px;
+    font-weight: 500;
+
+    text-align: right;
+}
+
+
+.verbal-type-arrow {
+    color: #ff0000;
+
+    font-size: 22px;
+
+    text-align: right;
+
+    transition:
+            transform .3s ease;
+}
+
+
+.verbal-type-row:hover
+.verbal-type-arrow {
+    transform: translateX(7px);
+}
+
+
+
+/* ==========================================================
+   OUTRO
+========================================================== */
+
+.verbal-outro {
+    top: 4900px;
+}
+
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+
+    .verbal-page .verbal-hero-title {
+        font-size: clamp(50px, 15vw, 85px);
+    }
+
+
+    .verbal-story {
+        min-height: auto;
+    }
+
+
+    .verbal-total,
+    .verbal-split,
+    .verbal-years,
+    .verbal-age,
+    .verbal-types,
+    .verbal-message,
+    .verbal-outro {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        margin: 0;
+
+    }
+
+
+    .verbal-total {
+        display: block;
+    }
+
+
+    .verbal-total-number strong {
+        font-size: 44vw;
+    }
+
+
+    .verbal-total-copy {
+        margin-top: 55px;
+    }
+
+
+    .signal-comparison {
+        grid-template-columns: 1fr;
+
+        gap: 80px;
+    }
+
+
+    .signal-meta strong {
+        font-size: 22vw;
+    }
+
+
+    .message-row {
+        grid-template-columns: 50px 1fr;
+
+        gap: 15px;
+    }
+
+
+    .message-row-two {
+        margin-left: 0;
+    }
+
+
+    .message-row p {
+        font-size: clamp(30px, 9vw, 50px);
+    }
+
+
+    .verbal-line-chart svg {
+        height: 260px;
+    }
+
+
+    .verbal-year-labels span {
+        font-size: 6px;
+    }
+
+
+    .verbal-type-row {
+        grid-template-columns:
+      30px
+      1fr
+      55px;
+
+        gap: 10px;
+    }
+
+
+    .verbal-type-arrow {
+        display: none;
+    }
+
+
+    .verbal-type-row strong {
+        font-size: 19px;
+    }
+
+}
+
+
+/* ==========================================================
+   CATEGORY NAV POSITION
+========================================================== */
+
+.category-page .category-page-nav {
+    top: 75px;
+}
+
+
+@media (max-width: 800px) {
+
+    .category-page .category-page-nav {
+        top: 75px;
+    }
+
+}
+/* ==========================================================
+   VOICES — CATEGORY 03
+   DROHUNG, ZWANG & FREIHEITSENTZUG
+========================================================== */
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.coercion-page .coercion-hero-title {
+    font-size: clamp(66px, 8.6vw, 145px);
+}
+
+.coercion-page .coercion-hero-title span {
+    display: block;
+    margin-top: 10px;
+}
+
+
+/* ==========================================================
+   STORY
+========================================================== */
+
+.coercion-story {
+    min-height: 5550px;
+}
+
+
+/* ==========================================================
+   TOTAL
+========================================================== */
+
+.coercion-total {
+    top: 880px;
+    right: 8vw;
+
+    width: min(930px, 72vw);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    align-items: center;
+}
+
+
+.coercion-total-frame {
+    position: relative;
+
+    min-height: 390px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 50px;
+
+    border: 1px solid rgba(255,255,255,.18);
+}
+
+
+.coercion-total-frame strong {
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    margin-top: 20px;
+
+    color: #ff0000;
+
+    font-size: clamp(130px, 15vw, 230px);
+    font-weight: 500;
+
+    line-height: .8;
+    letter-spacing: -.08em;
+}
+
+
+.coercion-frame-lines {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+.coercion-frame-lines span {
+    position: absolute;
+
+    background: rgba(255,0,0,.2);
+}
+
+
+.coercion-frame-lines span:nth-child(1) {
+    top: 22%;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+}
+
+
+.coercion-frame-lines span:nth-child(2) {
+    top: 0;
+    left: 27%;
+
+    width: 1px;
+    height: 100%;
+}
+
+
+.coercion-frame-lines span:nth-child(3) {
+    bottom: 18%;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+}
+
+
+.coercion-frame-lines span:nth-child(4) {
+    top: 0;
+    right: 17%;
+
+    width: 1px;
+    height: 100%;
+}
+
+
+.coercion-total-copy h3 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(43px, 4.4vw, 72px);
+    font-weight: 500;
+
+    line-height: .9;
+    letter-spacing: -.05em;
+}
+
+
+.coercion-total-copy p {
+    max-width: 360px;
+
+    margin-top: 30px;
+
+    color: #999;
+
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   CONTAINMENT
+========================================================== */
+
+.coercion-forms {
+    top: 1530px;
+    left: 8vw;
+
+    width: 84vw;
+}
+
+
+.containment-visual {
+    position: relative;
+
+    width: min(720px, 70vw);
+    height: 470px;
+
+    margin: 70px auto 0;
+}
+
+
+.containment-box {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: var(--box-size);
+    height: var(--box-size);
+
+    max-height: 100%;
+
+    transform:
+            translate(-50%, -50%)
+            scale(.85);
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    opacity: 0;
+
+    transition:
+            transform 1.2s cubic-bezier(.22,1,.36,1),
+            opacity .8s ease;
+}
+
+
+.containment-visual.animate
+.containment-box {
+    transform:
+            translate(-50%, -50%)
+            scale(1);
+
+    opacity: 1;
+}
+
+
+.containment-box:nth-child(2) {
+    transition-delay: .15s;
+}
+
+
+.containment-box:nth-child(3) {
+    transition-delay: .3s;
+}
+
+
+.containment-box:nth-child(4) {
+    transition-delay: .45s;
+}
+
+
+.containment-box span {
+    position: absolute;
+
+    top: 12px;
+    left: 14px;
+
+    color: #666;
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+
+.containment-box strong {
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    color: #ff0000;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.containment-box p {
+    position: absolute;
+
+    bottom: 10px;
+    left: 14px;
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .14em;
+}
+
+
+.containment-d {
+    border-color: #ff0000;
+}
+
+
+/* ==========================================================
+   INTERRUPTION
+========================================================== */
+
+.coercion-interruption {
+    position: absolute;
+
+    top: 2300px;
+    left: 10vw;
+
+    z-index: 5;
+
+    width: 80vw;
+}
+
+
+.coercion-interruption-label {
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.coercion-sentence {
+    display: flex;
+
+    align-items: center;
+
+    gap: 2vw;
+
+    margin-top: 55px;
+
+    white-space: nowrap;
+}
+
+
+.coercion-sentence span {
+    color: #fff;
+
+    font-size: clamp(38px, 5vw, 80px);
+    font-weight: 500;
+
+    letter-spacing: -.05em;
+}
+
+
+.coercion-sentence strong {
+    display: inline-grid;
+
+    place-items: center;
+
+    padding: 18px 30px;
+
+    border: 2px solid #ff0000;
+
+    color: #ff0000;
+
+    font-size: clamp(55px, 8vw, 130px);
+    font-weight: 500;
+
+    line-height: .8;
+
+    letter-spacing: -.07em;
+}
+
+
+.coercion-caption {
+    display: flex;
+
+    gap: 25px;
+
+    width: min(520px, 50vw);
+
+    margin-top: 65px;
+    margin-left: 35vw;
+}
+
+
+.coercion-caption span {
+    color: #ff0000;
+
+    font-size: 9px;
+}
+
+
+.coercion-caption p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    letter-spacing: .06em;
+}
+
+
+/* ==========================================================
+   TIMELINE
+========================================================== */
+
+.coercion-years {
+    top: 2920px;
+    right: 8vw;
+
+    width: 78vw;
+}
+
+
+.coercion-timeline {
+    position: relative;
+
+    height: 370px;
+
+    margin-top: 80px;
+
+    border-bottom:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.timeline-base {
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+
+    width: 0;
+    height: 1px;
+
+    background: #ff0000;
+
+    transition:
+            width 1.7s cubic-bezier(.22,1,.36,1);
+}
+
+
+.coercion-timeline.animate
+.timeline-base {
+    width: 100%;
+}
+
+
+.timeline-point {
+    position: absolute;
+
+    left: var(--x);
+    top: var(--y);
+
+    transform: translate(-50%, -50%);
+}
+
+
+.timeline-point i {
+    display: block;
+
+    width: 12px;
+    height: 12px;
+
+    border: 2px solid #ff0000;
+    border-radius: 50%;
+
+    background: #000;
+
+    opacity: 0;
+
+    transform: scale(0);
+
+    transition:
+            transform .5s cubic-bezier(.22,1,.36,1),
+            opacity .4s ease;
+}
+
+
+.coercion-timeline.animate
+.timeline-point i {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+.timeline-point span {
+    position: absolute;
+
+    top: 23px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #666;
+
+    font-size: 8px;
+}
+
+
+/* ==========================================================
+   AGE
+========================================================== */
+
+.coercion-age {
+    top: 3560px;
+    left: 8vw;
+
+    width: 75vw;
+}
+
+
+.coercion-age-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    margin-top: 70px;
+
+    border-top:
+            1px solid rgba(255,255,255,.18);
+
+    border-left:
+            1px solid rgba(255,255,255,.18);
+}
+
+
+.coercion-age-cell {
+    position: relative;
+
+    min-height: 270px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 25px;
+
+    border-right:
+            1px solid rgba(255,255,255,.18);
+
+    border-bottom:
+            1px solid rgba(255,255,255,.18);
+
+    transition:
+            background .35s ease,
+            color .35s ease;
+}
+
+
+.coercion-age-cell span {
+    color: #777;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .15em;
+}
+
+
+.coercion-age-cell strong {
+    color: #fff;
+
+    font-size: clamp(60px, 7vw, 110px);
+    font-weight: 500;
+
+    line-height: .8;
+
+    letter-spacing: -.07em;
+}
+
+
+.coercion-age-cell small {
+    color: #555;
+
+    font-size: 8px;
+
+    letter-spacing: .15em;
+}
+
+
+.coercion-age-cell.active {
+    background: #ff0000;
+}
+
+
+.coercion-age-cell.active span,
+.coercion-age-cell.active strong,
+.coercion-age-cell.active small {
+    color: #000;
+}
+
+
+/* ==========================================================
+   TYPES
+========================================================== */
+
+.coercion-types {
+    top: 4200px;
+    right: 8vw;
+
+    width: 76vw;
+}
+
+
+.coercion-type-list {
+    margin-top: 70px;
+}
+
+
+.coercion-type {
+    display: grid;
+
+    grid-template-columns:
+    40px
+    minmax(180px, 1fr)
+    2fr
+    70px;
+
+    gap: 25px;
+
+    align-items: center;
+
+    min-height: 75px;
+
+    border-top:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.coercion-type:last-child {
+    border-bottom:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.coercion-type-index {
+    color: #ff0000;
+
+    font-size: 9px;
+}
+
+
+.coercion-type-name {
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: .1em;
+}
+
+
+.coercion-type-track {
+    height: 4px;
+
+    background: #191919;
+
+    overflow: hidden;
+}
+
+
+.coercion-type-track span {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: #ff0000;
+
+    transition:
+            width 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+
+.coercion-type-list.animate
+.coercion-type-track span {
+    width: var(--width);
+}
+
+
+.coercion-type strong {
+    color: #fff;
+
+    font-size: 23px;
+    font-weight: 500;
+
+    text-align: right;
+}
+
+
+/* ==========================================================
+   OUTRO
+========================================================== */
+
+.coercion-outro {
+    top: 4900px;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+
+    .coercion-page .coercion-hero-title {
+        font-size: clamp(48px, 14vw, 80px);
+    }
+
+
+    .coercion-story {
+        min-height: auto;
+    }
+
+
+    .coercion-total,
+    .coercion-forms,
+    .coercion-interruption,
+    .coercion-years,
+    .coercion-age,
+    .coercion-types,
+    .coercion-outro {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        margin: 0;
+
+    }
+
+
+    .coercion-total {
+        display: block;
+    }
+
+
+    .coercion-total-frame {
+        min-height: 300px;
+
+        padding: 30px;
+    }
+
+
+    .coercion-total-frame strong {
+        font-size: 38vw;
+    }
+
+
+    .coercion-total-copy {
+        margin-top: 60px;
+    }
+
+
+    .containment-visual {
+        width: 100%;
+        height: 360px;
+    }
+
+
+    .coercion-sentence {
+        display: block;
+
+        white-space: normal;
+    }
+
+
+    .coercion-sentence span {
+        display: block;
+
+        margin: 15px 0;
+
+        font-size: 11vw;
+    }
+
+
+    .coercion-sentence strong {
+        display: inline-block;
+
+        padding: 15px 20px;
+
+        font-size: 20vw;
+    }
+
+
+    .coercion-caption {
+        width: 100%;
+
+        margin:
+                50px
+                0
+                0;
+    }
+
+
+    .coercion-timeline {
+        height: 300px;
+    }
+
+
+    .timeline-point span {
+        font-size: 6px;
+    }
+
+
+    .coercion-age-grid {
+        grid-template-columns:
+      repeat(2, 1fr);
+    }
+
+
+    .coercion-age-cell {
+        min-height: 210px;
+    }
+
+
+    .coercion-age-cell strong {
+        font-size: 18vw;
+    }
+
+
+    .coercion-type {
+        grid-template-columns:
+      25px
+      1fr
+      50px;
+
+        gap: 12px;
+
+        padding: 18px 0;
+    }
+
+
+    .coercion-type-track {
+        grid-column: 2 / 4;
+    }
+
+
+    .coercion-type strong {
+        grid-column: 3;
+        grid-row: 1;
+
+        font-size: 18px;
+    }
+
+}
+
+
+/* ==========================================================
+   CATEGORY NAV
+========================================================== */
+
+.category-page .category-page-nav {
+    top: 75px;
+}
+
+
+@media (max-width: 800px) {
+
+    .category-page .category-page-nav {
+        top: 75px;
+    }
+
+}
+/* ==========================================================
+   CATEGORY 03 — HERO TITLE FIX
+========================================================== */
+
+.coercion-page .coercion-hero-title .coercion-amp {
+    display: inline;
+    margin: 0;
+    color: #ff0000;
+}
+
+.coercion-page .coercion-hero-title .coercion-last-line {
+    display: block;
+    margin-top: 0;
+    color: #ff0000;
+}
+/* ==========================================================
+   VOICES — CATEGORY 04
+   SEXUALDELIKTE
+========================================================== */
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.sexual-page .sexual-hero-title {
+    font-size: clamp(80px, 11vw, 175px);
+}
+
+.sexual-page .sexual-hero-title span {
+    display: inline;
+    color: #ff0000;
+}
+
+
+/* ==========================================================
+   STORY
+========================================================== */
+
+.sexual-story {
+    min-height: 5550px;
+}
+
+
+/* ==========================================================
+   TOTAL
+========================================================== */
+
+.sexual-total {
+    top: 880px;
+    right: 8vw;
+
+    width: min(900px, 70vw);
+
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+
+    gap: 100px;
+
+    align-items: end;
+}
+
+
+.sexual-total-number strong {
+    display: block;
+
+    margin-top: 15px;
+
+    color: #ff0000;
+
+    font-size: clamp(150px, 18vw, 280px);
+    font-weight: 500;
+
+    line-height: .78;
+    letter-spacing: -.08em;
+}
+
+
+.sexual-total-copy h3 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(45px, 4.8vw, 78px);
+    font-weight: 500;
+
+    line-height: .88;
+    letter-spacing: -.05em;
+}
+
+
+.sexual-total-copy p {
+    max-width: 360px;
+
+    margin-top: 30px;
+
+    color: #999;
+
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   DOT DISTRIBUTION
+========================================================== */
+
+.sexual-distribution {
+    top: 1500px;
+    left: 8vw;
+
+    width: 84vw;
+}
+
+
+.sexual-dot-field {
+    display: grid;
+
+    grid-template-columns:
+    1.4fr
+    1fr
+    .8fr
+    .6fr;
+
+    gap: 55px;
+
+    align-items: end;
+
+    margin-top: 80px;
+}
+
+
+.dot-group {
+    position: relative;
+
+    min-height: 270px;
+
+    padding: 25px;
+
+    border-top:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.dot-percentage {
+    display: block;
+
+    color: #fff;
+
+    font-size: clamp(45px, 5vw, 80px);
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: -.06em;
+}
+
+
+.dot-group-a .dot-percentage {
+    color: #ff0000;
+}
+
+
+.dot-cloud {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-top: 45px;
+
+    max-width: 220px;
+}
+
+
+.dot-cloud i {
+    display: block;
+
+    width: 9px;
+    height: 9px;
+
+    border: 1px solid #ff0000;
+    border-radius: 50%;
+
+    opacity: 0;
+
+    transform: scale(0);
+
+    transition:
+            opacity .5s ease,
+            transform .6s cubic-bezier(.22,1,.36,1);
+}
+
+
+.dot-group-a .dot-cloud i {
+    background: #ff0000;
+}
+
+
+.sexual-dot-field.animate
+.dot-cloud i {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+.dot-cloud i:nth-child(2n) {
+    transition-delay: .08s;
+}
+
+
+.dot-cloud i:nth-child(3n) {
+    transition-delay: .16s;
+}
+
+
+.dot-cloud i:nth-child(4n) {
+    transition-delay: .24s;
+}
+
+
+.dot-group small {
+    position: absolute;
+
+    bottom: 0;
+    left: 25px;
+
+    color: #666;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .16em;
+}
+
+
+/* ==========================================================
+   INTERRUPTION
+========================================================== */
+
+.sexual-interruption {
+    position: absolute;
+
+    top: 2250px;
+    left: 12vw;
+
+    z-index: 5;
+
+    width: 76vw;
+}
+
+
+.sexual-interruption-label {
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.sexual-interruption-text {
+    margin-top: 50px;
+}
+
+
+.sexual-interruption-text p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(55px, 7vw, 115px);
+    font-weight: 500;
+
+    line-height: .86;
+
+    letter-spacing: -.06em;
+}
+
+
+.sexual-interruption-text p:nth-child(2) {
+    margin-left: 10vw;
+}
+
+
+.sexual-interruption-text p:nth-child(3) {
+    margin-left: 22vw;
+}
+
+
+.sexual-interruption-text span {
+    color: #ff0000;
+}
+
+
+.sexual-interruption-note {
+    display: flex;
+
+    gap: 25px;
+
+    width: min(500px, 45vw);
+
+    margin-top: 60px;
+    margin-left: 42vw;
+}
+
+
+.sexual-interruption-note span {
+    color: #ff0000;
+
+    font-size: 9px;
+}
+
+
+.sexual-interruption-note p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 10px;
+    line-height: 1.55;
+
+    letter-spacing: .08em;
+}
+
+
+/* ==========================================================
+   AGE
+========================================================== */
+
+.sexual-age {
+    top: 2920px;
+    right: 8vw;
+
+    width: 74vw;
+}
+
+
+.sexual-age-visual {
+    margin-top: 75px;
+}
+
+
+.sexual-age-row {
+    display: grid;
+
+    grid-template-columns:
+    130px
+    1fr
+    80px;
+
+    gap: 30px;
+
+    align-items: center;
+
+    min-height: 75px;
+
+    border-top:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.sexual-age-row:last-child {
+    border-bottom:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.sexual-age-label {
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: .1em;
+}
+
+
+.sexual-age-line {
+    position: relative;
+
+    height: 1px;
+
+    background: #222;
+}
+
+
+.sexual-age-line span {
+    position: absolute;
+
+    top: -2px;
+    left: 0;
+
+    width: 0;
+    height: 5px;
+
+    background: #ff0000;
+
+    transition:
+            width 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+
+.sexual-age-visual.animate
+.sexual-age-line span {
+    width: var(--age-width);
+}
+
+
+.sexual-age-row strong {
+    color: #ff0000;
+
+    font-size: 25px;
+    font-weight: 500;
+
+    text-align: right;
+}
+
+
+/* ==========================================================
+   YEARS
+========================================================== */
+
+.sexual-years {
+    top: 3550px;
+    left: 8vw;
+
+    width: 84vw;
+}
+
+
+.sexual-year-grid {
+    display: grid;
+
+    grid-template-columns:
+    repeat(10, 1fr);
+
+    height: 370px;
+
+    margin-top: 75px;
+
+    border-bottom:
+            1px solid rgba(255,255,255,.18);
+}
+
+
+.sexual-year {
+    position: relative;
+
+    border-left:
+            1px solid rgba(255,255,255,.08);
+}
+
+
+.sexual-year:last-child {
+    border-right:
+            1px solid rgba(255,255,255,.08);
+}
+
+
+.sexual-year > span {
+    position: absolute;
+
+    bottom: -28px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #666;
+
+    font-size: 8px;
+}
+
+
+.sexual-year strong {
+    position: absolute;
+
+    left: 50%;
+    bottom: var(--level);
+
+    transform:
+            translate(-50%, 10px);
+
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    opacity: 0;
+
+    transition:
+            opacity .7s ease,
+            transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+
+.sexual-year i {
+    position: absolute;
+
+    left: 50%;
+    bottom: var(--level);
+
+    width: 9px;
+    height: 9px;
+
+    transform:
+            translate(-50%, 50%)
+            scale(0);
+
+    border-radius: 50%;
+
+    background: #ff0000;
+
+    transition:
+            transform .8s cubic-bezier(.22,1,.36,1);
+}
+
+
+.sexual-year-grid.animate
+.sexual-year strong {
+    opacity: 1;
+
+    transform:
+            translate(-50%, -15px);
+}
+
+
+.sexual-year-grid.animate
+.sexual-year i {
+    transform:
+            translate(-50%, 50%)
+            scale(1);
+}
+
+
+/* ==========================================================
+   TYPES
+========================================================== */
+
+.sexual-types {
+    top: 4200px;
+    right: 8vw;
+
+    width: 74vw;
+}
+
+
+.sexual-type-list {
+    margin-top: 70px;
+}
+
+
+.sexual-type-row {
+    display: grid;
+
+    grid-template-columns:
+    50px
+    1fr
+    100px;
+
+    gap: 25px;
+
+    align-items: center;
+
+    min-height: 85px;
+
+    border-top:
+            1px solid rgba(255,255,255,.16);
+
+    transition:
+            padding .35s cubic-bezier(.22,1,.36,1);
+}
+
+
+.sexual-type-row:last-child {
+    border-bottom:
+            1px solid rgba(255,255,255,.16);
+}
+
+
+.sexual-type-row:hover {
+    padding-left: 15px;
+}
+
+
+.sexual-type-row span {
+    color: #ff0000;
+
+    font-size: 9px;
+}
+
+
+.sexual-type-row p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: .1em;
+}
+
+
+.sexual-type-row strong {
+    color: #fff;
+
+    font-size: 28px;
+    font-weight: 500;
+
+    text-align: right;
+}
+
+
+/* ==========================================================
+   OUTRO
+========================================================== */
+
+.sexual-outro {
+    top: 4900px;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+
+    .sexual-page .sexual-hero-title {
+        font-size: clamp(60px, 18vw, 100px);
+    }
+
+
+    .sexual-story {
+        min-height: auto;
+    }
+
+
+    .sexual-total,
+    .sexual-distribution,
+    .sexual-interruption,
+    .sexual-age,
+    .sexual-years,
+    .sexual-types,
+    .sexual-outro {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        margin: 0;
+
+    }
+
+
+    .sexual-total {
+        display: block;
+    }
+
+
+    .sexual-total-number strong {
+        font-size: 44vw;
+    }
+
+
+    .sexual-total-copy {
+        margin-top: 60px;
+    }
+
+
+    .sexual-dot-field {
+        grid-template-columns:
+      repeat(2, 1fr);
+
+        gap: 35px;
+    }
+
+
+    .dot-group {
+        min-height: 220px;
+
+        padding: 18px;
+    }
+
+
+    .dot-group small {
+        left: 18px;
+    }
+
+
+    .sexual-interruption-text p {
+        font-size: 14vw;
+    }
+
+
+    .sexual-interruption-text p:nth-child(2),
+    .sexual-interruption-text p:nth-child(3) {
+        margin-left: 0;
+    }
+
+
+    .sexual-interruption-note {
+        width: 100%;
+
+        margin:
+                50px
+                0
+                0;
+    }
+
+
+    .sexual-age-row {
+        grid-template-columns:
+      90px
+      1fr
+      55px;
+
+        gap: 15px;
+    }
+
+
+    .sexual-year-grid {
+        height: 300px;
+    }
+
+
+    .sexual-year > span {
+        font-size: 6px;
+
+        transform:
+                translateX(-50%)
+                rotate(-45deg);
+    }
+
+
+    .sexual-year strong {
+        display: none;
+    }
+
+
+    .sexual-type-row {
+        grid-template-columns:
+      30px
+      1fr
+      55px;
+
+        gap: 12px;
+    }
+
+
+    .sexual-type-row strong {
+        font-size: 20px;
+    }
+
+}
+
+
+/* ==========================================================
+   CATEGORY NAV
+========================================================== */
+
+.category-page .category-page-nav {
+    top: 75px;
+}
+
+
+@media (max-width: 800px) {
+
+    .category-page .category-page-nav {
+        top: 75px;
+    }
+
+}
+/* ==========================================================
+   VOICES — CATEGORY 05
+   ÜBRIGE STRAFTATEN
+========================================================== */
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.other-page .other-hero-title {
+    font-size: clamp(80px, 11vw, 175px);
+}
+
+.other-page .other-hero-title span {
+    color: #ff0000;
+}
+
+
+/* ==========================================================
+   STORY
+========================================================== */
+
+.other-story {
+    min-height: 5550px;
+}
+
+
+/* ==========================================================
+   TOTAL
+========================================================== */
+
+.other-total {
+    top: 880px;
+    right: 8vw;
+
+    width: min(900px, 70vw);
+
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+
+    gap: 100px;
+
+    align-items: end;
+}
+
+
+.other-total-number strong {
+    display: block;
+
+    margin-top: 15px;
+
+    color: #ff0000;
+
+    font-size: clamp(150px, 18vw, 280px);
+    font-weight: 500;
+
+    line-height: .78;
+    letter-spacing: -.08em;
+}
+
+
+.other-total-copy h3 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(45px, 4.8vw, 78px);
+    font-weight: 500;
+
+    line-height: .88;
+    letter-spacing: -.05em;
+}
+
+
+.other-total-copy p {
+    max-width: 360px;
+
+    margin-top: 30px;
+
+    color: #999;
+
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   FRAGMENTS
+========================================================== */
+
+.other-fragments {
+    top: 1500px;
+    left: 8vw;
+
+    width: 84vw;
+}
+
+
+.fragment-field {
+    position: relative;
+
+    height: 470px;
+
+    margin-top: 75px;
+}
+
+
+.fragment {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 22px;
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    opacity: 0;
+
+    transform:
+            translateY(40px)
+            scale(.95);
+
+    transition:
+            opacity .8s ease,
+            transform 1s cubic-bezier(.22,1,.36,1),
+            border-color .3s ease;
+}
+
+
+.fragment:hover {
+    border-color: #ff0000;
+}
+
+
+.fragment-field.animate .fragment {
+    opacity: 1;
+
+    transform:
+            translateY(0)
+            scale(1);
+}
+
+
+.fragment-1 {
+    left: 0;
+    top: 20px;
+
+    width: 34%;
+    height: 300px;
+}
+
+
+.fragment-2 {
+    left: 37%;
+    top: 100px;
+
+    width: 26%;
+    height: 250px;
+
+    transition-delay: .12s;
+}
+
+
+.fragment-3 {
+    right: 12%;
+    top: 0;
+
+    width: 21%;
+    height: 205px;
+
+    transition-delay: .24s;
+}
+
+
+.fragment-4 {
+    right: 0;
+    bottom: 0;
+
+    width: 17%;
+    height: 165px;
+
+    transition-delay: .36s;
+
+    border-color: #ff0000;
+}
+
+
+.fragment > span {
+    color: #666;
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+
+.fragment strong {
+    color: #fff;
+
+    font-size: clamp(40px, 5vw, 78px);
+    font-weight: 500;
+
+    line-height: .8;
+    letter-spacing: -.06em;
+}
+
+
+.fragment-1 strong {
+    color: #ff0000;
+}
+
+
+.fragment p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .15em;
+}
+
+
+/* ==========================================================
+   INTERRUPTION
+========================================================== */
+
+.other-interruption {
+    position: absolute;
+
+    top: 2250px;
+    left: 11vw;
+
+    z-index: 5;
+
+    width: 78vw;
+}
+
+
+.other-interruption-label {
+    color: #ff0000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+.other-statement {
+    margin-top: 55px;
+}
+
+
+.other-statement p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(52px, 6.5vw, 105px);
+    font-weight: 500;
+
+    line-height: .86;
+
+    letter-spacing: -.06em;
+}
+
+
+.other-statement p:nth-child(2) {
+    margin-left: 10vw;
+}
+
+
+.other-statement p:nth-child(3) {
+    margin-left: 20vw;
+}
+
+
+.other-statement span {
+    color: #ff0000;
+}
+
+
+.other-note {
+    display: flex;
+
+    gap: 25px;
+
+    width: min(520px, 45vw);
+
+    margin-top: 60px;
+    margin-left: 40vw;
+}
+
+
+.other-note > span {
+    color: #ff0000;
+
+    font-size: 9px;
+}
+
+
+.other-note p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 10px;
+    line-height: 1.55;
+
+    letter-spacing: .08em;
+}
+
+
+/* ==========================================================
+   AGE
+========================================================== */
+
+.other-age {
+    top: auto;
+}
+
+
+.other-age:not(.data-chapter) {
+    position: relative;
+}
+
+
+.other-age.data-chapter {
+    top: 2920px;
+    right: 8vw;
+
+    width: 74vw;
+}
+
+
+.other-age-visual {
+    margin-top: 75px;
+}
+
+
+.other-age-visual .other-age {
+    padding: 22px 0;
+
+    border-top:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.other-age-visual .other-age:last-child {
+    border-bottom:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.other-age-meta {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 30px;
+}
+
+
+.other-age-meta span {
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: .12em;
+}
+
+
+.other-age-meta strong {
+    color: #ff0000;
+
+    font-size: 30px;
+    font-weight: 500;
+}
+
+
+.other-age-track {
+    height: 3px;
+
+    margin-top: 18px;
+
+    background: #191919;
+
+    overflow: hidden;
+}
+
+
+.other-age-track span {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: #ff0000;
+
+    transition:
+            width 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+
+.other-age-visual.animate
+.other-age-track span {
+    width: var(--share);
+}
+
+
+/* ==========================================================
+   YEARS
+========================================================== */
+
+.other-years {
+    top: 3550px;
+    left: 8vw;
+
+    width: 84vw;
+}
+
+
+.other-year-visual {
+    display: grid;
+
+    grid-template-columns:
+    repeat(10, 1fr);
+
+    gap: 10px;
+
+    height: 390px;
+
+    margin-top: 75px;
+
+    align-items: end;
+}
+
+
+.other-year {
+    position: relative;
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.other-year > div {
+    position: relative;
+
+    width: 100%;
+    height: 310px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    border-bottom:
+            1px solid rgba(255,255,255,.15);
+}
+
+
+.other-year i {
+    display: block;
+
+    width: 3px;
+    height: 0;
+
+    background: #ff0000;
+
+    transition:
+            height 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+
+.other-year-visual.animate
+.other-year i {
+    height: var(--height);
+}
+
+
+.other-year > span {
+    position: absolute;
+
+    bottom: -23px;
+
+    color: #666;
+
+    font-size: 8px;
+}
+
+
+.other-year strong {
+    position: absolute;
+
+    bottom: calc(var(--height) + 35px);
+
+    color: #fff;
+
+    font-size: 9px;
+    font-weight: 500;
+}
+
+
+/* ==========================================================
+   TYPES
+========================================================== */
+
+.other-types {
+    top: 4200px;
+    right: 8vw;
+
+    width: 74vw;
+}
+
+
+.other-type-list {
+    margin-top: 70px;
+}
+
+
+.other-type-row {
+    display: grid;
+
+    grid-template-columns:
+    45px
+    1fr
+    80px
+    70px;
+
+    gap: 25px;
+
+    align-items: center;
+
+    min-height: 80px;
+
+    border-top:
+            1px solid rgba(255,255,255,.16);
+
+    transition:
+            padding .35s cubic-bezier(.22,1,.36,1);
+}
+
+
+.other-type-row:last-child {
+    border-bottom:
+            1px solid rgba(255,255,255,.16);
+}
+
+
+.other-type-row:hover {
+    padding-left: 15px;
+}
+
+
+.other-type-index {
+    color: #ff0000;
+
+    font-size: 9px;
+}
+
+
+.other-type-row p {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: .1em;
+}
+
+
+.other-type-row strong {
+    color: #fff;
+
+    font-size: 26px;
+    font-weight: 500;
+
+    text-align: right;
+}
+
+
+.other-type-row i {
+    color: #ff0000;
+
+    font-size: 10px;
+    font-style: normal;
+
+    text-align: right;
+}
+
+
+/* ==========================================================
+   OUTRO
+========================================================== */
+
+.other-outro {
+    top: 4900px;
+}
+
+
+/* Abschluss-Link */
+
+.final-return strong {
+    color: #555;
+}
+
+
+.final-return:hover strong {
+    color: #ff0000;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+
+    .other-page .other-hero-title {
+        font-size: clamp(55px, 17vw, 95px);
+    }
+
+
+    .other-story {
+        min-height: auto;
+    }
+
+
+    .other-total,
+    .other-fragments,
+    .other-interruption,
+    .other-age.data-chapter,
+    .other-years,
+    .other-types,
+    .other-outro {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+
+        margin: 0;
+
+    }
+
+
+    .other-total {
+        display: block;
+    }
+
+
+    .other-total-number strong {
+        font-size: 44vw;
+    }
+
+
+    .other-total-copy {
+        margin-top: 60px;
+    }
+
+
+    .fragment-field {
+        height: auto;
+
+        display: grid;
+
+        grid-template-columns:
+      repeat(2, 1fr);
+
+        gap: 15px;
+    }
+
+
+    .fragment {
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+
+        width: auto;
+        height: 190px;
+    }
+
+
+    .other-statement p {
+        font-size: 13vw;
+    }
+
+
+    .other-statement p:nth-child(2),
+    .other-statement p:nth-child(3) {
+        margin-left: 0;
+    }
+
+
+    .other-note {
+        width: 100%;
+
+        margin:
+                50px
+                0
+                0;
+    }
+
+
+    .other-year-visual {
+        gap: 4px;
+
+        height: 300px;
+    }
+
+
+    .other-year > div {
+        height: 240px;
+    }
+
+
+    .other-year > span {
+        font-size: 6px;
+
+        transform: rotate(-45deg);
+    }
+
+
+    .other-year strong {
+        display: none;
+    }
+
+
+    .other-type-row {
+        grid-template-columns:
+      25px
+      1fr
+      50px;
+
+        gap: 12px;
+
+        padding: 18px 0;
+    }
+
+
+    .other-type-row i {
+        display: none;
+    }
+
+
+    .other-type-row strong {
+        font-size: 19px;
+    }
+
+}
+
+
+/* ==========================================================
+   CATEGORY NAV POSITION
+========================================================== */
+
+.category-page .category-page-nav {
+    top: 75px;
+}
+
+
+@media (max-width: 800px) {
+
+    .category-page .category-page-nav {
+        top: 75px;
+    }
+
+}
