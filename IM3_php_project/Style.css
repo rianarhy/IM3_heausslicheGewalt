@@ -10205,3 +10205,533 @@ a {
 .thread-chapter-title {
     display: none !important;
 }
+
+/* ==========================================================
+   VOICES — ENTWICKLUNGSDIAGRAMM
+   10 JAHRE / MÄDCHEN & JUNGS
+========================================================== */
+
+.ten-year-development {
+    position: relative;
+
+    width: 100%;
+    min-height: 1050px;
+
+    padding:
+            150px
+            7vw
+            180px;
+
+    box-sizing: border-box;
+
+    display: grid;
+
+    grid-template-columns:
+        1.45fr
+        0.75fr;
+
+    column-gap: 7vw;
+
+    align-items: center;
+
+    background: #000;
+
+    z-index: 20;
+}
+
+
+/* ==========================================================
+   LINKER BEREICH — DIAGRAMM
+========================================================== */
+
+.development-chart-area {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* ==========================================================
+   KLEINE ÜBERSCHRIFT
+========================================================== */
+
+.development-chart-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+
+.development-label {
+    display: block;
+
+    color: #ff0000;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .2em;
+}
+
+
+/* ==========================================================
+   CLUSTER NAVIGATION
+========================================================== */
+
+.development-cluster-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.development-cluster-button {
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border:
+            1px solid
+            rgba(255,255,255,.3);
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #777;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+            background .3s ease,
+            border-color .3s ease,
+            color .3s ease,
+            transform .3s ease;
+}
+
+
+.development-cluster-button:hover {
+
+    border-color: #ff0000;
+
+    color: #ff0000;
+
+    transform: scale(1.08);
+}
+
+
+.development-cluster-button.is-active {
+
+    background: #ff0000;
+
+    border-color: #ff0000;
+
+    color: #000;
+}
+
+
+/* ==========================================================
+   DIAGRAMM TITEL
+========================================================== */
+
+.development-chart-title {
+
+    margin-bottom: 35px;
+
+    color: #fff;
+
+    font-size:
+            clamp(
+                    25px,
+                    2.5vw,
+                    42px
+            );
+
+    font-weight: 500;
+
+    line-height: .95;
+
+    letter-spacing: -.035em;
+}
+
+
+/* ==========================================================
+   SVG CONTAINER
+========================================================== */
+
+.development-chart-wrapper {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 500px;
+
+    overflow: visible;
+}
+
+
+.development-chart {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: visible;
+}
+
+
+/* ==========================================================
+   ACHSEN
+========================================================== */
+
+.development-axis {
+
+    stroke:
+            rgba(255,255,255,.22);
+
+    stroke-width: 1;
+
+    vector-effect:
+            non-scaling-stroke;
+}
+
+
+.development-grid-line {
+
+    stroke:
+            rgba(255,255,255,.09);
+
+    stroke-width: 1;
+
+    vector-effect:
+            non-scaling-stroke;
+}
+
+
+.development-axis-label {
+
+    fill: #666;
+
+    font-size: 10px;
+
+    font-weight: 400;
+
+    letter-spacing: .03em;
+}
+
+
+.development-year-label {
+
+    fill: #888;
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    text-anchor: middle;
+}
+
+
+/* ==========================================================
+   SÄULEN
+========================================================== */
+
+.development-bar {
+
+    cursor: pointer;
+
+    transition:
+            opacity .25s ease,
+            transform .25s ease;
+}
+
+
+.development-bar-girl {
+
+    fill: #ff0000;
+}
+
+
+.development-bar-boy {
+
+    fill: #ff7777;
+}
+
+
+.development-bar:hover {
+
+    opacity: .72;
+}
+
+
+/* ==========================================================
+   UNTERKATEGORIEN
+========================================================== */
+
+.development-subcategory-line {
+
+    stroke: #fff;
+
+    stroke-width: 2;
+
+    opacity: .75;
+
+    vector-effect:
+            non-scaling-stroke;
+}
+
+
+.development-subcategory-label {
+
+    fill: #999;
+
+    font-size: 8px;
+
+    font-weight: 400;
+}
+
+
+/* ==========================================================
+   WERTE ÜBER DEN SÄULEN
+========================================================== */
+
+.development-value {
+
+    fill: #fff;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    text-anchor: middle;
+}
+
+
+/* ==========================================================
+   LEGENDE
+========================================================== */
+
+.development-legend {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+
+.development-legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #888;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+}
+
+
+.development-legend-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+}
+
+
+.development-legend-dot.girl {
+
+    background: #ff0000;
+}
+
+
+.development-legend-dot.boy {
+
+    background: #ff7777;
+}
+
+
+/* ==========================================================
+   RECHTER TEXTBLOCK
+========================================================== */
+
+.development-intro {
+
+    align-self: center;
+
+    max-width: 430px;
+
+    padding-left: 1vw;
+}
+
+
+.development-intro .development-label {
+
+    margin-bottom: 30px;
+}
+
+
+.development-intro h3 {
+
+    margin:
+            0 0 45px;
+
+    color: #fff;
+
+    font-size:
+            clamp(
+                    50px,
+                    5.5vw,
+                    90px
+            );
+
+    font-weight: 500;
+
+    line-height: .84;
+
+    letter-spacing: -.06em;
+}
+
+
+.development-intro p {
+
+    max-width: 390px;
+
+    margin: 0 0 22px;
+
+    color: #999;
+
+    font-size:
+            clamp(
+                    17px,
+                    1.45vw,
+                    21px
+            );
+
+    line-height: 1.4;
+
+    letter-spacing: -.02em;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .ten-year-development {
+
+        min-height: auto;
+
+        padding:
+                100px
+                24px
+                120px;
+
+        display: block;
+    }
+
+
+    .development-chart-header {
+
+        display: block;
+
+        margin-bottom: 25px;
+    }
+
+
+    .development-cluster-nav {
+
+        margin-top: 20px;
+    }
+
+
+    .development-cluster-button {
+
+        width: 28px;
+        height: 28px;
+    }
+
+
+    .development-chart-title {
+
+        font-size: 28px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .development-chart-wrapper {
+
+        height: 380px;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        overflow-y: visible;
+    }
+
+
+    .development-chart {
+
+        min-width: 700px;
+    }
+
+
+    .development-intro {
+
+        max-width: none;
+
+        padding-left: 0;
+
+        margin-top: 100px;
+    }
+
+
+    .development-intro h3 {
+
+        font-size:
+                clamp(
+                        50px,
+                        16vw,
+                        80px
+                );
+    }
+
+}

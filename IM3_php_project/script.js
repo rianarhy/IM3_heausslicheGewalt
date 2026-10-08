@@ -1,6 +1,6 @@
 /* ==========================================================
    VOICES — SCRIPT.JS
-   Daten laden + Auswertung + Donut
+   Daten laden + Auswertung + Donut + Entwicklungsdiagramm
 ========================================================== */
 
 
@@ -360,6 +360,12 @@ async function loadData() {
         updateDataVisualisations(data);
 
         loadDonutData(data);
+
+        /* NEU:
+           Entwicklungsdiagramm laden
+        */
+
+        loadDevelopmentData(data);
 
 
     } catch (error) {
@@ -1494,32 +1500,52 @@ function renderDonut(
             path.style.fill =
                 cluster.color;
 
+
             /* ==========================================================
                KLICK → UNTERSEITE DES CLUSTERS
             ========================================================== */
 
             const clusterPages = {
-                physical: "koerperliche-gewalt.html",
-                verbal: "verbale-gewalt.html",
-                threat: "drohung-zwang.html",
-                sexual: "sexualdelikte.html",
-                other: "uebrige-straftaten.html"
+
+                physical:
+                    "koerperliche-gewalt.html",
+
+                verbal:
+                    "verbale-gewalt.html",
+
+                threat:
+                    "drohung-zwang.html",
+
+                sexual:
+                    "sexualdelikte.html",
+
+                other:
+                    "uebrige-straftaten.html"
+
             };
+
 
             path.addEventListener(
                 "click",
                 function () {
 
                     const targetPage =
-                        clusterPages[cluster.id];
+                        clusterPages[
+                            cluster.id
+                            ];
+
 
                     if (targetPage) {
+
                         window.location.href =
                             targetPage;
+
                     }
 
                 }
             );
+
+
             /*
              * Mouse Enter
              */
@@ -2158,6 +2184,711 @@ function createDonutLegendItem(
 
     donutLegend.appendChild(
         item
+    );
+
+}
+
+
+
+/* ==========================================================
+   ENTWICKLUNGSDIAGRAMM
+   Letzte 10 Jahre / Mädchen & Jungen
+========================================================== */
+
+function loadDevelopmentData(data) {
+
+    const chart =
+        document.getElementById(
+            "development-chart"
+        );
+
+
+    if (!chart) {
+
+        console.warn(
+            "development-chart wurde im HTML nicht gefunden."
+        );
+
+        return;
+
+    }
+
+
+    const period =
+        getLastTenYears(data);
+
+
+    if (!period) {
+
+        return;
+
+    }
+
+
+    /*
+     * Unter 18:
+     *
+     * <10
+     * 10-14
+     * 15-17
+     */
+
+    const relevantAges =
+        new Set([
+            "<10",
+            "10-14",
+            "15-17"
+        ]);
+
+
+    const rows =
+        data.filter(
+            function (row) {
+
+                const year =
+                    Number(row.jahr);
+
+
+                const age =
+                    normalizeText(
+                        row.altersgruppe
+                    );
+
+
+                const gender =
+                    normalizeText(
+                        row.geschlecht
+                    );
+
+
+                const amount =
+                    parseNumber(
+                        row.anzahl
+                    );
+
+
+                return (
+
+                    Number.isFinite(year) &&
+
+                    year >= period.firstYear &&
+
+                    year <= period.latestYear &&
+
+                    relevantAges.has(age) &&
+
+                    (
+                        gender === "männlich" ||
+                        gender === "weiblich"
+                    ) &&
+
+                    amount > 0
+
+                );
+
+            }
+        );
+
+
+    console.log(
+        "Daten Entwicklungsdiagramm:",
+        rows
+    );
+
+
+    renderDevelopmentChart(
+        chart,
+        rows,
+        period.firstYear,
+        period.latestYear
+    );
+
+}
+
+
+
+/* ==========================================================
+   ENTWICKLUNGSDIAGRAMM ZEICHNEN
+========================================================== */
+
+function renderDevelopmentChart(
+    svg,
+    rows,
+    firstYear,
+    latestYear
+) {
+
+    svg.innerHTML =
+        "";
+
+
+    const width =
+        1000;
+
+    const height =
+        500;
+
+
+    const margin = {
+
+        top:
+            30,
+
+        right:
+            30,
+
+        bottom:
+            60,
+
+        left:
+            70
+
+    };
+
+
+    svg.setAttribute(
+        "viewBox",
+        `0 0 ${width} ${height}`
+    );
+
+
+    /*
+     * JAHRE
+     */
+
+    const years = [];
+
+
+    for (
+        let year = firstYear;
+        year <= latestYear;
+        year++
+    ) {
+
+        years.push(
+            year
+        );
+
+    }
+
+
+    /*
+     * DATEN PRO JAHR
+     */
+
+    const values = {};
+
+
+    years.forEach(
+        function (year) {
+
+            values[year] = {
+
+                maennlich:
+                    0,
+
+                weiblich:
+                    0
+
+            };
+
+        }
+    );
+
+
+    rows.forEach(
+        function (row) {
+
+            const year =
+                Number(row.jahr);
+
+
+            const amount =
+                parseNumber(
+                    row.anzahl
+                );
+
+
+            const gender =
+                normalizeText(
+                    row.geschlecht
+                );
+
+
+            if (!values[year]) {
+
+                return;
+
+            }
+
+
+            if (
+                gender ===
+                "männlich"
+            ) {
+
+                values[year].maennlich +=
+                    amount;
+
+            }
+
+
+            if (
+                gender ===
+                "weiblich"
+            ) {
+
+                values[year].weiblich +=
+                    amount;
+
+            }
+
+        }
+    );
+
+
+    /*
+     * MAXIMALWERT
+     */
+
+    let maxValue =
+        0;
+
+
+    years.forEach(
+        function (year) {
+
+            maxValue =
+                Math.max(
+                    maxValue,
+
+                    values[
+                        year
+                        ].maennlich,
+
+                    values[
+                        year
+                        ].weiblich
+                );
+
+        }
+    );
+
+
+    if (
+        maxValue === 0
+    ) {
+
+        console.warn(
+            "Keine Werte für das Entwicklungsdiagramm."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * ZEICHENBEREICH
+     */
+
+    const chartWidth =
+        width -
+        margin.left -
+        margin.right;
+
+
+    const chartHeight =
+        height -
+        margin.top -
+        margin.bottom;
+
+
+    /*
+     * Y-SKALIERUNG
+     */
+
+    function yScale(
+        value
+    ) {
+
+        return (
+            margin.top +
+            chartHeight -
+            (
+                value /
+                maxValue
+            ) *
+            chartHeight
+        );
+
+    }
+
+
+    /*
+     * GITTERLINIEN
+     */
+
+    const gridSteps =
+        5;
+
+
+    for (
+        let i = 0;
+        i <= gridSteps;
+        i++
+    ) {
+
+        const value =
+            Math.round(
+                maxValue *
+                i /
+                gridSteps
+            );
+
+
+        const y =
+            yScale(
+                value
+            );
+
+
+        const line =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "line"
+            );
+
+
+        line.setAttribute(
+            "x1",
+            margin.left
+        );
+
+
+        line.setAttribute(
+            "x2",
+            width -
+            margin.right
+        );
+
+
+        line.setAttribute(
+            "y1",
+            y
+        );
+
+
+        line.setAttribute(
+            "y2",
+            y
+        );
+
+
+        line.classList.add(
+            "development-grid-line"
+        );
+
+
+        svg.appendChild(
+            line
+        );
+
+
+        const label =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "text"
+            );
+
+
+        label.setAttribute(
+            "x",
+            margin.left - 12
+        );
+
+
+        label.setAttribute(
+            "y",
+            y + 4
+        );
+
+
+        label.setAttribute(
+            "text-anchor",
+            "end"
+        );
+
+
+        label.classList.add(
+            "development-axis-label"
+        );
+
+
+        label.textContent =
+            value.toLocaleString(
+                "de-CH"
+            );
+
+
+        svg.appendChild(
+            label
+        );
+
+    }
+
+
+    /*
+     * X-ACHSE
+     */
+
+    const axis =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
+
+
+    axis.setAttribute(
+        "x1",
+        margin.left
+    );
+
+
+    axis.setAttribute(
+        "x2",
+        width -
+        margin.right
+    );
+
+
+    axis.setAttribute(
+        "y1",
+        margin.top +
+        chartHeight
+    );
+
+
+    axis.setAttribute(
+        "y2",
+        margin.top +
+        chartHeight
+    );
+
+
+    axis.classList.add(
+        "development-axis"
+    );
+
+
+    svg.appendChild(
+        axis
+    );
+
+
+    /*
+     * BALKEN
+     */
+
+    const yearWidth =
+        chartWidth /
+        years.length;
+
+
+    const barWidth =
+        Math.min(
+            22,
+            yearWidth *
+            0.25
+        );
+
+
+    years.forEach(
+        function (
+            year,
+            index
+        ) {
+
+            const centerX =
+                margin.left +
+                (
+                    index +
+                    0.5
+                ) *
+                yearWidth;
+
+
+            const male =
+                values[
+                    year
+                    ].maennlich;
+
+
+            const female =
+                values[
+                    year
+                    ].weiblich;
+
+
+            /*
+             * MÄNNLICH
+             */
+
+            const maleY =
+                yScale(
+                    male
+                );
+
+
+            const maleBar =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "rect"
+                );
+
+
+            maleBar.setAttribute(
+                "x",
+                centerX -
+                barWidth -
+                3
+            );
+
+
+            maleBar.setAttribute(
+                "y",
+                maleY
+            );
+
+
+            maleBar.setAttribute(
+                "width",
+                barWidth
+            );
+
+
+            maleBar.setAttribute(
+                "height",
+                margin.top +
+                chartHeight -
+                maleY
+            );
+
+
+            maleBar.classList.add(
+                "development-bar",
+                "development-bar-boy"
+            );
+
+
+            svg.appendChild(
+                maleBar
+            );
+
+
+            /*
+             * WEIBLICH
+             */
+
+            const femaleY =
+                yScale(
+                    female
+                );
+
+
+            const femaleBar =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "rect"
+                );
+
+
+            femaleBar.setAttribute(
+                "x",
+                centerX + 3
+            );
+
+
+            femaleBar.setAttribute(
+                "y",
+                femaleY
+            );
+
+
+            femaleBar.setAttribute(
+                "width",
+                barWidth
+            );
+
+
+            femaleBar.setAttribute(
+                "height",
+                margin.top +
+                chartHeight -
+                femaleY
+            );
+
+
+            femaleBar.classList.add(
+                "development-bar",
+                "development-bar-girl"
+            );
+
+
+            svg.appendChild(
+                femaleBar
+            );
+
+
+            /*
+             * JAHR
+             */
+
+            const yearLabel =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "text"
+                );
+
+
+            yearLabel.setAttribute(
+                "x",
+                centerX
+            );
+
+
+            yearLabel.setAttribute(
+                "y",
+                height - 20
+            );
+
+
+            yearLabel.setAttribute(
+                "text-anchor",
+                "middle"
+            );
+
+
+            yearLabel.classList.add(
+                "development-year-label"
+            );
+
+
+            yearLabel.textContent =
+                year;
+
+
+            svg.appendChild(
+                yearLabel
+            );
+
+        }
+    );
+
+
+    console.log(
+        "Entwicklungsdiagramm:",
+        values
     );
 
 }
