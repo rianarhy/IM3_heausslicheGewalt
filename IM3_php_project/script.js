@@ -2283,7 +2283,7 @@ function ensureDevelopmentChartHTML() {
 
                     <button
                         type="button"
-                        class="development-cluster-button active"
+                        class="development-cluster-button"
                         data-cluster="physical"
                     >01</button>
 

@@ -1,5 +1,3 @@
-````
-```
 <!DOCTYPE html>
 <html lang="de">
 
@@ -90,7 +88,7 @@
         >
 
             <source
-                    src="assets/Seifenblasen.mp4"
+                    src="assets/Videos/Seifenblasen.mp4"
                     type="video/mp4"
             >
 
@@ -437,129 +435,113 @@
 
             <div class="development-chart-area">
 
-                <div class="development-chart-header">
+                <!-- LINKE SPALTE: NAVIGATION, DIAGRAMM, TITEL UND LEGENDE -->
+                <div class="development-chart-column">
 
-            <span class="development-label">
-                ENTWICKLUNG 2016 — 2025
-            </span>
+                    <div class="development-chart-header">
+                        <span class="development-label">
+                            ENTWICKLUNG 2016 — 2025
+                        </span>
 
-                    <div
-                            class="development-cluster-nav"
-                            aria-label="Gewaltkategorien auswählen"
-                    >
 
-                        <button type="button"
-                                class="development-cluster-button is-active"
-                                data-cluster="physical"
-                                aria-label="Körperliche Gewalt und Tötung"
-                                aria-pressed="true">
-                            01
-                        </button>
+                    </div>
 
-                        <button type="button"
-                                class="development-cluster-button"
-                                data-cluster="verbal"
-                                aria-label="Verbale und digitale Gewalt und Ehrverletzung"
-                                aria-pressed="false">
-                            02
-                        </button>
+                    <div class="development-chart-wrapper">
+                        <svg id="development-chart"
+                             class="development-chart"
+                             viewBox="0 0 900 520"
+                             preserveAspectRatio="xMidYMid meet"
+                             role="img"
+                             aria-label="Entwicklung der registrierten Delikte nach Mädchen und Jungen von 2016 bis 2025"></svg>
+                    </div>
 
-                        <button type="button"
-                                class="development-cluster-button"
-                                data-cluster="threat"
-                                aria-label="Drohung, Zwang und Freiheitsentzug"
-                                aria-pressed="false">
-                            03
-                        </button>
+                    <div class="development-chart-footer">
+                        <div class="development-chart-title" id="development-chart-title">
+                            KÖRPERLICHE GEWALT &amp; TÖTUNG
+                        </div>
 
-                        <button type="button"
-                                class="development-cluster-button"
-                                data-cluster="sexual"
-                                aria-label="Sexualdelikte"
-                                aria-pressed="false">
-                            04
-                        </button>
+                        <div class="development-cluster-nav"
+                             id="development-cluster-nav"
+                             aria-label="Gewaltkategorien auswählen">
 
-                        <button type="button"
-                                class="development-cluster-button"
-                                data-cluster="other"
-                                aria-label="Übrige Straftaten"
-                                aria-pressed="false">
-                            05
-                        </button>
+                            <button type="button"
+                                    class="development-cluster-button"
+                                    data-cluster="physical"
+                                    aria-label="Körperliche Gewalt und Tötung"
+                                    aria-pressed="true">01</button>
+
+                            <button type="button"
+                                    class="development-cluster-button"
+                                    data-cluster="verbal"
+                                    aria-label="Verbale und digitale Gewalt und Ehrverletzung"
+                                    aria-pressed="false">02</button>
+
+                            <button type="button"
+                                    class="development-cluster-button"
+                                    data-cluster="threat"
+                                    aria-label="Drohung, Zwang und Freiheitsentzug"
+                                    aria-pressed="false">03</button>
+
+                            <button type="button"
+                                    class="development-cluster-button"
+                                    data-cluster="sexual"
+                                    aria-label="Sexualdelikte"
+                                    aria-pressed="false">04</button>
+
+                            <button type="button"
+                                    class="development-cluster-button"
+                                    data-cluster="other"
+                                    aria-label="Übrige Straftaten"
+                                    aria-pressed="false">05</button>
+
+                        </div>
+
+
+                        <div class="development-chart-legend">
+
+    <span class="development-legend-item">
+        <span class="development-legend-mark girls"></span>
+        MÄDCHEN
+    </span>
+
+                            <span class="development-legend-item">
+        <span class="development-legend-mark boys"></span>
+        JUNGEN
+    </span>
+
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <div class="development-chart-title"
-                     id="development-chart-title">
-                    KÖRPERLICHE GEWALT &amp; TÖTUNG
-                </div>
-
-
-                <div class="development-chart-wrapper">
-
-                    <svg
-                            id="development-chart"
-                            class="development-chart"
-                            viewBox="0 0 900 520"
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            aria-label="Entwicklung der registrierten Delikte nach Mädchen und Jungen von 2016 bis 2025"
-                    ></svg>
-
-                </div>
-
-
-                <div class="development-chart-legend">
-
-            <span class="development-legend-item">
-                <span class="development-legend-mark girls"></span>
-                MÄDCHEN
-            </span>
-
-                    <span class="development-legend-item">
-                <span class="development-legend-mark boys"></span>
-                JUNGS
-            </span>
-
-                    <span class="development-legend-item development-legend-detail">
-                <span class="development-legend-line"></span>
-                UNTERKATEGORIEN
-            </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="development-intro">
+                <div class="development-intro">
 
         <span class="development-label">
             10 JAHRE IM VERGLEICH
         </span>
 
-                <h3>
-                    WIE VERÄNDERT<br>
-                    SICH GEWALT?
-                </h3>
+                    <h3>
+                        WIE VERÄNDERT<br>
+                        SICH GEWALT?
+                    </h3>
 
-                <p>
-                    Die Entwicklung der registrierten Delikte
-                    zeigt, wie sich die einzelnen Formen
-                    häuslicher Gewalt über die vergangenen
-                    zehn Jahre verändert haben.
-                </p>
+                    <p>
+                        Die Entwicklung der registrierten Delikte
+                        zeigt, wie sich die einzelnen Formen
+                        häuslicher Gewalt über die vergangenen
+                        zehn Jahre verändert haben.
+                    </p>
 
-                <p>
-                    Wähle eine Kategorie, um die Entwicklung
-                    von Mädchen und Jungen sowie die einzelnen
-                    Delikte innerhalb des Clusters zu sehen.
-                </p>
+                    <p>
+                        Wähle eine Kategorie, um die Entwicklung
+                        von Mädchen und Jungen sowie die einzelnen
+                        Delikte innerhalb des Clusters zu sehen.
+                    </p>
 
-            </div>
+                </div>
 
         </section>
 
@@ -676,371 +658,374 @@
              KATEGORIEN NAVIGATION VOR ABOUT
         ========================================================== -->
 
-    <nav
-            class="category-end-nav"
-            aria-label="Gewaltkategorien"
-    >
-
-
-        <a
-                href="koerperliche-gewalt.html"
-                class="category-end-link"
+        <nav
+                class="category-end-nav"
+                aria-label="Gewaltkategorien"
         >
+
+
+            <a
+                    href="koerperliche-gewalt.html"
+                    class="category-end-link"
+            >
 
             <span class="category-end-number">
                 01
             </span>
 
-            <span class="category-end-title">
+                <span class="category-end-title">
                 KÖRPERLICHE GEWALT
                 <br>
                 &amp; TÖTUNG
             </span>
 
-        </a>
+            </a>
 
 
 
-        <a
-                href="verbale-gewalt.html"
-                class="category-end-link"
-        >
+            <a
+                    href="verbale-gewalt.html"
+                    class="category-end-link"
+            >
 
             <span class="category-end-number">
                 02
             </span>
 
-            <span class="category-end-title">
+                <span class="category-end-title">
                 VERBALE/DIGITALE GEWALT
                 <br>
                 &amp; EHRVERLETZUNG
             </span>
 
-        </a>
+            </a>
 
 
 
-        <a
-                href="drohung-zwang.html"
-                class="category-end-link"
-        >
+            <a
+                    href="drohung-zwang.html"
+                    class="category-end-link"
+            >
 
             <span class="category-end-number">
                 03
             </span>
 
-            <span class="category-end-title">
+                <span class="category-end-title">
                 DROHUNG, ZWANG
                 <br>
                 &amp; FREIHEITSENTZUG
             </span>
 
-        </a>
+            </a>
 
 
 
-        <a
-                href="sexualdelikte.html"
-                class="category-end-link"
-        >
+            <a
+                    href="sexualdelikte.html"
+                    class="category-end-link"
+            >
 
             <span class="category-end-number">
                 04
             </span>
 
-            <span class="category-end-title">
+                <span class="category-end-title">
                 SEXUALDELIKTE
             </span>
 
-        </a>
+            </a>
 
 
 
-        <a
-                href="uebrige-straftaten.html"
-                class="category-end-link"
-        >
+            <a
+                    href="uebrige-straftaten.html"
+                    class="category-end-link"
+            >
 
             <span class="category-end-number">
                 05
             </span>
 
-            <span class="category-end-title">
+                <span class="category-end-title">
                 ÜBRIGE STRAFTATEN
             </span>
 
-        </a>
+            </a>
 
 
-    </nav>
+        </nav>
 
 
 
-    <!-- =========================================================
-         ABOUT
-    ========================================================== -->
+        <!-- =========================================================
+             ABOUT
+        ========================================================== -->
 
-    <section
-            class="about"
-            id="about"
-    >
-
-
-        <div class="about-inner">
+        <section
+                class="about"
+                id="about"
+        >
 
 
-            <div class="team-grid">
+            <div class="about-inner">
 
 
-                <!-- KIRA -->
+                <div class="team-grid">
 
-                <div class="team-card">
 
-                    <img
-                            src="assets/About us/About us_kira.png"
-                            alt="Portrait Kira Gerschler"
-                            class="team-image"
-                    >
+                    <!-- KIRA -->
 
-                    <div class="team-info">
+                    <div class="team-card">
 
-                        <p class="team-name">
-                            KIRA GERSCHLER
-                        </p>
+                        <img
+                                src="assets/About us/About us_kira.png"
+                                alt="Portrait Kira Gerschler"
+                                class="team-image"
+                        >
 
-                        <p class="team-role">
-                            FRONT END
-                            <br>
-                            MULTIMEDIA PRODUCER
-                        </p>
+                        <div class="team-info">
+
+                            <p class="team-name">
+                                KIRA GERSCHLER
+                            </p>
+
+                            <p class="team-role">
+                                FRONT END
+                                <br>
+                                MULTIMEDIA PRODUCER
+                            </p>
+
+                        </div>
 
                     </div>
+
+
+
+                    <!-- ILONA -->
+
+                    <div class="team-card">
+
+                        <img
+                                src="assets/About us/About us_ilona.png"
+                                alt="Portrait Ilona Hutmacher"
+                                class="team-image"
+                        >
+
+                        <div class="team-info">
+
+                            <p class="team-name">
+                                ILONA HUTMACHER
+                            </p>
+
+                            <p class="team-role">
+                                FRONT END
+                                <br>
+                                MULTIMEDIA PRODUCER
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- LUNA -->
+
+                    <div class="team-card">
+
+                        <img
+                                src="assets/About us/About us_luna.png"
+                                alt="Portrait Luna Steiner"
+                                class="team-image"
+                        >
+
+                        <div class="team-info">
+
+                            <p class="team-name">
+                                LUNA STEINER
+                            </p>
+
+                            <p class="team-role">
+                                BACK END
+                                <br>
+                                MULTIMEDIA PRODUCER
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RIANA -->
+
+                    <div class="team-card">
+
+                        <img
+                                src="assets/About us/About us_riana.png"
+                                alt="Portrait Riana Rhyner"
+                                class="team-image"
+                        >
+
+                        <div class="team-info">
+
+                            <p class="team-name">
+                                RIANA RHYNER
+                            </p>
+
+                            <p class="team-role">
+                                BACK END
+                                <br>
+                                MULTIMEDIA PRODUCER
+                            </p>
+
+                        </div>
+
+                    </div>
+
 
                 </div>
 
 
 
-                <!-- ILONA -->
+                <!-- =================================================
+                     ABOUT EDITORIAL
+                ================================================== -->
 
-                <div class="team-card">
-
-                    <img
-                            src="assets/About us/About us_ilona.png"
-                            alt="Portrait Ilona Hutmacher"
-                            class="team-image"
-                    >
-
-                    <div class="team-info">
-
-                        <p class="team-name">
-                            ILONA HUTMACHER
-                        </p>
-
-                        <p class="team-role">
-                            FRONT END
-                            <br>
-                            MULTIMEDIA PRODUCER
-                        </p>
-
-                    </div>
-
-                </div>
+                <div class="about-editorial">
 
 
-
-                <!-- LUNA -->
-
-                <div class="team-card">
-
-                    <img
-                            src="assets/About us/About us_luna.png"
-                            alt="Portrait Luna Steiner"
-                            class="team-image"
-                    >
-
-                    <div class="team-info">
-
-                        <p class="team-name">
-                            LUNA STEINER
-                        </p>
-
-                        <p class="team-role">
-                            BACK END
-                            <br>
-                            MULTIMEDIA PRODUCER
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- RIANA -->
-
-                <div class="team-card">
-
-                    <img
-                            src="assets/About us/About us_riana.png"
-                            alt="Portrait Riana Rhyner"
-                            class="team-image"
-                    >
-
-                    <div class="team-info">
-
-                        <p class="team-name">
-                            RIANA RHYNER
-                        </p>
-
-                        <p class="team-role">
-                            BACK END
-                            <br>
-                            MULTIMEDIA PRODUCER
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- =================================================
-                 ABOUT EDITORIAL
-            ================================================== -->
-
-            <div class="about-editorial">
-
-
-                <div class="about-meta">
+                    <div class="about-meta">
 
                     <span class="about-meta-number">
                         03
                     </span>
 
-                    <span class="about-meta-line"></span>
+                        <span class="about-meta-line"></span>
 
-                    <span class="about-meta-label">
+                        <span class="about-meta-label">
                         ABOUT
                     </span>
 
-                </div>
+                    </div>
 
 
 
-                <div class="about-headline">
+                    <div class="about-headline">
 
-                    <h2>
-                        WHO
-                        <br>
-                        ARE WE?
-                    </h2>
+                        <h2>
+                            WHO
+                            <br>
+                            ARE WE?
+                        </h2>
 
-                </div>
-
-
-
-                <div class="about-intro">
-
-                    <p>
-                        Wir sind Ilona, Kira, Riana und Luna —
-                        vier Studentinnen, die gemeinsam
-                        <span>VOICES</span> entwickelt haben.
-                    </p>
-
-                </div>
+                    </div>
 
 
 
-                <div class="about-description">
+                    <div class="about-intro">
 
-                    <p>
-                        Mit diesem Projekt möchten wir ein Thema
-                        sichtbar machen, das häufig im Verborgenen
-                        bleibt.
+                        <p>
+                            Wir sind Ilona, Kira, Riana und Luna —
+                            vier Studentinnen, die gemeinsam
+                            <span>VOICES</span> entwickelt haben.
+                        </p>
 
-                        Wir übersetzen Daten und Informationen
-                        in eine visuelle Geschichte, die
-                        verständlich macht, was hinter den
-                        Zahlen steht.
-                    </p>
-
-                </div>
+                    </div>
 
 
 
-                <div class="about-roles">
+                    <div class="about-description">
+
+                        <p>
+                            Mit diesem Projekt möchten wir ein Thema
+                            sichtbar machen, das häufig im Verborgenen
+                            bleibt.
+
+                            Wir übersetzen Daten und Informationen
+                            in eine visuelle Geschichte, die
+                            verständlich macht, was hinter den
+                            Zahlen steht.
+                        </p>
+
+                    </div>
 
 
-                    <div class="about-role">
+
+                    <div class="about-roles">
+
+
+                        <div class="about-role">
 
                         <span class="role-number">
                             01
                         </span>
 
-                        <span class="role-title">
+                            <span class="role-title">
                             FRONT END
                         </span>
 
-                        <p>
-                            KIRA GERSCHLER
-                            <br>
-                            ILONA HUTMACHER
-                        </p>
+                            <p>
+                                KIRA GERSCHLER
+                                <br>
+                                ILONA HUTMACHER
+                            </p>
 
-                        <span class="role-description">
+                            <span class="role-description">
                             Design, visuelle Gestaltung und
                             Entwicklung der Website.
                         </span>
 
-                    </div>
+                        </div>
 
 
 
-                    <div class="about-role">
+                        <div class="about-role">
 
                         <span class="role-number">
                             02
                         </span>
 
-                        <span class="role-title">
+                            <span class="role-title">
                             BACK END
                         </span>
 
-                        <p>
-                            RIANA RHYNER
-                            <br>
-                            LUNA STEINER
-                        </p>
+                            <p>
+                                RIANA RHYNER
+                                <br>
+                                LUNA STEINER
+                            </p>
 
-                        <span class="role-description">
+                            <span class="role-description">
                             Daten, Quellen, Strukturierung und
                             Aufbereitung der Inhalte.
                         </span>
 
+                        </div>
+
+
                     </div>
 
 
-                </div>
+
+                    <div class="about-statement">
+
+                        <p>
+                            HINTER JEDER ZAHL
+                            <br>
+                            STEHT EIN KIND.
+                        </p>
 
 
+                        <p class="about-statement-second">
+                            HINTER JEDER GESCHICHTE
+                            <br>
+                            STEHT EIN MENSCH.
+                        </p>
 
-                <div class="about-statement">
+                    </div>
 
-                    <p>
-                        HINTER JEDER ZAHL
-                        <br>
-                        STEHT EIN KIND.
-                    </p>
-
-
-                    <p class="about-statement-second">
-                        HINTER JEDER GESCHICHTE
-                        <br>
-                        STEHT EIN MENSCH.
-                    </p>
 
                 </div>
 
@@ -1048,10 +1033,7 @@
             </div>
 
 
-        </div>
-
-
-    </section>
+        </section>
 
 
 </main>
@@ -1381,9 +1363,3 @@
 </body>
 
 </html>
-```
-
-
-
-
-````

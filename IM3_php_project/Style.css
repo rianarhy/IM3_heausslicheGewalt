@@ -11557,3 +11557,194 @@ a {
 .chart-explanation p:last-child {
     margin-bottom: 0;
 }
+
+
+
+/* ==========================================
+   VOICES – BEREINIGTES LAYOUT DES 2. DIAGRAMMS
+========================================== */
+
+/* Der gesamte Abschnitt nutzt die Viewport-Breite */
+#ten-year-development {
+    display: block !important;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100vw !important;
+    max-width: none !important;
+    box-sizing: border-box;
+
+    padding: 100px 7vw 120px !important;
+}
+
+/* Diagramm links, Erklärung rechts */
+#ten-year-development .development-chart-area {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 0.9fr) !important;
+    align-items: center;
+    column-gap: 5vw;
+    row-gap: 40px;
+
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+}
+
+/* Linke Spalte */
+#ten-year-development .development-chart-column {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+}
+
+/* Diagramm füllt die linke Spalte */
+#ten-year-development .development-chart-wrapper {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+}
+
+#ten-year-development #development-chart {
+    display: block;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto;
+}
+
+/* Erklärung rechts */
+#ten-year-development .development-intro {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+
+    width: 100%;
+    max-width: 480px;
+    min-width: 0;
+    margin: 0;
+}
+
+/* Smartphone und kleinere Tablets */
+@media (max-width: 850px) {
+    #ten-year-development {
+        padding: 70px 6vw 90px !important;
+    }
+
+    #ten-year-development .development-chart-area {
+        grid-template-columns: minmax(0, 1fr) !important;
+        row-gap: 45px;
+    }
+
+    #ten-year-development .development-chart-column {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #ten-year-development .development-intro {
+        grid-column: 1;
+        grid-row: 2;
+    }
+}
+
+/* Legende: farbige Kreise für Mädchen und Jungen */
+.development-legend {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.development-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.development-legend-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Farben an die Farben des Diagramms anpassen */
+.development-legend-dot.girls {
+    background-color: #ff0000;
+}
+
+.development-legend-dot.boys {
+    background-color: #ffffff;
+    border: 1px solid #888888;
+}
+
+
+/* Legende: Farben wie im Diagramm */
+.development-legend-girl {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ff0000;
+    flex-shrink: 0;
+}
+
+.development-legend-boy {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ff7777;
+    flex-shrink: 0;
+}
+
+/* Legendenpunkte in den Farben des Diagramms */
+.development-legend-mark.girls {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ff0000;
+    flex-shrink: 0;
+}
+
+.development-legend-mark.boys {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ff7777;
+    flex-shrink: 0;
+}
+/* Cluster-Buttons unten beim Titel */
+.development-chart-footer .development-cluster-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    position: static;
+}
+
+
+/* Legende horizontal ausrichten */
+.development-chart-legend {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+/* Kreise und Beschriftungen nebeneinander */
+.development-chart-legend .development-legend-item {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
