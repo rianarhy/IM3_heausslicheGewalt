@@ -1,3 +1,4 @@
+````
 ```
 <!DOCTYPE html>
 <html lang="de">
@@ -155,11 +156,7 @@
          STORY / DATA
     ========================================================== -->
 
-    <section
-            class="story-section"
-            id="story"
-    >
-
+    <div class="story-data-wrapper" id="story-data-wrapper">
 
         <!-- =====================================================
              ROTER FADEN
@@ -172,7 +169,7 @@
 
             <svg
                     class="continuous-thread-svg"
-                    viewBox="0 0 1400 3300"
+                    viewBox="0 0 1400 5000"
                     preserveAspectRatio="none"
                     aria-hidden="true"
             >
@@ -220,349 +217,464 @@
 
 
 
-        <div
-                class="story-number-wrap story-reveal"
-        >
-
-            <div class="story-number">
-                2071
-            </div>
-
-        </div>
-
-
-
-        <div
-                class="story-lead story-reveal"
-        >
-
-            <p>
-                Kinder und Jugendliche wurden 2025
-                in der Schweiz Opfer häuslicher Gewalt.
-            </p>
-
-        </div>
-
-
-
-        <!-- =====================================================
-             FLIESSTEXT
-        ====================================================== -->
-
-        <div
-                class="story-copy story-reveal"
-        >
-
-            <p>
-                Es ist dunkel und stinkt nach Urin und Fäkalien.
-                Sophie (Namen geändert) ist müde, aber das Schlafen
-                fällt ihr schwer. Ihr ist kalt und ihr Magen knurrt.
-                Neben ihr liegt ihr Bruder Lukas (Namen geändert).
-                Für die beiden ist das nichts Neues. Seit mehreren
-                Jahren verbringen sie jede Nacht im Keller unterhalb
-                der Familienwohnung. Manchmal sind sie auch mehrere
-                Tage hier eingesperrt.
-            </p>
-
-
-            <p>
-                Hinter solchen Schlagzeilen stehen unterschiedliche
-                Geschichten: Kinder verschiedenen Alters, Mädchen
-                und Jungen sowie unterschiedliche Formen von Gewalt.
-                Unsere Datenvisualisierung zeigt, wie sich die
-                registrierten Fälle verteilen und welche Entwicklungen
-                sich über die vergangenen 10 Jahre beobachten lassen.
-            </p>
-
-        </div>
-
-
-
-        <!-- =====================================================
-             DONUT — DIREKT NACH DEM FLIESSTEXT
-        ====================================================== -->
-
         <section
-                class="ten-year-donut"
-                id="ten-year-donut"
+                class="story-section"
+                id="story"
         >
 
-
-            <!-- =================================================
-                 DONUT TEXT
-            ================================================== -->
 
             <div
-                    class="ten-year-donut-intro"
+                    class="story-number-wrap story-reveal"
             >
 
-                <span class="donut-label">
-                    2016 — 2025
-                </span>
+                <div class="story-number">
+                    2071
+                </div>
+
+            </div>
 
 
-                <h3>
-                    DIE LETZTEN
-                    <br>
-                    10 JAHRE
-                </h3>
 
+            <div
+                    class="story-lead story-reveal"
+            >
 
                 <p>
-                    Die registrierten Fälle verteilen sich auf fünf
-                    unterschiedliche Formen von Gewalt.
-                    Bewege die Maus über ein Segment, um die
-                    einzelnen Delikte zu sehen.
+                    Kinder und Jugendliche wurden 2025
+                    in der Schweiz Opfer häuslicher Gewalt.
                 </p>
 
             </div>
 
 
 
-            <!-- =================================================
-                 DONUT
-            ================================================== -->
+            <!-- =====================================================
+                 FLIESSTEXT
+            ====================================================== -->
 
             <div
-                    class="donut-wrapper"
+                    class="story-copy story-reveal"
             >
 
-                <svg
-                        id="ten-year-donut-svg"
-                        class="ten-year-donut-svg"
-                        viewBox="0 0 600 600"
-                        aria-label="Verteilung der Gewaltkategorien"
-                >
-
-                    <g
-                            id="donut-chart"
-                    ></g>
-
-
-                    <circle
-                            cx="300"
-                            cy="300"
-                            r="122"
-                            class="donut-hole"
-                    ></circle>
+                <p>
+                    Es ist dunkel und stinkt nach Urin und Fäkalien.
+                    Sophie (Namen geändert) ist müde, aber das Schlafen
+                    fällt ihr schwer. Ihr ist kalt und ihr Magen knurrt.
+                    Neben ihr liegt ihr Bruder Lukas (Namen geändert).
+                    Für die beiden ist das nichts Neues. Seit mehreren
+                    Jahren verbringen sie jede Nacht im Keller unterhalb
+                    der Familienwohnung. Manchmal sind sie auch mehrere
+                    Tage hier eingesperrt.
+                </p>
 
 
-                    <text
-                            x="300"
-                            y="285"
-                            text-anchor="middle"
-                            class="donut-center-number"
-                            id="donut-total"
-                    >
-                        —
-                    </text>
-
-
-                    <text
-                            x="300"
-                            y="320"
-                            text-anchor="middle"
-                            class="donut-center-label"
-                    >
-                        FÄLLE
-                    </text>
-
-                </svg>
-
-
-
-                <!-- =================================================
-                     TOOLTIP
-                ================================================== -->
-
-                <div
-                        class="donut-tooltip"
-                        id="donut-tooltip"
-                >
-
-                    <div
-                            class="donut-tooltip-title"
-                            id="donut-tooltip-title"
-                    ></div>
-
-
-                    <div
-                            class="donut-tooltip-total"
-                            id="donut-tooltip-total"
-                    ></div>
-
-
-                    <div
-                            class="donut-tooltip-list"
-                            id="donut-tooltip-list"
-                    ></div>
-
-                </div>
+                <p>
+                    Hinter solchen Schlagzeilen stehen unterschiedliche
+                    Geschichten: Kinder verschiedenen Alters, Mädchen
+                    und Jungen sowie unterschiedliche Formen von Gewalt.
+                    Unsere Datenvisualisierung zeigt, wie sich die
+                    registrierten Fälle verteilen und welche Entwicklungen
+                    sich über die vergangenen 10 Jahre beobachten lassen.
+                </p>
 
             </div>
 
 
 
-            <!--
-                Die JavaScript-Datei erwartet dieses Element.
-                Es bleibt unsichtbar, damit keine Legende
-                unter dem Donut erscheint.
-            -->
+            <!-- =====================================================
+                 DONUT — DIREKT NACH DEM FLIESSTEXT
+            ====================================================== -->
 
-            <div
-                    id="donut-legend"
-                    style="display:none;"
-            ></div>
+            <section
+                    class="ten-year-donut"
+                    id="ten-year-donut"
+            >
+
+
+                <!-- =================================================
+                     DONUT TEXT
+                ================================================== -->
+
+                <div
+                        class="ten-year-donut-intro"
+                >
+
+                <span class="donut-label">
+                    2016 — 2025
+                </span>
+
+
+                    <h3>
+                        DIE LETZTEN
+                        <br>
+                        10 JAHRE
+                    </h3>
+
+
+                    <p>
+                        Die registrierten Fälle verteilen sich auf fünf
+                        unterschiedliche Formen von Gewalt.
+                        Bewege die Maus über ein Segment, um die
+                        einzelnen Delikte zu sehen.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DONUT
+                ================================================== -->
+
+                <div
+                        class="donut-wrapper"
+                >
+
+                    <svg
+                            id="ten-year-donut-svg"
+                            class="ten-year-donut-svg"
+                            viewBox="0 0 600 600"
+                            aria-label="Verteilung der Gewaltkategorien"
+                    >
+
+                        <g
+                                id="donut-chart"
+                        ></g>
+
+
+                        <circle
+                                cx="300"
+                                cy="300"
+                                r="122"
+                                class="donut-hole"
+                        ></circle>
+
+
+                        <text
+                                x="300"
+                                y="285"
+                                text-anchor="middle"
+                                class="donut-center-number"
+                                id="donut-total"
+                        >
+                            —
+                        </text>
+
+
+                        <text
+                                x="300"
+                                y="320"
+                                text-anchor="middle"
+                                class="donut-center-label"
+                        >
+                            FÄLLE
+                        </text>
+
+                    </svg>
+
+
+
+                    <!-- =================================================
+                         TOOLTIP
+                    ================================================== -->
+
+                    <div
+                            class="donut-tooltip"
+                            id="donut-tooltip"
+                    >
+
+                        <div
+                                class="donut-tooltip-title"
+                                id="donut-tooltip-title"
+                        ></div>
+
+
+                        <div
+                                class="donut-tooltip-total"
+                                id="donut-tooltip-total"
+                        ></div>
+
+
+                        <div
+                                class="donut-tooltip-list"
+                                id="donut-tooltip-list"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!--
+                    Die JavaScript-Datei erwartet dieses Element.
+                    Es bleibt unsichtbar, damit keine Legende
+                    unter dem Donut erscheint.
+                -->
+
+                <div
+                        id="donut-legend"
+                        style="display:none;"
+                ></div>
+
+
+            </section>
 
 
         </section>
 
 
-    </section>
 
 
+        <!-- =========================================================
+             ENTWICKLUNG — LETZTE 10 JAHRE
+        ========================================================== -->
 
+        <section
+                class="ten-year-development"
+                id="ten-year-development"
+        >
 
-    <!-- =========================================================
-         ENTWICKLUNG — LETZTE 10 JAHRE
-    ========================================================== -->
+            <div class="development-chart-area">
 
-    <section
-            class="ten-year-development"
-            id="ten-year-development"
-    >
-
-        <div class="development-chart-area">
-
-            <div class="development-chart-header">
+                <div class="development-chart-header">
 
             <span class="development-label">
                 ENTWICKLUNG 2016 — 2025
             </span>
 
-                <div
-                        class="development-cluster-nav"
-                        aria-label="Gewaltkategorien auswählen"
-                >
+                    <div
+                            class="development-cluster-nav"
+                            aria-label="Gewaltkategorien auswählen"
+                    >
 
-                    <button type="button"
-                            class="development-cluster-button is-active"
-                            data-cluster="physical"
-                            aria-label="Körperliche Gewalt und Tötung"
-                            aria-pressed="true">
-                        01
-                    </button>
+                        <button type="button"
+                                class="development-cluster-button is-active"
+                                data-cluster="physical"
+                                aria-label="Körperliche Gewalt und Tötung"
+                                aria-pressed="true">
+                            01
+                        </button>
 
-                    <button type="button"
-                            class="development-cluster-button"
-                            data-cluster="verbal"
-                            aria-label="Verbale und digitale Gewalt und Ehrverletzung"
-                            aria-pressed="false">
-                        02
-                    </button>
+                        <button type="button"
+                                class="development-cluster-button"
+                                data-cluster="verbal"
+                                aria-label="Verbale und digitale Gewalt und Ehrverletzung"
+                                aria-pressed="false">
+                            02
+                        </button>
 
-                    <button type="button"
-                            class="development-cluster-button"
-                            data-cluster="threat"
-                            aria-label="Drohung, Zwang und Freiheitsentzug"
-                            aria-pressed="false">
-                        03
-                    </button>
+                        <button type="button"
+                                class="development-cluster-button"
+                                data-cluster="threat"
+                                aria-label="Drohung, Zwang und Freiheitsentzug"
+                                aria-pressed="false">
+                            03
+                        </button>
 
-                    <button type="button"
-                            class="development-cluster-button"
-                            data-cluster="sexual"
-                            aria-label="Sexualdelikte"
-                            aria-pressed="false">
-                        04
-                    </button>
+                        <button type="button"
+                                class="development-cluster-button"
+                                data-cluster="sexual"
+                                aria-label="Sexualdelikte"
+                                aria-pressed="false">
+                            04
+                        </button>
 
-                    <button type="button"
-                            class="development-cluster-button"
-                            data-cluster="other"
-                            aria-label="Übrige Straftaten"
-                            aria-pressed="false">
-                        05
-                    </button>
+                        <button type="button"
+                                class="development-cluster-button"
+                                data-cluster="other"
+                                aria-label="Übrige Straftaten"
+                                aria-pressed="false">
+                            05
+                        </button>
+
+                    </div>
 
                 </div>
 
-            </div>
+
+                <div class="development-chart-title"
+                     id="development-chart-title">
+                    KÖRPERLICHE GEWALT &amp; TÖTUNG
+                </div>
 
 
-            <div class="development-chart-title"
-                 id="development-chart-title">
-                KÖRPERLICHE GEWALT &amp; TÖTUNG
-            </div>
+                <div class="development-chart-wrapper">
+
+                    <svg
+                            id="development-chart"
+                            class="development-chart"
+                            viewBox="0 0 900 520"
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            aria-label="Entwicklung der registrierten Delikte nach Mädchen und Jungen von 2016 bis 2025"
+                    ></svg>
+
+                </div>
 
 
-            <div class="development-chart-wrapper">
-
-                <svg
-                        id="development-chart"
-                        class="development-chart"
-                        viewBox="0 0 900 520"
-                        preserveAspectRatio="xMidYMid meet"
-                        role="img"
-                        aria-label="Entwicklung der registrierten Delikte nach Mädchen und Jungen von 2016 bis 2025"
-                ></svg>
-
-            </div>
-
-
-            <div class="development-chart-legend">
+                <div class="development-chart-legend">
 
             <span class="development-legend-item">
                 <span class="development-legend-mark girls"></span>
                 MÄDCHEN
             </span>
 
-                <span class="development-legend-item">
+                    <span class="development-legend-item">
                 <span class="development-legend-mark boys"></span>
                 JUNGS
             </span>
 
-                <span class="development-legend-item development-legend-detail">
+                    <span class="development-legend-item development-legend-detail">
                 <span class="development-legend-line"></span>
                 UNTERKATEGORIEN
             </span>
 
+                </div>
+
             </div>
 
-        </div>
 
-
-        <div class="development-intro">
+            <div class="development-intro">
 
         <span class="development-label">
             10 JAHRE IM VERGLEICH
         </span>
 
-            <h3>
-                WIE VERÄNDERT<br>
-                SICH GEWALT?
-            </h3>
+                <h3>
+                    WIE VERÄNDERT<br>
+                    SICH GEWALT?
+                </h3>
 
-            <p>
-                Die Entwicklung der registrierten Delikte
-                zeigt, wie sich die einzelnen Formen
-                häuslicher Gewalt über die vergangenen
-                zehn Jahre verändert haben.
+                <p>
+                    Die Entwicklung der registrierten Delikte
+                    zeigt, wie sich die einzelnen Formen
+                    häuslicher Gewalt über die vergangenen
+                    zehn Jahre verändert haben.
+                </p>
+
+                <p>
+                    Wähle eine Kategorie, um die Entwicklung
+                    von Mädchen und Jungen sowie die einzelnen
+                    Delikte innerhalb des Clusters zu sehen.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+     ALTERSDIAGRAMM — MÄDCHEN UND JUNGEN
+========================================================== -->
+
+        <section class="age-comparison" id="age-comparison">
+
+            <div class="age-comparison-heading">
+
+        <span
+                class="age-comparison-kicker"
+                id="age-comparison-period"
+        >
+            LETZTE 10 JAHRE · ALLE DELIKTE
+        </span>
+
+                <h2>
+                    DISKREPANZ MÄDCHEN UND JUNGEN NACH ALTER
+                </h2>
+
+            </div>
+
+            <div class="age-comparison-layout">
+
+                <!-- Diagramm mit den drei Altersgruppen -->
+                <div class="age-chart-wrap">
+
+                    <svg
+                            id="age-comparison-chart"
+                            viewBox="0 0 1000 560"
+                            role="img"
+                            aria-label="Vergleich der registrierten Delikte bei Mädchen und Jungen in den Altersgruppen unter 10, 10 bis 14 und 15 bis 17 Jahre"
+                    ></svg>
+
+                </div>
+
+                <!-- Legende und Erklärung -->
+                <div class="age-comparison-copy">
+
+                    <div class="age-chart-legend-item">
+
+                        <span class="age-chart-legend-dot girls"></span>
+
+                        <span>MÄDCHEN</span>
+
+                    </div>
+
+                    <div class="age-chart-legend-item">
+
+                        <span class="age-chart-legend-dot boys"></span>
+
+                        <span>JUNGEN</span>
+
+                    </div>
+
+                    <p>
+                        Wie verändert sich die Anzahl registrierter
+                        Delikte bei Mädchen und Jungen mit zunehmendem
+                        Alter? Die Grafik vergleicht die drei
+                        Altersgruppen anhand aller Delikte der letzten
+                        zehn verfügbaren Jahre.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="age-chart-note">
+                Hinweis: Die Grafik vergleicht die aufsummierten
+                Deliktszahlen verschiedener Altersgruppen. Sie zeigt
+                nicht die Entwicklung derselben Kinder über die Zeit.
             </p>
 
-            <p>
-                Wähle eine Kategorie, um die Entwicklung
-                von Mädchen und Jungen sowie die einzelnen
-                Delikte innerhalb des Clusters zu sehen.
-            </p>
+            <div class="chart-explanation">
+                <p>
+                    Mit zunehmendem Alter steigen die registrierten Opferzahlen
+                    bei Mädchen, während sie bei Jungen sinken. In unseren Daten
+                    zeigt sich, dass der Anstieg bei Mädchen insbesondere
+                    sexualisierte Gewalt betrifft. Das deckt sich mit
+                    Forschungsergebnissen von UNICEF, die zeigen, dass Mädchen
+                    überproportional von sexueller Gewalt betroffen sind und das
+                    Risiko in der Adoleszenz eine besondere Rolle spielt.
+                </p>
 
-        </div>
+                <p>
+                    Bei Jungen stellt sich die Frage, ob sie sich mit zunehmendem
+                    Alter besser gegen körperliche Gewalt schützen können –
+                    beispielsweise durch ihre körperliche Entwicklung, mehr
+                    Selbstständigkeit oder veränderte Handlungsmöglichkeiten.
+                    Diese Vermutung ist jedoch wissenschaftlich nicht ausreichend
+                    belegt. Auch andere Faktoren, etwa Veränderungen der
+                    Gewaltformen oder der familiären Situation, könnten eine
+                    Rolle spielen.
+                </p>
 
-    </section>
+                <p>
+                    Die Daten zeigen somit unterschiedliche Entwicklungen bei
+                    Mädchen und Jungen. Warum diese Unterschiede entstehen,
+                    lässt sich daraus allein nicht abschliessend erklären.
+                    Die Ergebnisse machen aber deutlich, wie wichtig es ist,
+                    Gewalt nach Alter, Geschlecht und Art des Delikts
+                    differenziert zu betrachten.
+                </p>
+            </div>
 
-    <!-- =========================================================
-         KATEGORIEN NAVIGATION VOR ABOUT
-    ========================================================== -->
+        </section>
+
+
+
+        <!-- =========================================================
+             KATEGORIEN NAVIGATION VOR ABOUT
+        ========================================================== -->
 
     <nav
             class="category-end-nav"
@@ -1147,7 +1259,7 @@
 
             const storySection =
                 document.querySelector(
-                    "#story"
+                    "#story-data-wrapper"
                 );
 
 
@@ -1155,6 +1267,18 @@
                 redThread &&
                 storySection
             ) {
+
+                const threadContainer =
+                    document.querySelector("#continuous-thread");
+
+                function resizeRedThread() {
+                    if (threadContainer && storySection) {
+                        threadContainer.style.height =
+                            storySection.offsetHeight + "px";
+                    }
+                }
+
+                resizeRedThread();
 
                 const threadLength =
                     redThread.getTotalLength();
@@ -1226,7 +1350,10 @@
 
                 window.addEventListener(
                     "resize",
-                    updateRedThread
+                    function () {
+                        resizeRedThread();
+                        updateRedThread();
+                    }
                 );
 
 
@@ -1255,3 +1382,8 @@
 
 </html>
 ```
+
+
+
+
+````

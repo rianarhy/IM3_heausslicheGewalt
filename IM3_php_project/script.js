@@ -366,6 +366,7 @@ async function loadData() {
         */
 
         loadDevelopmentData(data);
+        loadAgeComparisonData(data);
 
 
     } catch (error) {
@@ -2193,20 +2194,278 @@ function createDonutLegendItem(
 /* ==========================================================
    ENTWICKLUNGSDIAGRAMM
    Letzte 10 Jahre / Mädchen & Jungen
+   5 Cluster + Unterkategorien
+========================================================== */
+
+let developmentState = {
+    data: [],
+    firstYear: null,
+    latestYear: null,
+    activeCluster: "physical"
+};
+
+
+/* ==========================================================
+   ENTWICKLUNGSDIAGRAMM — HTML SICHERSTELLEN
+========================================================== */
+
+function ensureDevelopmentChartHTML() {
+
+    let chart =
+        document.getElementById("development-chart");
+
+
+    /*
+     * Falls das SVG bereits im HTML vorhanden ist,
+     * verwenden wir es direkt.
+     */
+
+    if (chart) {
+        return chart;
+    }
+
+
+    /*
+     * Falls eine ältere HTML-Version geladen wird,
+     * erzeugen wir die komplette Section automatisch.
+     */
+
+    const categoryNav =
+        document.querySelector(".category-end-nav");
+
+
+    if (!categoryNav) {
+
+        console.error(
+            "Die Entwicklungssection konnte nicht erstellt werden: .category-end-nav fehlt."
+        );
+
+        return null;
+
+    }
+
+
+    const section =
+        document.createElement("section");
+
+
+    section.id =
+        "ten-year-development";
+
+    section.className =
+        "ten-year-development";
+
+
+    section.innerHTML = `
+
+        <div class="development-chart-area">
+
+            <div class="development-chart-column">
+
+                <div class="development-chart-header">
+
+                    <span class="development-label">
+                        ENTWICKLUNG 2016 — 2025
+                    </span>
+
+                    <h3 id="development-chart-title">
+                        KÖRPERLICHE GEWALT<br>
+                        &amp; TÖTUNG
+                    </h3>
+
+                </div>
+
+
+                <div
+                    class="development-cluster-nav"
+                    id="development-cluster-nav"
+                >
+
+                    <button
+                        type="button"
+                        class="development-cluster-button active"
+                        data-cluster="physical"
+                    >01</button>
+
+                    <button
+                        type="button"
+                        class="development-cluster-button"
+                        data-cluster="verbal"
+                    >02</button>
+
+                    <button
+                        type="button"
+                        class="development-cluster-button"
+                        data-cluster="threat"
+                    >03</button>
+
+                    <button
+                        type="button"
+                        class="development-cluster-button"
+                        data-cluster="sexual"
+                    >04</button>
+
+                    <button
+                        type="button"
+                        class="development-cluster-button"
+                        data-cluster="other"
+                    >05</button>
+
+                </div>
+
+
+                <div class="development-chart-wrapper">
+
+                    <svg
+                        id="development-chart"
+                        class="development-chart"
+                        viewBox="0 0 1000 500"
+                        preserveAspectRatio="xMidYMid meet"
+                        aria-label="Entwicklung der registrierten Fälle nach Geschlecht und Jahr"
+                    ></svg>
+
+                </div>
+
+
+                <div class="development-legend">
+
+                    <div class="development-legend-item">
+                        <span class="development-legend-line development-legend-girl"></span>
+                        <span>Mädchen</span>
+                    </div>
+
+                    <div class="development-legend-item">
+                        <span class="development-legend-line development-legend-boy"></span>
+                        <span>Jungen</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="development-intro">
+
+                <span class="development-intro-number">
+                    10 JAHRE
+                </span>
+
+                <h3>
+                    WIE ENTWICKELN<br>
+                    SICH DIE FÄLLE?
+                </h3>
+
+                <p>
+                    Die Entwicklung zeigt, wie sich die registrierten
+                    Fälle über die vergangenen zehn Jahre verändert haben.
+                </p>
+
+                <p>
+                    Pro Jahr werden zwei Säulen dargestellt:
+                    Mädchen und Jungen. Die feinen Linien innerhalb
+                    der Säulen zeigen die einzelnen Deliktgruppen.
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    categoryNav.parentNode.insertBefore(
+        section,
+        categoryNav
+    );
+
+
+    chart =
+        document.getElementById("development-chart");
+
+
+    return chart;
+
+}
+
+
+/* ==========================================================
+   CLUSTER-NAVIGATION EINRICHTEN
+========================================================== */
+
+function setupDevelopmentClusterNavigation() {
+
+    const buttons =
+        document.querySelectorAll(
+            ".development-cluster-button"
+        );
+
+
+    buttons.forEach(
+        function (button) {
+
+            /* Verhindert doppelte Event-Listener */
+            if (button.dataset.developmentBound === "true") {
+                return;
+            }
+
+
+            button.dataset.developmentBound = "true";
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const clusterId =
+                        button.dataset.cluster;
+
+
+                    if (!clusterId) {
+                        return;
+                    }
+
+
+                    developmentState.activeCluster =
+                        clusterId;
+
+
+                    buttons.forEach(
+                        function (otherButton) {
+
+                            otherButton.classList.toggle(
+                                "active",
+                                otherButton === button
+                            );
+
+                        }
+                    );
+
+
+                    renderActiveDevelopmentCluster();
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   ENTWICKLUNGSDATEN LADEN
 ========================================================== */
 
 function loadDevelopmentData(data) {
 
     const chart =
-        document.getElementById(
-            "development-chart"
-        );
+        ensureDevelopmentChartHTML();
 
 
     if (!chart) {
 
-        console.warn(
-            "development-chart wurde im HTML nicht gefunden."
+        console.error(
+            "Das Entwicklungsdiagramm konnte nicht erstellt werden."
         );
 
         return;
@@ -2220,24 +2479,35 @@ function loadDevelopmentData(data) {
 
     if (!period) {
 
+        console.warn(
+            "Kein Zeitraum für das Entwicklungsdiagramm gefunden."
+        );
+
         return;
 
     }
 
 
     /*
-     * Unter 18:
+     * Die API verwendet je nach Datensatz entweder:
      *
-     * <10
-     * 10-14
-     * 15-17
+     * <10 / 10-14 / 15-17
+     *
+     * oder die bereits normalisierten Begriffe:
+     *
+     * kids / teens / youngadult
+     *
+     * Wir akzeptieren deshalb beide Varianten.
      */
 
     const relevantAges =
         new Set([
             "<10",
             "10-14",
-            "15-17"
+            "15-17",
+            "kids",
+            "teens",
+            "youngadult"
         ]);
 
 
@@ -2290,59 +2560,143 @@ function loadDevelopmentData(data) {
         );
 
 
+    developmentState.data =
+        rows;
+
+    developmentState.firstYear =
+        period.firstYear;
+
+    developmentState.latestYear =
+        period.latestYear;
+
+
     console.log(
         "Daten Entwicklungsdiagramm:",
         rows
     );
 
 
+    setupDevelopmentClusterNavigation();
+
+    renderActiveDevelopmentCluster();
+
+}
+
+
+/* ==========================================================
+   AKTIVES CLUSTER RENDERN
+========================================================== */
+
+function renderActiveDevelopmentCluster() {
+
+    const chart =
+        document.getElementById(
+            "development-chart"
+        );
+
+
+    if (!chart) {
+        return;
+    }
+
+
+    const cluster =
+        donutClusters.find(
+            function (item) {
+                return (
+                    item.id ===
+                    developmentState.activeCluster
+                );
+            }
+        );
+
+
+    if (!cluster) {
+        return;
+    }
+
+
+    const title =
+        document.getElementById(
+            "development-chart-title"
+        );
+
+
+    if (title) {
+
+        title.innerHTML =
+            cluster.label
+                .replace(
+                    " & ",
+                    "<br>&amp; "
+                );
+
+    }
+
+
+    const label =
+        document.querySelector(
+            ".development-label"
+        );
+
+
+    if (label) {
+
+        label.textContent =
+            developmentState.firstYear +
+            " — " +
+            developmentState.latestYear;
+
+    }
+
+
     renderDevelopmentChart(
         chart,
-        rows,
-        period.firstYear,
-        period.latestYear
+        developmentState.data,
+        developmentState.firstYear,
+        developmentState.latestYear,
+        cluster
     );
 
 }
 
 
-
 /* ==========================================================
    ENTWICKLUNGSDIAGRAMM ZEICHNEN
+
+   PRO JAHR:
+   - 1 Säule Mädchen
+   - 1 Säule Jungen
+   - KEINE zusätzliche Total-Säule
+   - feine Linien innerhalb der Säulen
+     markieren die Unterkategorien
 ========================================================== */
 
 function renderDevelopmentChart(
     svg,
     rows,
     firstYear,
-    latestYear
+    latestYear,
+    activeCluster
 ) {
 
-    svg.innerHTML =
-        "";
+    if (!svg) {
+        return;
+    }
 
 
-    const width =
-        1000;
+    svg.innerHTML = "";
 
-    const height =
-        500;
+
+    const width = 1000;
+    const height = 500;
 
 
     const margin = {
-
-        top:
-            30,
-
-        right:
-            30,
-
-        bottom:
-            60,
-
-        left:
-            70
-
+        top: 35,
+        right: 35,
+        bottom: 65,
+        left: 75
     };
 
 
@@ -2352,9 +2706,9 @@ function renderDevelopmentChart(
     );
 
 
-    /*
-     * JAHRE
-     */
+    /* ======================================================
+       JAHRE
+    ====================================================== */
 
     const years = [];
 
@@ -2365,16 +2719,14 @@ function renderDevelopmentChart(
         year++
     ) {
 
-        years.push(
-            year
-        );
+        years.push(year);
 
     }
 
 
-    /*
-     * DATEN PRO JAHR
-     */
+    /* ======================================================
+       DATEN PRO JAHR / GESCHLECHT / UNTERKATEGORIE
+    ====================================================== */
 
     const values = {};
 
@@ -2383,13 +2735,8 @@ function renderDevelopmentChart(
         function (year) {
 
             values[year] = {
-
-                maennlich:
-                    0,
-
-                weiblich:
-                    0
-
+                maennlich: {},
+                weiblich: {}
             };
 
         }
@@ -2403,10 +2750,25 @@ function renderDevelopmentChart(
                 Number(row.jahr);
 
 
-            const amount =
-                parseNumber(
-                    row.anzahl
-                );
+            if (!values[year]) {
+                return;
+            }
+
+
+            const name =
+                String(
+                    row.straftat ?? ""
+                ).trim();
+
+
+            if (!name) {
+                return;
+            }
+
+
+            if (!activeCluster.match(name)) {
+                return;
+            }
 
 
             const gender =
@@ -2415,31 +2777,43 @@ function renderDevelopmentChart(
                 );
 
 
-            if (!values[year]) {
+            const amount =
+                parseNumber(
+                    row.anzahl
+                );
 
+
+            if (amount <= 0) {
                 return;
+            }
+
+
+            const subcategory =
+                getSubcategoryKey(name);
+
+
+            if (
+                gender === "männlich"
+            ) {
+
+                values[year].maennlich[subcategory] =
+                    (
+                        values[year].maennlich[subcategory] ||
+                        0
+                    ) + amount;
 
             }
 
 
             if (
-                gender ===
-                "männlich"
+                gender === "weiblich"
             ) {
 
-                values[year].maennlich +=
-                    amount;
-
-            }
-
-
-            if (
-                gender ===
-                "weiblich"
-            ) {
-
-                values[year].weiblich +=
-                    amount;
+                values[year].weiblich[subcategory] =
+                    (
+                        values[year].weiblich[subcategory] ||
+                        0
+                    ) + amount;
 
             }
 
@@ -2447,50 +2821,98 @@ function renderDevelopmentChart(
     );
 
 
-    /*
-     * MAXIMALWERT
-     */
+    /* ======================================================
+       GESAMTWERTE PRO JAHR
+    ====================================================== */
 
-    let maxValue =
-        0;
+    let maxValue = 0;
 
 
     years.forEach(
         function (year) {
 
+            const maleTotal =
+                Object.values(
+                    values[year].maennlich
+                ).reduce(
+                    function (sum, value) {
+                        return sum + value;
+                    },
+                    0
+                );
+
+
+            const femaleTotal =
+                Object.values(
+                    values[year].weiblich
+                ).reduce(
+                    function (sum, value) {
+                        return sum + value;
+                    },
+                    0
+                );
+
+
+            values[year].maleTotal =
+                maleTotal;
+
+            values[year].femaleTotal =
+                femaleTotal;
+
+
             maxValue =
                 Math.max(
                     maxValue,
-
-                    values[
-                        year
-                        ].maennlich,
-
-                    values[
-                        year
-                        ].weiblich
+                    maleTotal,
+                    femaleTotal
                 );
 
         }
     );
 
 
-    if (
-        maxValue === 0
-    ) {
+    if (maxValue <= 0) {
 
-        console.warn(
-            "Keine Werte für das Entwicklungsdiagramm."
+        const message =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "text"
+            );
+
+
+        message.setAttribute(
+            "x",
+            width / 2
         );
+
+        message.setAttribute(
+            "y",
+            height / 2
+        );
+
+        message.setAttribute(
+            "text-anchor",
+            "middle"
+        );
+
+        message.classList.add(
+            "development-axis-label"
+        );
+
+        message.textContent =
+            "Keine Daten für dieses Cluster vorhanden.";
+
+
+        svg.appendChild(message);
 
         return;
 
     }
 
 
-    /*
-     * ZEICHENBEREICH
-     */
+    /* ======================================================
+       ZEICHENBEREICH
+    ====================================================== */
 
     const chartWidth =
         width -
@@ -2504,13 +2926,7 @@ function renderDevelopmentChart(
         margin.bottom;
 
 
-    /*
-     * Y-SKALIERUNG
-     */
-
-    function yScale(
-        value
-    ) {
+    function yScale(value) {
 
         return (
             margin.top +
@@ -2525,12 +2941,11 @@ function renderDevelopmentChart(
     }
 
 
-    /*
-     * GITTERLINIEN
-     */
+    /* ======================================================
+       GITTERLINIEN
+    ====================================================== */
 
-    const gridSteps =
-        5;
+    const gridSteps = 5;
 
 
     for (
@@ -2548,9 +2963,7 @@ function renderDevelopmentChart(
 
 
         const y =
-            yScale(
-                value
-            );
+            yScale(value);
 
 
         const line =
@@ -2565,34 +2978,27 @@ function renderDevelopmentChart(
             margin.left
         );
 
-
         line.setAttribute(
             "x2",
-            width -
-            margin.right
+            width - margin.right
         );
-
 
         line.setAttribute(
             "y1",
             y
         );
 
-
         line.setAttribute(
             "y2",
             y
         );
-
 
         line.classList.add(
             "development-grid-line"
         );
 
 
-        svg.appendChild(
-            line
-        );
+        svg.appendChild(line);
 
 
         const label =
@@ -2607,23 +3013,19 @@ function renderDevelopmentChart(
             margin.left - 12
         );
 
-
         label.setAttribute(
             "y",
             y + 4
         );
-
 
         label.setAttribute(
             "text-anchor",
             "end"
         );
 
-
         label.classList.add(
             "development-axis-label"
         );
-
 
         label.textContent =
             value.toLocaleString(
@@ -2631,16 +3033,14 @@ function renderDevelopmentChart(
             );
 
 
-        svg.appendChild(
-            label
-        );
+        svg.appendChild(label);
 
     }
 
 
-    /*
-     * X-ACHSE
-     */
+    /* ======================================================
+       X-ACHSE
+    ====================================================== */
 
     const axis =
         document.createElementNS(
@@ -2654,41 +3054,32 @@ function renderDevelopmentChart(
         margin.left
     );
 
-
     axis.setAttribute(
         "x2",
-        width -
-        margin.right
+        width - margin.right
     );
-
 
     axis.setAttribute(
         "y1",
-        margin.top +
-        chartHeight
+        margin.top + chartHeight
     );
-
 
     axis.setAttribute(
         "y2",
-        margin.top +
-        chartHeight
+        margin.top + chartHeight
     );
-
 
     axis.classList.add(
         "development-axis"
     );
 
 
-    svg.appendChild(
-        axis
-    );
+    svg.appendChild(axis);
 
 
-    /*
-     * BALKEN
-     */
+    /* ======================================================
+       BALKEN
+    ====================================================== */
 
     const yearWidth =
         chartWidth /
@@ -2697,152 +3088,64 @@ function renderDevelopmentChart(
 
     const barWidth =
         Math.min(
-            22,
-            yearWidth *
-            0.25
+            24,
+            yearWidth * 0.23
         );
 
 
     years.forEach(
-        function (
-            year,
-            index
-        ) {
+        function (year, index) {
 
             const centerX =
                 margin.left +
                 (
-                    index +
-                    0.5
+                    index + 0.5
                 ) *
                 yearWidth;
 
 
-            const male =
-                values[
-                    year
-                    ].maennlich;
+            const maleData =
+                values[year].maennlich;
+
+            const femaleData =
+                values[year].weiblich;
 
 
-            const female =
-                values[
-                    year
-                    ].weiblich;
-
-
-            /*
-             * MÄNNLICH
-             */
-
-            const maleY =
-                yScale(
-                    male
-                );
-
-
-            const maleBar =
-                document.createElementNS(
-                    "http://www.w3.org/2000/svg",
-                    "rect"
-                );
-
-
-            maleBar.setAttribute(
-                "x",
-                centerX -
-                barWidth -
-                3
+            createDevelopmentBar(
+                svg,
+                centerX - barWidth - 3,
+                barWidth,
+                maleData,
+                values[year].maleTotal,
+                year,
+                "männlich",
+                maxValue,
+                yScale,
+                margin,
+                chartHeight,
+                activeCluster
             );
 
 
-            maleBar.setAttribute(
-                "y",
-                maleY
+            createDevelopmentBar(
+                svg,
+                centerX + 3,
+                barWidth,
+                femaleData,
+                values[year].femaleTotal,
+                year,
+                "weiblich",
+                maxValue,
+                yScale,
+                margin,
+                chartHeight,
+                activeCluster
             );
 
 
-            maleBar.setAttribute(
-                "width",
-                barWidth
-            );
-
-
-            maleBar.setAttribute(
-                "height",
-                margin.top +
-                chartHeight -
-                maleY
-            );
-
-
-            maleBar.classList.add(
-                "development-bar",
-                "development-bar-boy"
-            );
-
-
-            svg.appendChild(
-                maleBar
-            );
-
-
-            /*
-             * WEIBLICH
-             */
-
-            const femaleY =
-                yScale(
-                    female
-                );
-
-
-            const femaleBar =
-                document.createElementNS(
-                    "http://www.w3.org/2000/svg",
-                    "rect"
-                );
-
-
-            femaleBar.setAttribute(
-                "x",
-                centerX + 3
-            );
-
-
-            femaleBar.setAttribute(
-                "y",
-                femaleY
-            );
-
-
-            femaleBar.setAttribute(
-                "width",
-                barWidth
-            );
-
-
-            femaleBar.setAttribute(
-                "height",
-                margin.top +
-                chartHeight -
-                femaleY
-            );
-
-
-            femaleBar.classList.add(
-                "development-bar",
-                "development-bar-girl"
-            );
-
-
-            svg.appendChild(
-                femaleBar
-            );
-
-
-            /*
-             * JAHR
-             */
+            /* ==================================================
+               JAHR
+            ================================================== */
 
             const yearLabel =
                 document.createElementNS(
@@ -2856,23 +3159,19 @@ function renderDevelopmentChart(
                 centerX
             );
 
-
             yearLabel.setAttribute(
                 "y",
                 height - 20
             );
-
 
             yearLabel.setAttribute(
                 "text-anchor",
                 "middle"
             );
 
-
             yearLabel.classList.add(
                 "development-year-label"
             );
-
 
             yearLabel.textContent =
                 year;
@@ -2894,9 +3193,491 @@ function renderDevelopmentChart(
 }
 
 
+/* ==========================================================
+   EINZELNE SÄULE ERSTELLEN
+========================================================== */
+
+function createDevelopmentBar(
+    svg,
+    x,
+    barWidth,
+    subcategories,
+    total,
+    year,
+    gender,
+    maxValue,
+    yScale,
+    margin,
+    chartHeight,
+    activeCluster
+) {
+
+    const bottomY =
+        margin.top +
+        chartHeight;
+
+
+    const topY =
+        yScale(total);
+
+
+    const barHeight =
+        bottomY - topY;
+
+
+    /* ======================================================
+       HAUPTSÄULE
+    ====================================================== */
+
+    const bar =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect"
+        );
+
+
+    bar.setAttribute(
+        "x",
+        x
+    );
+
+    bar.setAttribute(
+        "y",
+        topY
+    );
+
+    bar.setAttribute(
+        "width",
+        barWidth
+    );
+
+    bar.setAttribute(
+        "height",
+        Math.max(0, barHeight)
+    );
+
+
+    bar.classList.add(
+        "development-bar"
+    );
+
+
+    if (gender === "weiblich") {
+
+        bar.classList.add(
+            "development-bar-girl"
+        );
+
+    } else {
+
+        bar.classList.add(
+            "development-bar-boy"
+        );
+
+    }
+
+
+    /* ======================================================
+       NATIVE TOOLTIP
+    ====================================================== */
+
+    const title =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "title"
+        );
+
+
+    const genderLabel =
+        gender === "weiblich"
+            ? "Mädchen"
+            : "Jungen";
+
+
+    const detailText =
+        Object.entries(subcategories)
+            .sort(
+                function (a, b) {
+                    return b[1] - a[1];
+                }
+            )
+            .map(
+                function ([name, value]) {
+                    return (
+                        name +
+                        ": " +
+                        value.toLocaleString("de-CH")
+                    );
+                }
+            )
+            .join("\n");
+
+
+    title.textContent =
+        year +
+        " · " +
+        genderLabel +
+        " · " +
+        total.toLocaleString("de-CH") +
+        " Fälle" +
+        (
+            detailText
+                ? "\n" + detailText
+                : ""
+        );
+
+
+    bar.appendChild(title);
+    svg.appendChild(bar);
+
+
+    /* ======================================================
+       UNTERKATEGORIEN ALS FEINE LINIEN
+
+       Die Linien sitzen auf den kumulierten Grenzen
+       der Unterkategorien innerhalb der Säule.
+    ====================================================== */
+
+    if (total <= 0) {
+        return;
+    }
+
+
+    const sortedSubcategories =
+        Object.entries(subcategories)
+            .filter(
+                function ([, value]) {
+                    return value > 0;
+                }
+            )
+            .sort(
+                function (a, b) {
+                    return b[1] - a[1];
+                }
+            );
+
+
+    let cumulative = 0;
+
+
+    sortedSubcategories.forEach(
+        function ([name, value]) {
+
+            cumulative += value;
+
+
+            /* Keine Linie direkt am oberen oder unteren Rand */
+            if (
+                cumulative >= total ||
+                cumulative <= 0
+            ) {
+                return;
+            }
+
+
+            const lineValue =
+                total - cumulative;
+
+
+            const lineY =
+                yScale(lineValue);
+
+
+            const line =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "line"
+                );
+
+
+            line.setAttribute(
+                "x1",
+                x
+            );
+
+            line.setAttribute(
+                "x2",
+                x + barWidth
+            );
+
+            line.setAttribute(
+                "y1",
+                lineY
+            );
+
+            line.setAttribute(
+                "y2",
+                lineY
+            );
+
+            line.classList.add(
+                "development-subcategory-line"
+            );
+
+
+            const lineTitle =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "title"
+                );
+
+
+            lineTitle.textContent =
+                name +
+                ": " +
+                value.toLocaleString("de-CH") +
+                " Fälle";
+
+
+            line.appendChild(
+                lineTitle
+            );
+
+            svg.appendChild(line);
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   ALTERSDIAGRAMM — MÄDCHEN UND JUNGEN
+   Summe aller Delikte über die letzten 10 verfügbaren Jahre
+
+   API-Altersgruppen:
+   kids       = Unter 10
+   teens      = 10–14
+   youngAdult = 15–17
+========================================================== */
+
+function loadAgeComparisonData(data) {
+
+    let svg = document.getElementById("age-comparison-chart");
+
+    // Wenn das SVG noch nicht im HTML vorhanden ist, Abschnitt erzeugen.
+    if (!svg) {
+        let section = document.getElementById("age-comparison");
+        const categoryNav = document.querySelector(".category-end-nav");
+
+        if (!section && categoryNav && categoryNav.parentNode) {
+            section = document.createElement("section");
+            section.id = "age-comparison";
+            section.className = "age-comparison";
+            section.innerHTML = `
+                <div class="age-comparison-heading">
+                    <span class="age-comparison-kicker" id="age-comparison-period">LETZTE 10 JAHRE · ALLE DELIKTE</span>
+                    <h2>DISKREPANZ MÄDCHEN UND JUNGEN NACH ALTER</h2>
+                </div>
+                <div class="age-comparison-layout">
+                    <div class="age-chart-wrap">
+                        <svg id="age-comparison-chart" viewBox="0 0 1000 560" role="img" aria-label="Vergleich registrierter Delikte bei Mädchen und Jungen nach Altersgruppe"></svg>
+                    </div>
+                    <div class="age-comparison-copy">
+                        <div class="age-chart-legend-item"><span class="age-chart-legend-dot girls"></span><span>MÄDCHEN</span></div>
+                        <div class="age-chart-legend-item"><span class="age-chart-legend-dot boys"></span><span>JUNGEN</span></div>
+                        <p>Wie verändert sich die Anzahl registrierter Delikte bei Mädchen und Jungen mit zunehmendem Alter? Verglichen werden die drei Altersgruppen anhand aller Delikte der letzten zehn Jahre.</p>
+                    </div>
+                </div>`;
+            categoryNav.parentNode.insertBefore(section, categoryNav);
+        } else if (section && !section.querySelector("#age-comparison-chart")) {
+            const chartWrap = section.querySelector(".age-chart-wrap") || section;
+            svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.id = "age-comparison-chart";
+            svg.setAttribute("viewBox", "0 0 1000 560");
+            svg.setAttribute("role", "img");
+            svg.setAttribute("aria-label", "Vergleich registrierter Delikte bei Mädchen und Jungen nach Altersgruppe");
+            chartWrap.appendChild(svg);
+        }
+
+        svg = document.getElementById("age-comparison-chart");
+    }
+
+    if (!svg || !Array.isArray(data) || data.length === 0) {
+        console.warn("Altersdiagramm: SVG oder Daten fehlen.");
+        return;
+    }
+
+    const period = getLastTenYears(data);
+    if (!period) {
+        console.warn("Altersdiagramm: keine gültigen Jahreszahlen gefunden.");
+        return;
+    }
+
+    const ageGroups = [
+        { key: "kids", label: "Unter 10" },
+        { key: "teens", label: "10–14" },
+        { key: "youngadult", label: "15–17" }
+    ];
+
+    const totals = {
+        weiblich: { kids: 0, teens: 0, youngadult: 0 },
+        männlich: { kids: 0, teens: 0, youngadult: 0 }
+    };
+
+    const normalize = value => String(value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+    const parseAmount = value => {
+        if (typeof value === "number") return Number.isFinite(value) ? value : 0;
+        const cleaned = String(value ?? "").trim().replace(/[’']/g, "").replace(/\s/g, "").replace(/,/g, ".");
+        const number = Number(cleaned);
+        return Number.isFinite(number) ? number : 0;
+    };
+
+    data.forEach(row => {
+        const year = Number(row.jahr);
+        const gender = normalize(row.geschlecht);
+        const age = normalize(row.altersgruppe);
+
+        if (!Number.isFinite(year) || year < period.firstYear || year > period.latestYear) return;
+        if (gender !== "weiblich" && gender !== "männlich") return;
+
+        // Akzeptiert sowohl die normalisierten API-Namen als auch ältere Beschriftungen.
+        const ageAliases = {
+            kids: "kids", "<10": "kids", "unter 10": "kids",
+            teens: "teens", "10-14": "teens", "10–14": "teens",
+            youngadult: "youngadult", "15-17": "youngadult", "15–17": "youngadult"
+        };
+        const ageKey = ageAliases[age];
+        if (!ageKey) return;
+
+        totals[gender][ageKey] += parseAmount(row.anzahl);
+    });
+
+    console.log("Altersdiagramm Zeitraum:", period);
+    console.log("Altersdiagramm Summen:", totals);
+
+    const periodLabel = document.getElementById("age-comparison-period");
+    if (periodLabel) periodLabel.textContent = `${period.firstYear}–${period.latestYear} · ALLE DELIKTE`;
+
+    svg.innerHTML = "";
+
+    const width = 1000;
+    const height = 560;
+    const margin = { top: 45, right: 40, bottom: 90, left: 100 };
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+    const values = [
+        ...Object.values(totals.weiblich),
+        ...Object.values(totals.männlich)
+    ].filter(Number.isFinite);
+    const maxValue = Math.max(0, ...values);
+    const yMax = maxValue > 0 ? maxValue * 1.15 : 10;
+    const x = index => margin.left + index * chartWidth / (ageGroups.length - 1);
+    const y = value => margin.top + chartHeight - (value / yMax) * chartHeight;
+
+    const add = (tag, attrs, textContent) => {
+        const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
+        Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, String(value)));
+        if (textContent !== undefined) element.textContent = textContent;
+        svg.appendChild(element);
+        return element;
+    };
+
+    // Achsen und Gitternetz
+    for (let i = 0; i <= 4; i++) {
+        const value = yMax * i / 4;
+        const yy = y(value);
+        add("line", { x1: margin.left, x2: width - margin.right, y1: yy, y2: yy, stroke: "#333", "stroke-width": 1 });
+        add("text", { x: margin.left - 15, y: yy + 5, fill: "#aaa", "font-size": 16, "text-anchor": "end" }, Math.round(value).toLocaleString("de-CH"));
+    }
+
+    ageGroups.forEach((group, index) => {
+        add("text", { x: x(index), y: height - 45, fill: "#fff", "font-size": 20, "text-anchor": "middle" }, group.label);
+    });
+
+    add("text", {
+        x: 28, y: height / 2, fill: "#aaa", "font-size": 17,
+        "text-anchor": "middle", transform: `rotate(-90 28 ${height / 2})`
+    }, "Anzahl registrierter Delikte");
+
+    [
+        { key: "weiblich", color: "#FF1D25", label: "Mädchen" },
+        { key: "männlich", color: "#FF7777", label: "Jungen" }
+    ].forEach(series => {
+        const points = ageGroups.map((group, index) => ({
+            x: x(index), y: y(totals[series.key][group.key]),
+            value: totals[series.key][group.key], label: group.label
+        }));
+
+        add("polyline", {
+            points: points.map(point => `${point.x},${point.y}`).join(" "),
+            fill: "none", stroke: series.color, "stroke-width": 4,
+            "stroke-linejoin": "round", "stroke-linecap": "round"
+        });
+
+        points.forEach(point => {
+            const circle = add("circle", { cx: point.x, cy: point.y, r: 7, fill: series.color });
+            const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
+            title.textContent = `${series.label} · ${point.label}: ${point.value.toLocaleString("de-CH")} Fälle`;
+            circle.appendChild(title);
+        });
+    });
+}
+
 
 /* ==========================================================
    START
 ========================================================== */
 
 loadData();
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const chart = document.querySelector("#age-comparison-chart");
+
+    if (!chart) {
+        console.error("Das Altersdiagramm wurde nicht gefunden.");
+        return;
+    }
+
+    // Verhindert, dass der Text mehrfach eingefügt wird.
+    if (document.querySelector(".chart-explanation")) {
+        return;
+    }
+
+    const explanation = document.createElement("div");
+    explanation.className = "chart-explanation";
+
+    explanation.innerHTML = `
+        <p>
+            Mit zunehmendem Alter steigen die registrierten Opferzahlen
+            bei Mädchen, während sie bei Jungen sinken. In unseren Daten
+            zeigt sich, dass der Anstieg bei Mädchen insbesondere
+            sexualisierte Gewalt betrifft. Das deckt sich mit
+            Forschungsergebnissen von UNICEF, die zeigen, dass Mädchen
+            überproportional von sexueller Gewalt betroffen sind und das
+            Risiko in der Adoleszenz eine besondere Rolle spielt.
+        </p>
+
+        <p>
+            Bei Jungen stellt sich die Frage, ob sie sich mit zunehmendem
+            Alter besser gegen körperliche Gewalt schützen können –
+            beispielsweise durch ihre körperliche Entwicklung, mehr
+            Selbstständigkeit oder veränderte Handlungsmöglichkeiten.
+            Diese Vermutung ist jedoch wissenschaftlich nicht ausreichend
+            belegt. Auch andere Faktoren, etwa Veränderungen der
+            Gewaltformen oder der familiären Situation, könnten eine
+            Rolle spielen.
+        </p>
+
+        <p>
+            Die Daten zeigen somit unterschiedliche Entwicklungen bei
+            Mädchen und Jungen. Warum diese Unterschiede entstehen,
+            lässt sich daraus allein nicht abschliessend erklären.
+            Die Ergebnisse machen aber deutlich, wie wichtig es ist,
+            Gewalt nach Alter, Geschlecht und Art des Delikts
+            differenziert zu betrachten.
+        </p>
+    `;
+
+    const section = chart.closest(".age-comparison");
+
+    if (section) {
+        section.appendChild(explanation);
+        console.log("Erklärungstext wurde eingefügt.");
+    } else {
+        console.error("Die Diagramm-Section wurde nicht gefunden.");
+    }
+});

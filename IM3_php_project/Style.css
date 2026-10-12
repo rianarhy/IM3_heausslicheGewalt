@@ -10735,3 +10735,825 @@ a {
     }
 
 }
+
+
+/* ==========================================================
+   ENTWICKLUNGSDIAGRAMM — DIAGRAMM LINKS, TEXT RECHTS
+========================================================== */
+
+.ten-year-development {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 100px 7vw 140px;
+    background: #000;
+    color: #fff;
+}
+
+.development-chart-area {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.8fr);
+    align-items: center;
+    column-gap: 6vw;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.development-chart-column {
+    min-width: 0;
+    width: 100%;
+}
+
+.development-chart-wrapper {
+    width: 100%;
+    min-width: 0;
+    margin-top: 25px;
+}
+
+.development-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.development-intro {
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+    align-self: center;
+    margin: 0;
+    padding: 0;
+}
+
+.development-intro h3 {
+    margin: 25px 0 35px;
+    color: #fff;
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    line-height: 0.88;
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    overflow-wrap: anywhere;
+}
+
+.development-intro p {
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0 0 20px;
+}
+
+.development-label {
+    display: block;
+    color: #ff0000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.development-chart-column > h3,
+#development-chart-title {
+    color: #fff;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    line-height: 1.15;
+    margin: 0 0 15px;
+}
+
+.development-cluster-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0 20px;
+}
+
+.development-cluster-button {
+    width: 27px;
+    height: 27px;
+    border: 1px solid #444;
+    border-radius: 50%;
+    background: transparent;
+    color: #aaa;
+    font-size: 0.65rem;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.development-cluster-button:hover,
+.development-cluster-button.active {
+    color: #fff;
+    border-color: #ff0000;
+}
+
+.development-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-top: 15px;
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.development-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.development-legend-line {
+    display: inline-block;
+    width: 18px;
+    height: 3px;
+}
+
+.development-legend-girl {
+    background: #ff0000;
+}
+
+.development-legend-boy {
+    background: #ff7777;
+}
+
+.development-grid-line {
+    stroke: #222;
+    stroke-width: 1;
+}
+
+.development-axis {
+    stroke: #555;
+    stroke-width: 1;
+}
+
+.development-axis-label,
+.development-year-label {
+    fill: #888;
+    font-size: 11px;
+}
+
+.development-bar-girl {
+    fill: #ff0000;
+}
+
+.development-bar-boy {
+    fill: #ff7777;
+}
+
+.development-subcategory-line {
+    stroke: #fff;
+    stroke-width: 1.5;
+    opacity: 0.9;
+    pointer-events: stroke;
+}
+
+/* ==========================================================
+   RESPONSIVE — AUF KLEINEN BILDSCHIRMEN UNTEREINANDER
+========================================================== */
+
+@media (max-width: 850px) {
+    .ten-year-development {
+        padding: 70px 6vw 90px;
+    }
+
+    .development-chart-area {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 55px;
+    }
+
+    .development-intro {
+        max-width: 600px;
+    }
+
+    .development-intro h3 {
+        font-size: clamp(2.8rem, 9vw, 5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .development-chart-wrapper {
+        margin-top: 15px;
+    }
+
+    .development-chart-area {
+        row-gap: 40px;
+    }
+
+    .development-legend {
+        gap: 14px;
+    }
+}
+
+/* ==========================================================
+   DEVELOPMENT — VOLLE BILDSCHIRMBREITE
+========================================================== */
+
+.ten-year-development {
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 100px 7vw 120px;
+    margin: 0;
+    background: #000;
+    color: #fff;
+}
+
+/* Zwei Spalten über die gesamte Breite */
+.development-chart-area {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 7vw;
+
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Linke Spalte: Diagramm */
+.development-chart-column {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+}
+
+.development-chart-wrapper {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin-top: 30px;
+}
+
+.development-chart {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    overflow: visible;
+}
+
+/* Rechte Spalte: Text */
+.development-intro {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+}
+
+.development-intro h3 {
+    width: 100%;
+    max-width: none;
+    margin: 25px 0 35px;
+
+    color: #fff;
+    font-size: clamp(3rem, 5.5vw, 7rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+}
+
+.development-intro p {
+    max-width: 540px;
+    color: #aaa;
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    line-height: 1.65;
+    margin: 0 0 22px;
+}
+
+/* Überschrift über dem Diagramm */
+#development-chart-title {
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    line-height: 1.15;
+    margin: 0 0 18px;
+}
+
+/* Cluster-Auswahl */
+.development-cluster-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 15px 0 25px;
+}
+
+.development-cluster-button {
+    flex: 0 0 auto;
+}
+
+/* Legende */
+.development-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+/* ==========================================================
+   TABLET UND SMARTPHONE
+========================================================== */
+
+@media (max-width: 850px) {
+    .ten-year-development {
+        padding: 70px 5vw 90px;
+    }
+
+    .development-chart-area {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 55px;
+    }
+
+    .development-intro {
+        max-width: 700px;
+    }
+
+    .development-intro h3 {
+        font-size: clamp(3rem, 10vw, 5rem);
+    }
+
+    .development-intro p {
+        max-width: 600px;
+    }
+}
+
+
+
+/* ==========================================================
+   FINALER FIX — DIAGRAMM LINKS, TEXT RECHTS
+========================================================== */
+
+.ten-year-development {
+    display: block !important;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 7vw 120px;
+    box-sizing: border-box;
+    background: #000;
+    color: #fff;
+}
+
+/* Das Grid muss hier liegen, denn es enthält
+   sowohl das Diagramm als auch den Text. */
+
+.ten-year-development .development-chart-area {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 0.85fr) !important;
+    align-items: center;
+    column-gap: 6vw;
+    row-gap: 0;
+
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+/* Linke Spalte */
+
+.ten-year-development .development-chart-column {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+}
+
+.ten-year-development .development-chart-wrapper {
+    width: 100%;
+    min-width: 0;
+    margin-top: 25px;
+}
+
+.ten-year-development .development-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Rechte Spalte */
+
+.ten-year-development .development-intro {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.ten-year-development .development-intro h3 {
+    margin: 25px 0 35px;
+    font-size: clamp(36px, 3.7vw, 60px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.ten-year-development .development-intro p {
+    max-width: 380px;
+    margin: 0 0 22px;
+    color: #999;
+    font-size: clamp(15px, 1.1vw, 18px);
+    line-height: 1.5;
+}
+
+/* Auf schmalen Bildschirmen untereinander */
+
+@media (max-width: 700px) {
+    .ten-year-development .development-chart-area {
+        grid-template-columns: minmax(0, 1fr) !important;
+        row-gap: 50px;
+    }
+
+    .ten-year-development .development-chart-column {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .ten-year-development .development-intro {
+        grid-column: 1;
+        grid-row: 2;
+        max-width: 600px;
+    }
+
+    .ten-year-development .development-chart-wrapper {
+        overflow-x: auto;
+    }
+
+    .ten-year-development .development-chart {
+        min-width: 600px;
+    }
+}
+
+
+/* Cluster-Legende ausblenden */
+.cluster-legend,
+.donut-legend,
+.chart-legend,
+#cluster-legend,
+#donut-legend {
+    display: none !important;
+}
+
+
+/* =========================================
+   ABSTAND ZWISCHEN DEN DIAGRAMMEN VERKLEINERN
+========================================= */
+
+.story-section {
+    min-height: 3100px !important;
+}
+
+
+/* =========================================
+   VOICES — ROTER FADEN DURCH BEIDE DIAGRAMME
+========================================= */
+
+.story-data-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+/* Weniger Abstand zwischen den Diagrammen */
+.story-section {
+    min-height: 3100px !important;
+    overflow: visible !important;
+    background: transparent !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* Roter Faden liegt im Hintergrund */
+.story-data-wrapper .continuous-thread {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.continuous-thread-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Zweites Diagramm transparent lassen,
+   damit der rote Faden dahinter sichtbar ist */
+#ten-year-development {
+    position: relative;
+    z-index: 2;
+    background: transparent !important;
+}
+
+
+/* =========================================
+   VOICES — ROTER FADEN DURCH BEIDE DIAGRAMME
+   UND WENIGER ABSTAND
+========================================= */
+
+/* Gemeinsamer Bereich für Story und beide Diagramme */
+.story-data-wrapper {
+    position: relative;
+    display: flow-root;
+    width: 100%;
+    background: #000;
+    overflow: visible;
+    isolation: isolate;
+}
+
+/* Roter Faden als Hintergrund über die gesamte Datenstory */
+.story-data-wrapper > .continuous-thread {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
+/* SVG über die gesamte Höhe des gemeinsamen Bereichs */
+.story-data-wrapper .continuous-thread-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Beide Diagrammbereiche über dem roten Faden */
+.story-data-wrapper > #story,
+.story-data-wrapper > #ten-year-development {
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
+}
+
+/* Abstand zwischen Donut und Entwicklungsdiagramm verkleinern */
+.story-data-wrapper > #story {
+    min-height: 3300px !important;
+    overflow: visible !important;
+}
+
+/* Zweites Diagramm kompakter anschliessen */
+.story-data-wrapper > #ten-year-development {
+    margin-top: 0 !important;
+    padding-top: 60px;
+}
+
+/* Die Inhalte bleiben über dem roten Faden */
+.story-data-wrapper .development-chart-area {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+}
+
+/* Mobile Darstellung */
+@media (max-width: 850px) {
+    .story-data-wrapper > #story {
+        min-height: 3000px !important;
+    }
+
+    .story-data-wrapper > #ten-year-development {
+        padding-top: 40px;
+    }
+}
+
+/* ==========================================================
+   VOICES — DIAGRAMM: MÄDCHEN UND JUNGEN NACH ALTER
+========================================================== */
+
+.age-comparison {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 110px 7vw 125px;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+.age-comparison-heading {
+    max-width: 1200px;
+    margin: 0 auto 35px;
+}
+
+.age-comparison-kicker {
+    display: block;
+    margin-bottom: 18px;
+    color: #ff0000;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2em;
+}
+
+.age-comparison-heading h2 {
+    max-width: 1000px;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(28px, 4vw, 58px);
+    line-height: .98;
+    font-weight: 500;
+    letter-spacing: -.045em;
+}
+
+.age-comparison-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2.4fr) minmax(220px, .7fr);
+    align-items: center;
+    gap: 4vw;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.age-chart-wrap {
+    min-width: 0;
+    width: 100%;
+}
+
+#age-comparison-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+#age-comparison-chart .age-grid-line {
+    stroke: rgba(255, 255, 255, .14);
+    stroke-width: 1;
+}
+
+#age-comparison-chart .age-axis-line {
+    stroke: rgba(255, 255, 255, .55);
+    stroke-width: 1.5;
+}
+
+#age-comparison-chart .age-axis-label {
+    fill: #888;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+#age-comparison-chart .age-axis-title {
+    fill: #888;
+    font-size: 12px;
+    font-family: inherit;
+    letter-spacing: .12em;
+}
+
+#age-comparison-chart .age-category-label {
+    fill: #fff;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: .06em;
+}
+
+#age-comparison-chart .age-value-label {
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 700;
+}
+
+#age-comparison-chart .age-data-point {
+    stroke: #000;
+    stroke-width: 2;
+}
+
+.age-comparison-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+    min-width: 0;
+}
+
+.age-chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #fff;
+    font-size: clamp(17px, 1.6vw, 25px);
+    font-weight: 600;
+    letter-spacing: .03em;
+}
+
+.age-chart-legend-dot {
+    display: inline-block;
+    flex: 0 0 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.age-chart-legend-dot.girls {
+    background: #FF1D25;
+}
+
+.age-chart-legend-dot.boys {
+    background: #FF7777;
+}
+
+.age-comparison-copy p {
+    margin: 20px 0 0;
+    max-width: 340px;
+    color: #999;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.age-chart-note {
+    max-width: 1500px;
+    margin: 18px auto 0;
+    color: #777;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+@media (max-width: 850px) {
+    .age-comparison {
+        padding: 80px 6vw 90px;
+    }
+
+    .age-comparison-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .age-comparison-copy {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 18px 28px;
+    }
+
+    .age-comparison-copy p {
+        flex-basis: 100%;
+        max-width: 650px;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .age-comparison {
+        padding: 65px 22px 75px;
+    }
+
+    .age-comparison-heading h2 {
+        font-size: clamp(27px, 8vw, 40px);
+    }
+
+    #age-comparison-chart .age-category-label {
+        font-size: 14px;
+    }
+
+    #age-comparison-chart .age-axis-label {
+        font-size: 12px;
+    }
+
+    #age-comparison-chart .age-value-label {
+        font-size: 12px;
+    }
+}
+
+
+.chart-explanation {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+
+    position: relative;
+    z-index: 10;
+
+    max-width: 800px;
+    width: 100%;
+    margin: 40px auto 60px;
+
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.chart-explanation p {
+    display: block;
+    color: #b0b0b0;
+    margin: 0 0 20px;
+}
+
+.chart-explanation p:last-child {
+    margin-bottom: 0;
+}
