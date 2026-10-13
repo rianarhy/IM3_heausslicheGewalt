@@ -11748,3 +11748,96 @@ a {
     gap: 8px;
     margin: 0;
 }
+
+/* Erklärungstext unter dem dritten Diagramm */
+#age-comparison .chart-explanation {
+    text-align: left;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#age-comparison .chart-explanation p {
+    text-align: left;
+}
+
+#age-comparison .chart-explanation-title {
+    max-width: 1000px;
+    margin: 50px auto 24px;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 500;
+    line-height: 1.15;
+    text-align: left;
+}
+
+/* Erklärungstext des dritten Diagramms am linken Seitenrand */
+#age-comparison .chart-explanation-title,
+#age-comparison .chart-explanation {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* Drittes Diagramm: Erklärungstext mit Abstand links und rechts */
+#age-comparison .chart-explanation-title,
+#age-comparison .chart-explanation {
+    position: relative;
+    left: auto;
+
+    width: 100%;
+    max-width: none;
+
+    /* Abstand zum linken und rechten Seitenrand */
+    margin-left: 4vw;
+    margin-right: 0;
+
+    box-sizing: border-box;
+}
+
+/* Textbereich auf etwa zwei Drittel der Seitenbreite begrenzen */
+#age-comparison .chart-explanation-title,
+#age-comparison .chart-explanation {
+    width: 66%;
+}
+
+/* Abstände zwischen Titel und Fliesstext */
+#age-comparison .chart-explanation-title {
+    margin-top: 50px;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+#age-comparison .chart-explanation p {
+    text-align: left;
+}
+
+/* Mobile: mehr verfügbare Breite nutzen */
+@media (max-width: 700px) {
+    #age-comparison .chart-explanation-title,
+    #age-comparison .chart-explanation {
+        width: 92%;
+        margin-left: 4%;
+    }
+}
+#age-comparison .chart-explanation-title {
+    text-transform: uppercase;
+}
+
+/* Quellenangabe unter dem Erklärungstext */
+#age-comparison .chart-explanation .chart-source {
+    width: 100%;
+    margin: 24px 0 60px 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#age-comparison .chart-source a {
+    color: #aaa;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

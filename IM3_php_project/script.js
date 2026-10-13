@@ -2265,7 +2265,7 @@ function ensureDevelopmentChartHTML() {
                 <div class="development-chart-header">
 
                     <span class="development-label">
-                        ENTWICKLUNG 2016 — 2025
+                        ENTWICKLUNG 2016 — 2025 nach Cluster
                     </span>
 
                     <h3 id="development-chart-title">

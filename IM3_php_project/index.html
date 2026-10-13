@@ -186,6 +186,11 @@
                             C 650 2380, 900 2390, 940 2560
                             C 980 2730, 760 2780, 700 2940
                             C 650 3070, 720 3170, 760 3300
+                            C 820 3420, 900 3500, 1050 3600
+C 1200 3700, 1150 3850, 1000 3950
+C 850 4050, 820 4200, 950 4320
+C 1080 4440, 1200 4520, 1100 4660
+C 1000 4780, 900 4880, 1050 5000
                         "
                 />
 
@@ -205,6 +210,11 @@
                             C 650 2380, 900 2390, 940 2560
                             C 980 2730, 760 2780, 700 2940
                             C 650 3070, 720 3170, 760 3300
+                            C 820 3420, 900 3500, 1050 3600
+C 1200 3700, 1150 3850, 1000 3950
+C 850 4050, 820 4200, 950 4320
+C 1080 4440, 1200 4520, 1100 4660
+C 1000 4780, 900 4880, 1050 5000
                         "
                 />
 
@@ -440,7 +450,7 @@
 
                     <div class="development-chart-header">
                         <span class="development-label">
-                            ENTWICKLUNG 2016 — 2025
+                            ENTWICKLUNG 2016 — 2025 nach Cluster
                         </span>
 
 
@@ -618,6 +628,10 @@
                 nicht die Entwicklung derselben Kinder über die Zeit.
             </p>
 
+            <h3 class="chart-explanation-title">
+                Warum entwickeln sich die Zahlen bei Mädchen und Jungen unterschiedlich?
+            </h3>
+
             <div class="chart-explanation">
                 <p>
                     Mit zunehmendem Alter steigen die registrierten Opferzahlen
@@ -648,6 +662,14 @@
                     Gewalt nach Alter, Geschlecht und Art des Delikts
                     differenziert zu betrachten.
                 </p>
+                <div class="chart-source">
+                    Quelle:
+                    <a href="https://www.unicef.org/media/92376/file/child-protection-gender-dimension"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        UNICEF – Gender Dimensions of Violence Against Children and Adolescents
+                    </a>
+                </div>
             </div>
 
         </section>
@@ -1295,8 +1317,7 @@
 
 
                     const drawingDistance =
-                        storySection.offsetHeight -
-                        viewportHeight * 0.35;
+                        storySection.offsetHeight;
 
 
                     let progress =
