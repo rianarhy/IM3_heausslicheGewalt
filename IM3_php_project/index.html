@@ -2,315 +2,369 @@
 <html lang="de">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>VOICES</title>
 
-    <link
-            rel="stylesheet"
-            href="Style.css"
-    >
+    <link rel="stylesheet" href="Style.css">
 
+    <style>
+        /* Abstand zwischen erster und zweiter Grafik */
+
+        #story > #ten-year-donut {
+            min-height: 0 !important;
+            grid-template-rows: auto;
+            padding-bottom: 120px;
+        }
+
+        @media (max-width: 850px) {
+            #story > #ten-year-donut {
+                padding-bottom: 90px;
+            }
+        }
+
+        /* Text unter der ersten Grafik */
+
+        .voices-donut-summary {
+            grid-column: 1 / -1;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .voices-donut-summary p {
+            margin: 0;
+        }
+
+        /* Abschluss nach der letzten Grafik */
+
+        .voices-closing {
+            position: relative;
+            z-index: 20;
+            background: #000;
+            padding: 50px 7vw 0;
+        }
+
+        .voices-closing-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .voices-closing p {
+            margin: 0;
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* Hilfe und weitere Informationen */
+
+        .voices-support {
+            position: relative;
+            z-index: 20;
+            background: #000;
+            color: #fff;
+            padding: 70px 7vw 0;
+        }
+
+        .voices-support-inner {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .voices-support-help {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: clamp(30px, 5vw, 80px);
+            align-items: center;
+
+            padding: 40px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .voices-support-phone {
+            display: inline-block;
+            color: #ff1212;
+
+            font-size: clamp(80px, 10vw, 150px);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.06em;
+
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .voices-support-phone:hover {
+            color: #ff7777;
+        }
+
+        .voices-support-phone:focus-visible,
+        .voices-support-link:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 8px;
+        }
+
+        .voices-support-copy h2 {
+            max-width: 750px;
+            margin: 0 0 16px;
+            color: #fff;
+
+            font-size: clamp(24px, 2.8vw, 42px);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .voices-support-copy p {
+            max-width: 650px;
+            margin: 0;
+            color: #aaa;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .voices-support-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: #fff;
+            font-size: 14px;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .voices-support-future {
+            padding-top: 48px;
+        }
+
+        .voices-support-future h3 {
+            margin: 0 0 12px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            line-height: 1.4;
+        }
+
+        .voices-support-future p {
+            max-width: 750px;
+            margin: 0;
+            color: #aaa;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .voices-support + .category-end-nav {
+            padding-top: 40px;
+        }
+
+        @media (max-width: 800px) {
+            .voices-closing {
+                padding: 35px 25px 0;
+            }
+
+            .voices-donut-summary,
+            .voices-closing p {
+                font-size: 16px;
+            }
+
+            .voices-support {
+                padding: 50px 25px 0;
+            }
+
+            .voices-support-help {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 32px 0;
+            }
+
+            .voices-support-phone {
+                font-size: 96px;
+            }
+
+            .voices-support-future {
+                padding-top: 36px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .voices-support-phone {
+                transition: none;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
+<!-- HEADER -->
 
-<!-- =========================================================
-     HEADER
-========================================================== -->
-
-<header
-        class="header"
-        id="header"
->
-
+<header class="header" id="header">
     <nav class="navigation">
-
-        <a
-                href="#start"
-                class="nav-button active"
-                id="start-button"
-        >
+        <a href="#start" class="nav-button active" id="start-button">
             START
         </a>
 
-        <a
-                href="#about"
-                class="nav-button"
-                id="about-button"
-        >
+        <a href="#about" class="nav-button" id="about-button">
             ABOUT US
         </a>
-
     </nav>
 
-
-    <a
-            href="#start"
-            class="logo"
-    >
+    <a href="#start" class="logo">
         VOICES
     </a>
-
 </header>
-
-
 
 <main>
 
+    <!-- HERO -->
 
-    <!-- =========================================================
-         HERO
-    ========================================================== -->
-
-    <section
-            class="hero"
-            id="start"
-    >
-
-
-        <!-- VIDEO -->
-
-        <video
-                class="hero-video"
-                autoplay
-                muted
-                loop
-                playsinline
-        >
-
+    <section class="hero" id="start">
+        <video class="hero-video" autoplay muted loop playsinline>
             <source
                     src="assets/Videos/Seifenblasen.mp4"
                     type="video/mp4"
             >
-
         </video>
 
-
-
-        <!-- HERO TEXTE -->
-
         <div class="hero-sequence">
-
-
             <div class="hero-text hero-text-1">
-                2080
+                22’368
             </div>
-
 
             <div class="hero-text hero-text-2">
-                KINDER UND JUGENDLICHE
+                FÄLLE HÄUSLICHER GEWALT
             </div>
-
 
             <div class="hero-text hero-text-3">
-                IN DER SCHWEIZ
+                AN KINDERN UND JUGENDLICHEN
             </div>
-
 
             <div class="hero-text hero-text-4">
-                WURDEN OPFER VON HÄUSLICHER GEWALT
+                IN DER SCHWEIZ 2016 – 2025
             </div>
-
 
             <div class="hero-text hero-text-final">
                 HINTER JEDER ZAHL STEHT EINE STIMME.
             </div>
 
-
-
-            <a
-                    href="#story"
-                    class="scroll-more"
-            >
-
-                <span class="scroll-circle">
-                    ↓
-                </span>
-
-                <span class="scroll-label">
-                    SCROLL TO MORE
-                </span>
-
+            <a href="#story" class="scroll-more">
+                <span class="scroll-circle">↓</span>
+                <span class="scroll-label">SCROLL TO MORE</span>
             </a>
-
-
         </div>
-
-
     </section>
 
-
-
-    <!-- =========================================================
-         STORY / DATA
-    ========================================================== -->
+    <!-- STORY UND DATEN -->
 
     <div class="story-data-wrapper" id="story-data-wrapper">
 
-        <!-- =====================================================
-             ROTER FADEN
-        ====================================================== -->
+        <!-- ROTER FADEN -->
 
-        <div
-                class="continuous-thread"
-                id="continuous-thread"
-        >
-
+        <div class="continuous-thread" id="continuous-thread">
             <svg
                     class="continuous-thread-svg"
                     viewBox="0 0 1400 5000"
                     preserveAspectRatio="none"
                     aria-hidden="true"
             >
-
                 <path
                         class="continuous-thread-bg"
                         d="
-                            M 90 300
-                            C 280 260, 340 450, 520 430
-                            C 720 410, 700 620, 900 640
-                            C 1100 660, 1030 860, 820 900
-                            C 650 940, 680 1110, 760 1300
-                            C 820 1440, 840 1510, 800 1600
-                            C 760 1700, 650 1750, 560 1860
-                            C 450 2000, 420 2120, 530 2240
-                            C 650 2380, 900 2390, 940 2560
-                            C 980 2730, 760 2780, 700 2940
-                            C 650 3070, 720 3170, 760 3300
-                            C 820 3420, 900 3500, 1050 3600
-C 1200 3700, 1150 3850, 1000 3950
-C 850 4050, 820 4200, 950 4320
-C 1080 4440, 1200 4520, 1100 4660
-C 1000 4780, 900 4880, 1050 5000
-                        "
+              M 90 300
+              C 280 260, 340 450, 520 430
+              C 720 410, 700 620, 900 640
+              C 1100 660, 1030 860, 820 900
+              C 650 940, 680 1110, 760 1300
+              C 820 1440, 840 1510, 800 1600
+              C 760 1700, 650 1750, 560 1860
+              C 450 2000, 420 2120, 530 2240
+              C 650 2380, 900 2390, 940 2560
+              C 980 2730, 760 2780, 700 2940
+              C 650 3070, 720 3170, 760 3300
+              C 820 3420, 900 3500, 1050 3600
+              C 1200 3700, 1150 3850, 1000 3950
+              C 850 4050, 820 4200, 950 4320
+              C 1080 4440, 1200 4520, 1100 4660
+              C 1000 4780, 900 4880, 1050 5000
+            "
                 />
-
 
                 <path
                         class="continuous-thread-progress"
                         id="continuous-thread-progress"
                         d="
-                            M 90 300
-                            C 280 260, 340 450, 520 430
-                            C 720 410, 700 620, 900 640
-                            C 1100 660, 1030 860, 820 900
-                            C 650 940, 680 1110, 760 1300
-                            C 820 1440, 840 1510, 800 1600
-                            C 760 1700, 650 1750, 560 1860
-                            C 450 2000, 420 2120, 530 2240
-                            C 650 2380, 900 2390, 940 2560
-                            C 980 2730, 760 2780, 700 2940
-                            C 650 3070, 720 3170, 760 3300
-                            C 820 3420, 900 3500, 1050 3600
-C 1200 3700, 1150 3850, 1000 3950
-C 850 4050, 820 4200, 950 4320
-C 1080 4440, 1200 4520, 1100 4660
-C 1000 4780, 900 4880, 1050 5000
-                        "
+              M 90 300
+              C 280 260, 340 450, 520 430
+              C 720 410, 700 620, 900 640
+              C 1100 660, 1030 860, 820 900
+              C 650 940, 680 1110, 760 1300
+              C 820 1440, 840 1510, 800 1600
+              C 760 1700, 650 1750, 560 1860
+              C 450 2000, 420 2120, 530 2240
+              C 650 2380, 900 2390, 940 2560
+              C 980 2730, 760 2780, 700 2940
+              C 650 3070, 720 3170, 760 3300
+              C 820 3420, 900 3500, 1050 3600
+              C 1200 3700, 1150 3850, 1000 3950
+              C 850 4050, 820 4200, 950 4320
+              C 1080 4440, 1200 4520, 1100 4660
+              C 1000 4780, 900 4880, 1050 5000
+            "
                 />
-
             </svg>
-
         </div>
 
-
-
-
-        <section
-                class="story-section"
-                id="story"
-        >
-
-
-            <div
-                    class="story-number-wrap story-reveal"
-            >
-
+        <section class="story-section" id="story">
+            <div class="story-number-wrap story-reveal">
                 <div class="story-number">
-                    2071
+                    22’368
                 </div>
-
             </div>
 
-
-
-            <div
-                    class="story-lead story-reveal"
-            >
-
+            <div class="story-lead story-reveal">
                 <p>
-                    Kinder und Jugendliche wurden 2025
-                    in der Schweiz Opfer häuslicher Gewalt.
+                    Fälle häuslicher Gewalt an Kindern und Jugendlichen
+                    wurden zwischen 2016 und 2025 in der Schweiz registriert.
                 </p>
-
             </div>
 
+            <!-- NEUE EINLEITUNG UND BEIBEHALTENER ABSATZ -->
 
-
-            <!-- =====================================================
-                 FLIESSTEXT
-            ====================================================== -->
-
-            <div
-                    class="story-copy story-reveal"
-            >
-
+            <div class="story-copy story-reveal">
                 <p>
-                    Es ist dunkel und stinkt nach Urin und Fäkalien.
-                    Sophie (Namen geändert) ist müde, aber das Schlafen
-                    fällt ihr schwer. Ihr ist kalt und ihr Magen knurrt.
-                    Neben ihr liegt ihr Bruder Lukas (Namen geändert).
-                    Für die beiden ist das nichts Neues. Seit mehreren
-                    Jahren verbringen sie jede Nacht im Keller unterhalb
-                    der Familienwohnung. Manchmal sind sie auch mehrere
-                    Tage hier eingesperrt.
+                    Jahrelang wurden Sophie und Lukas (Namen geändert) von ihren
+                    Eltern misshandelt, vernachlässigt und im Keller eingesperrt.
+                    Obwohl Lehrpersonen die Verletzungen und den Hunger der Kinder
+                    bemerkten und mehrfach Meldung erstatteten, blieb Hilfe
+                    weitgehend aus. Erst als die beiden elf und zwölf Jahre alt
+                    waren, kamen sie in ein Kinderheim. Die Folgen der jahrelangen
+                    Gewalt begleiten sie bis ins Erwachsenenalter. Erst 2018,
+                    nachdem eine weitere Tochter den Vater wegen sexuellen
+                    Missbrauchs angezeigt hatte, wurden Ermittlungen gegen die
+                    Eltern aufgenommen.
                 </p>
 
-
                 <p>
-                    Hinter solchen Schlagzeilen stehen unterschiedliche
-                    Geschichten: Kinder verschiedenen Alters, Mädchen
-                    und Jungen sowie unterschiedliche Formen von Gewalt.
-                    Unsere Datenvisualisierung zeigt, wie sich die
-                    registrierten Fälle verteilen und welche Entwicklungen
-                    sich über die vergangenen 10 Jahre beobachten lassen.
+                    Hinter solchen
+                    Schlagzeilen stehen keine Einzelfälle, sondern ein gesellschaftliches Problem, das viele Kinder und Jugendliche in der Schweiz betrifft. Häusliche Gewalt hat unterschiedliche Formen und prägt den Alltag der Betroffenen oft über Jahre. Unsere Datenvisualisierung zeigt, wie sich die registrierten Fälle zwischen 2016 und 2025 nach Alter, Geschlecht und Gewaltform verteilen und wie sich die Zahlen in diesem Zeitraum entwickelt haben.
                 </p>
-
             </div>
 
+            <!-- ERSTE GRAFIK: DONUT -->
 
-
-            <!-- =====================================================
-                 DONUT — DIREKT NACH DEM FLIESSTEXT
-            ====================================================== -->
-
-            <section
-                    class="ten-year-donut"
-                    id="ten-year-donut"
-            >
-
-
-                <!-- =================================================
-                     DONUT TEXT
-                ================================================== -->
-
-                <div
-                        class="ten-year-donut-intro"
-                >
-
-                <span class="donut-label">
-                    2016 — 2025
-                </span>
-
+            <section class="ten-year-donut" id="ten-year-donut">
+                <div class="ten-year-donut-intro">
+            <span class="donut-label">
+              2016 — 2025
+            </span>
 
                     <h3>
                         DIE LETZTEN
@@ -318,37 +372,22 @@ C 1000 4780, 900 4880, 1050 5000
                         10 JAHRE
                     </h3>
 
-
                     <p>
                         Die registrierten Fälle verteilen sich auf fünf
                         unterschiedliche Formen von Gewalt.
                         Bewege die Maus über ein Segment, um die
                         einzelnen Delikte zu sehen.
                     </p>
-
                 </div>
 
-
-
-                <!-- =================================================
-                     DONUT
-                ================================================== -->
-
-                <div
-                        class="donut-wrapper"
-                >
-
+                <div class="donut-wrapper">
                     <svg
                             id="ten-year-donut-svg"
                             class="ten-year-donut-svg"
                             viewBox="0 0 600 600"
                             aria-label="Verteilung der Gewaltkategorien"
                     >
-
-                        <g
-                                id="donut-chart"
-                        ></g>
-
+                        <g id="donut-chart"></g>
 
                         <circle
                                 cx="300"
@@ -356,7 +395,6 @@ C 1000 4780, 900 4880, 1050 5000
                                 r="122"
                                 class="donut-hole"
                         ></circle>
-
 
                         <text
                                 x="300"
@@ -368,7 +406,6 @@ C 1000 4780, 900 4880, 1050 5000
                             —
                         </text>
 
-
                         <text
                                 x="300"
                                 y="320"
@@ -377,161 +414,141 @@ C 1000 4780, 900 4880, 1050 5000
                         >
                             FÄLLE
                         </text>
-
                     </svg>
 
-
-
-                    <!-- =================================================
-                         TOOLTIP
-                    ================================================== -->
-
-                    <div
-                            class="donut-tooltip"
-                            id="donut-tooltip"
-                    >
-
+                    <div class="donut-tooltip" id="donut-tooltip">
                         <div
                                 class="donut-tooltip-title"
                                 id="donut-tooltip-title"
                         ></div>
-
 
                         <div
                                 class="donut-tooltip-total"
                                 id="donut-tooltip-total"
                         ></div>
 
-
                         <div
                                 class="donut-tooltip-list"
                                 id="donut-tooltip-list"
                         ></div>
-
                     </div>
-
                 </div>
 
+                <div id="donut-legend" style="display:none;"></div>
 
+                <!-- TEXT 1 -->
 
-                <!--
-                    Die JavaScript-Datei erwartet dieses Element.
-                    Es bleibt unsichtbar, damit keine Legende
-                    unter dem Donut erscheint.
-                -->
-
-                <div
-                        id="donut-legend"
-                        style="display:none;"
-                ></div>
-
-
+                <div class="voices-donut-summary">
+                    <p>
+                        Die Zahlen zeigen, wie viele Fälle von häuslicher Gewalt
+                        gegen Kinder und Jugendliche in der Schweiz registriert
+                        wurden. Doch hinter jeder Zahl steht ein junger Mensch,
+                        dessen Alltag von Gewalt, Angst oder Kontrolle geprägt sein
+                        kann. Die Statistik macht das Ausmass sichtbar – aber nicht
+                        alles, was die Betroffenen erleben. Nicht jede
+                        Gewalterfahrung wird erkannt oder gemeldet. Die erfassten
+                        Fälle zeigen deshalb nur einen Teil der Realität.
+                    </p>
+                </div>
             </section>
-
-
         </section>
 
+        <!-- ZWEITE GRAFIK: ENTWICKLUNG -->
 
-
-
-        <!-- =========================================================
-             ENTWICKLUNG — LETZTE 10 JAHRE
-        ========================================================== -->
-
-        <section
-                class="ten-year-development"
-                id="ten-year-development"
-        >
-
+        <section class="ten-year-development" id="ten-year-development">
             <div class="development-chart-area">
-
-                <!-- LINKE SPALTE: NAVIGATION, DIAGRAMM, TITEL UND LEGENDE -->
                 <div class="development-chart-column">
-
                     <div class="development-chart-header">
-                        <span class="development-label">
-                            ENTWICKLUNG 2016 — 2025 nach Cluster
-                        </span>
-
-
+              <span class="development-label">
+                ENTWICKLUNG 2016 — 2025 nach Cluster
+              </span>
                     </div>
 
                     <div class="development-chart-wrapper">
-                        <svg id="development-chart"
-                             class="development-chart"
-                             viewBox="0 0 900 520"
-                             preserveAspectRatio="xMidYMid meet"
-                             role="img"
-                             aria-label="Entwicklung der registrierten Delikte nach Mädchen und Jungen von 2016 bis 2025"></svg>
+                        <svg
+                                id="development-chart"
+                                class="development-chart"
+                                viewBox="0 0 900 520"
+                                preserveAspectRatio="xMidYMid meet"
+                                role="img"
+                                aria-label="Entwicklung der registrierten Delikte nach Mädchen und Jungen von 2016 bis 2025"
+                        ></svg>
                     </div>
 
                     <div class="development-chart-footer">
-                        <div class="development-chart-title" id="development-chart-title">
+                        <div
+                                class="development-chart-title"
+                                id="development-chart-title"
+                        >
                             KÖRPERLICHE GEWALT &amp; TÖTUNG
                         </div>
 
-                        <div class="development-cluster-nav"
-                             id="development-cluster-nav"
-                             aria-label="Gewaltkategorien auswählen">
-
-                            <button type="button"
+                        <div
+                                class="development-cluster-nav"
+                                id="development-cluster-nav"
+                                aria-label="Gewaltkategorien auswählen"
+                        >
+                            <button
+                                    type="button"
                                     class="development-cluster-button"
                                     data-cluster="physical"
                                     aria-label="Körperliche Gewalt und Tötung"
-                                    aria-pressed="true">01</button>
+                                    aria-pressed="true"
+                            >01</button>
 
-                            <button type="button"
+                            <button
+                                    type="button"
                                     class="development-cluster-button"
                                     data-cluster="verbal"
                                     aria-label="Verbale und digitale Gewalt und Ehrverletzung"
-                                    aria-pressed="false">02</button>
+                                    aria-pressed="false"
+                            >02</button>
 
-                            <button type="button"
+                            <button
+                                    type="button"
                                     class="development-cluster-button"
                                     data-cluster="threat"
                                     aria-label="Drohung, Zwang und Freiheitsentzug"
-                                    aria-pressed="false">03</button>
+                                    aria-pressed="false"
+                            >03</button>
 
-                            <button type="button"
+                            <button
+                                    type="button"
                                     class="development-cluster-button"
                                     data-cluster="sexual"
                                     aria-label="Sexualdelikte"
-                                    aria-pressed="false">04</button>
+                                    aria-pressed="false"
+                            >04</button>
 
-                            <button type="button"
+                            <button
+                                    type="button"
                                     class="development-cluster-button"
                                     data-cluster="other"
                                     aria-label="Übrige Straftaten"
-                                    aria-pressed="false">05</button>
-
+                                    aria-pressed="false"
+                            >05</button>
                         </div>
-
 
                         <div class="development-chart-legend">
-
-    <span class="development-legend-item">
-        <span class="development-legend-mark girls"></span>
-        MÄDCHEN
-    </span>
+                <span class="development-legend-item">
+                  <span class="development-legend-mark girls"></span>
+                  MÄDCHEN
+                </span>
 
                             <span class="development-legend-item">
-        <span class="development-legend-mark boys"></span>
-        JUNGEN
-    </span>
-
-
+                  <span class="development-legend-mark boys"></span>
+                  JUNGEN
+                </span>
                         </div>
-
                     </div>
-
                 </div>
 
+                <!-- TEXT 2 -->
 
                 <div class="development-intro">
-
-        <span class="development-label">
-            10 JAHRE IM VERGLEICH
-        </span>
+            <span class="development-label">
+              10 JAHRE IM VERGLEICH
+            </span>
 
                     <h3>
                         WIE VERÄNDERT<br>
@@ -539,74 +556,61 @@ C 1000 4780, 900 4880, 1050 5000
                     </h3>
 
                     <p>
-                        Die Entwicklung der registrierten Delikte
-                        zeigt, wie sich die einzelnen Formen
-                        häuslicher Gewalt über die vergangenen
-                        zehn Jahre verändert haben.
+                        Die Zahlen steigen – besonders deutlich bei körperlicher
+                        Gewalt, verbaler und digitaler Gewalt sowie bei
+                        Sexualdelikten. Doch was steckt hinter dieser Entwicklung?
+                        Ein Teil des Anstiegs bei Sexualdelikten lässt sich durch
+                        die Revision des Schweizer Sexualstrafrechts erklären, die
+                        am 1. Juli 2024 in Kraft trat. Seither gilt eine erweiterte
+                        Definition der Vergewaltigung: Auch sexuelle Handlungen,
+                        bei denen keine Nötigung durch Gewalt oder Drohung vorliegt,
+                        können darunterfallen, wenn sie gegen den Willen einer
+                        Person erfolgen. Dadurch werden gewisse Taten statistisch
+                        anders erfasst als zuvor. Gleichzeitig können eine höhere
+                        Sensibilisierung und eine grössere Bereitschaft, Vorfälle
+                        zu melden, die registrierten Zahlen beeinflussen. Die
+                        Statistik zeigt deshalb eine Entwicklung, deren Ursachen
+                        differenziert betrachtet werden müssen.
                     </p>
-
-                    <p>
-                        Wähle eine Kategorie, um die Entwicklung
-                        von Mädchen und Jungen sowie die einzelnen
-                        Delikte innerhalb des Clusters zu sehen.
-                    </p>
-
                 </div>
-
+            </div>
         </section>
 
-        <!-- =========================================================
-     ALTERSDIAGRAMM — MÄDCHEN UND JUNGEN
-========================================================== -->
+        <!-- DRITTE GRAFIK: ALTER -->
 
         <section class="age-comparison" id="age-comparison">
-
             <div class="age-comparison-heading">
-
-        <span
-                class="age-comparison-kicker"
-                id="age-comparison-period"
-        >
+          <span
+                  class="age-comparison-kicker"
+                  id="age-comparison-period"
+          >
             LETZTE 10 JAHRE · ALLE DELIKTE
-        </span>
+          </span>
 
                 <h2>
                     DISKREPANZ MÄDCHEN UND JUNGEN NACH ALTER
                 </h2>
-
             </div>
 
             <div class="age-comparison-layout">
-
-                <!-- Diagramm mit den drei Altersgruppen -->
                 <div class="age-chart-wrap">
-
                     <svg
                             id="age-comparison-chart"
                             viewBox="0 0 1000 560"
                             role="img"
                             aria-label="Vergleich der registrierten Delikte bei Mädchen und Jungen in den Altersgruppen unter 10, 10 bis 14 und 15 bis 17 Jahre"
                     ></svg>
-
                 </div>
 
-                <!-- Legende und Erklärung -->
                 <div class="age-comparison-copy">
-
                     <div class="age-chart-legend-item">
-
                         <span class="age-chart-legend-dot girls"></span>
-
                         <span>MÄDCHEN</span>
-
                     </div>
 
                     <div class="age-chart-legend-item">
-
                         <span class="age-chart-legend-dot boys"></span>
-
                         <span>JUNGEN</span>
-
                     </div>
 
                     <p>
@@ -616,11 +620,8 @@ C 1000 4780, 900 4880, 1050 5000
                         Altersgruppen anhand aller Delikte der letzten
                         zehn verfügbaren Jahre.
                     </p>
-
                 </div>
-
             </div>
-
 
             <p class="age-chart-note">
                 Hinweis: Die Grafik vergleicht die aufsummierten
@@ -662,144 +663,144 @@ C 1000 4780, 900 4880, 1050 5000
                     Gewalt nach Alter, Geschlecht und Art des Delikts
                     differenziert zu betrachten.
                 </p>
+
                 <div class="chart-source">
                     Quelle:
-                    <a href="https://www.unicef.org/media/92376/file/child-protection-gender-dimension"
-                       target="_blank"
-                       rel="noopener noreferrer">
+
+                    <a
+                            href="https://www.unicef.org/media/92376/file/child-protection-gender-dimension"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                    >
                         UNICEF – Gender Dimensions of Violence Against Children and Adolescents
                     </a>
                 </div>
             </div>
-
         </section>
 
+        <!-- ABSCHLUSS -->
 
+        <div class="voices-closing">
+            <div class="voices-closing-inner">
+                <p>
+                    Der Fall von Sophie und Lukas zeigt, dass häusliche Gewalt
+                    oft jahrelang im Verborgenen bleibt – selbst dann, wenn es
+                    Warnsignale gibt. Hinter den Statistiken stehen Kinder, deren
+                    Leid nicht rechtzeitig erkannt oder verhindert wurde. Zahlen
+                    machen das Ausmass sichtbar. Doch sie erzählen nicht alles
+                    über die Schicksale dahinter. Umso wichtiger ist es,
+                    hinzusehen, Warnsignale ernst zu nehmen und betroffenen
+                    Kindern eine Stimme zu geben.
+                </p>
+            </div>
+        </div>
 
-        <!-- =========================================================
-             KATEGORIEN NAVIGATION VOR ABOUT
-        ========================================================== -->
-
-        <nav
-                class="category-end-nav"
-                aria-label="Gewaltkategorien"
-        >
-
-
-            <a
-                    href="koerperliche-gewalt.html"
-                    class="category-end-link"
-            >
-
-            <span class="category-end-number">
-                01
-            </span>
-
-                <span class="category-end-title">
-                KÖRPERLICHE GEWALT
-                <br>
-                &amp; TÖTUNG
-            </span>
-
-            </a>
-
-
-
-            <a
-                    href="verbale-gewalt.html"
-                    class="category-end-link"
-            >
-
-            <span class="category-end-number">
-                02
-            </span>
-
-                <span class="category-end-title">
-                VERBALE/DIGITALE GEWALT
-                <br>
-                &amp; EHRVERLETZUNG
-            </span>
-
-            </a>
-
-
-
-            <a
-                    href="drohung-zwang.html"
-                    class="category-end-link"
-            >
-
-            <span class="category-end-number">
-                03
-            </span>
-
-                <span class="category-end-title">
-                DROHUNG, ZWANG
-                <br>
-                &amp; FREIHEITSENTZUG
-            </span>
-
-            </a>
-
-
-
-            <a
-                    href="sexualdelikte.html"
-                    class="category-end-link"
-            >
-
-            <span class="category-end-number">
-                04
-            </span>
-
-                <span class="category-end-title">
-                SEXUALDELIKTE
-            </span>
-
-            </a>
-
-
-
-            <a
-                    href="uebrige-straftaten.html"
-                    class="category-end-link"
-            >
-
-            <span class="category-end-number">
-                05
-            </span>
-
-                <span class="category-end-title">
-                ÜBRIGE STRAFTATEN
-            </span>
-
-            </a>
-
-
-        </nav>
-
-
-
-        <!-- =========================================================
-             ABOUT
-        ========================================================== -->
+        <!-- HILFE UND WEITERE INFORMATIONEN -->
 
         <section
-                class="about"
-                id="about"
+                class="voices-support"
+                aria-labelledby="voices-support-title"
         >
+            <div class="voices-support-inner">
+                <div class="voices-support-help">
+                    <a
+                            class="voices-support-phone"
+                            href="tel:142"
+                            aria-label="Opferhilfe unter 142 anrufen"
+                    >142</a>
 
+                    <div class="voices-support-copy">
+                        <h2 id="voices-support-title">
+                            HILFE BEI HÄUSLICHER GEWALT
+                        </h2>
 
+                        <p>
+                            Du erlebst Gewalt oder machst dir Sorgen um jemanden?
+                            Die Opferhilfe Schweiz ist unter 142 rund um die Uhr
+                            erreichbar. Die Beratung ist kostenlos und vertraulich.
+                        </p>
+
+                        <a
+                                class="voices-support-link"
+                                href="https://www.opferhilfe-schweiz.ch/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                        >
+                            Mehr zur Opferhilfe Schweiz
+                        </a>
+                    </div>
+                </div>
+
+                <div class="voices-support-future">
+                    <h3>
+                        WEITERE INFORMATIONEN FOLGEN
+                    </h3>
+
+                    <p>
+                        Hier folgen weitere Informationen zu den einzelnen
+                        Unterkategorien häuslicher Gewalt.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- KATEGORIEN -->
+
+        <nav class="category-end-nav" aria-label="Gewaltkategorien">
+            <a href="koerperliche-gewalt.html" class="category-end-link">
+                <span class="category-end-number">01</span>
+
+                <span class="category-end-title">
+            KÖRPERLICHE GEWALT
+            <br>
+            &amp; TÖTUNG
+          </span>
+            </a>
+
+            <a href="verbale-gewalt.html" class="category-end-link">
+                <span class="category-end-number">02</span>
+
+                <span class="category-end-title">
+            VERBALE/DIGITALE GEWALT
+            <br>
+            &amp; EHRVERLETZUNG
+          </span>
+            </a>
+
+            <a href="drohung-zwang.html" class="category-end-link">
+                <span class="category-end-number">03</span>
+
+                <span class="category-end-title">
+            DROHUNG, ZWANG
+            <br>
+            &amp; FREIHEITSENTZUG
+          </span>
+            </a>
+
+            <a href="sexualdelikte.html" class="category-end-link">
+                <span class="category-end-number">04</span>
+
+                <span class="category-end-title">
+            SEXUALDELIKTE
+          </span>
+            </a>
+
+            <a href="uebrige-straftaten.html" class="category-end-link">
+                <span class="category-end-number">05</span>
+
+                <span class="category-end-title">
+            ÜBRIGE STRAFTATEN
+          </span>
+            </a>
+        </nav>
+
+        <!-- ABOUT -->
+
+        <section class="about" id="about">
             <div class="about-inner">
-
-
                 <div class="team-grid">
 
-
-                    <!-- KIRA -->
-
                     <div class="team-card">
-
                         <img
                                 src="assets/About us/About us_kira.png"
                                 alt="Portrait Kira Gerschler"
@@ -807,27 +808,17 @@ C 1000 4780, 900 4880, 1050 5000
                         >
 
                         <div class="team-info">
-
-                            <p class="team-name">
-                                KIRA GERSCHLER
-                            </p>
+                            <p class="team-name">KIRA GERSCHLER</p>
 
                             <p class="team-role">
                                 FRONT END
                                 <br>
                                 MULTIMEDIA PRODUCER
                             </p>
-
                         </div>
-
                     </div>
 
-
-
-                    <!-- ILONA -->
-
                     <div class="team-card">
-
                         <img
                                 src="assets/About us/About us_ilona.png"
                                 alt="Portrait Ilona Hutmacher"
@@ -835,27 +826,17 @@ C 1000 4780, 900 4880, 1050 5000
                         >
 
                         <div class="team-info">
-
-                            <p class="team-name">
-                                ILONA HUTMACHER
-                            </p>
+                            <p class="team-name">ILONA HUTMACHER</p>
 
                             <p class="team-role">
                                 FRONT END
                                 <br>
                                 MULTIMEDIA PRODUCER
                             </p>
-
                         </div>
-
                     </div>
 
-
-
-                    <!-- LUNA -->
-
                     <div class="team-card">
-
                         <img
                                 src="assets/About us/About us_luna.png"
                                 alt="Portrait Luna Steiner"
@@ -863,27 +844,17 @@ C 1000 4780, 900 4880, 1050 5000
                         >
 
                         <div class="team-info">
-
-                            <p class="team-name">
-                                LUNA STEINER
-                            </p>
+                            <p class="team-name">LUNA STEINER</p>
 
                             <p class="team-role">
                                 BACK END
                                 <br>
                                 MULTIMEDIA PRODUCER
                             </p>
-
                         </div>
-
                     </div>
 
-
-
-                    <!-- RIANA -->
-
                     <div class="team-card">
-
                         <img
                                 src="assets/About us/About us_riana.png"
                                 alt="Portrait Riana Rhyner"
@@ -891,75 +862,42 @@ C 1000 4780, 900 4880, 1050 5000
                         >
 
                         <div class="team-info">
-
-                            <p class="team-name">
-                                RIANA RHYNER
-                            </p>
+                            <p class="team-name">RIANA RHYNER</p>
 
                             <p class="team-role">
                                 BACK END
                                 <br>
                                 MULTIMEDIA PRODUCER
                             </p>
-
                         </div>
-
                     </div>
-
 
                 </div>
 
-
-
-                <!-- =================================================
-                     ABOUT EDITORIAL
-                ================================================== -->
-
                 <div class="about-editorial">
-
-
                     <div class="about-meta">
-
-                    <span class="about-meta-number">
-                        03
-                    </span>
-
+                        <span class="about-meta-number">03</span>
                         <span class="about-meta-line"></span>
-
-                        <span class="about-meta-label">
-                        ABOUT
-                    </span>
-
+                        <span class="about-meta-label">ABOUT</span>
                     </div>
 
-
-
                     <div class="about-headline">
-
                         <h2>
                             WHO
                             <br>
                             ARE WE?
                         </h2>
-
                     </div>
 
-
-
                     <div class="about-intro">
-
                         <p>
                             Wir sind Ilona, Kira, Riana und Luna —
                             vier Studentinnen, die gemeinsam
                             <span>VOICES</span> entwickelt haben.
                         </p>
-
                     </div>
 
-
-
                     <div class="about-description">
-
                         <p>
                             Mit diesem Projekt möchten wir ein Thema
                             sichtbar machen, das häufig im Verborgenen
@@ -970,23 +908,12 @@ C 1000 4780, 900 4880, 1050 5000
                             verständlich macht, was hinter den
                             Zahlen steht.
                         </p>
-
                     </div>
 
-
-
                     <div class="about-roles">
-
-
                         <div class="about-role">
-
-                        <span class="role-number">
-                            01
-                        </span>
-
-                            <span class="role-title">
-                            FRONT END
-                        </span>
+                            <span class="role-number">01</span>
+                            <span class="role-title">FRONT END</span>
 
                             <p>
                                 KIRA GERSCHLER
@@ -995,23 +922,14 @@ C 1000 4780, 900 4880, 1050 5000
                             </p>
 
                             <span class="role-description">
-                            Design, visuelle Gestaltung und
-                            Entwicklung der Website.
-                        </span>
-
+                  Design, visuelle Gestaltung und
+                  Entwicklung der Website.
+                </span>
                         </div>
 
-
-
                         <div class="about-role">
-
-                        <span class="role-number">
-                            02
-                        </span>
-
-                            <span class="role-title">
-                            BACK END
-                        </span>
+                            <span class="role-number">02</span>
+                            <span class="role-title">BACK END</span>
 
                             <p>
                                 RIANA RHYNER
@@ -1020,367 +938,244 @@ C 1000 4780, 900 4880, 1050 5000
                             </p>
 
                             <span class="role-description">
-                            Daten, Quellen, Strukturierung und
-                            Aufbereitung der Inhalte.
-                        </span>
-
+                  Daten, Quellen, Strukturierung und
+                  Aufbereitung der Inhalte.
+                </span>
                         </div>
-
-
                     </div>
 
-
-
                     <div class="about-statement">
-
                         <p>
                             HINTER JEDER ZAHL
                             <br>
                             STEHT EIN KIND.
                         </p>
 
-
                         <p class="about-statement-second">
                             HINTER JEDER GESCHICHTE
                             <br>
                             STEHT EIN MENSCH.
                         </p>
-
                     </div>
-
-
                 </div>
 
-
             </div>
-
-
         </section>
 
-
+    </div>
 </main>
 
-
-
-<!-- =========================================================
-     BESTEHENDES INLINE JAVASCRIPT
-========================================================== -->
+<!-- SEITENANIMATIONEN -->
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector("#header");
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
+        function updateHeader() {
+            if (!header) return;
 
-
-            /* =====================================================
-               HEADER
-            ====================================================== */
-
-            const header =
-                document.querySelector("#header");
-
-
-            function updateHeader() {
-
-                if (!header) return;
-
-
-                if (window.scrollY > 80) {
-
-                    header.classList.add("visible");
-
-                } else {
-
-                    header.classList.remove("visible");
-
-                }
-
+            if (window.scrollY > 80) {
+                header.classList.add("visible");
+            } else {
+                header.classList.remove("visible");
             }
-
-
-            window.addEventListener(
-                "scroll",
-                updateHeader,
-                {
-                    passive: true
-                }
-            );
-
-
-            updateHeader();
-
-
-
-            /* =====================================================
-               START / ABOUT NAVIGATION
-            ====================================================== */
-
-            const startButton =
-                document.querySelector("#start-button");
-
-
-            const aboutButton =
-                document.querySelector("#about-button");
-
-
-            const aboutSection =
-                document.querySelector("#about");
-
-
-            function updateNavigation() {
-
-                if (
-                    !startButton ||
-                    !aboutButton ||
-                    !aboutSection
-                ) {
-
-                    return;
-
-                }
-
-
-                const aboutTop =
-                    aboutSection
-                        .getBoundingClientRect()
-                        .top;
-
-
-                if (
-                    aboutTop <
-                    window.innerHeight * 0.45
-                ) {
-
-                    startButton
-                        .classList
-                        .remove("active");
-
-
-                    aboutButton
-                        .classList
-                        .add("active");
-
-                } else {
-
-                    aboutButton
-                        .classList
-                        .remove("active");
-
-
-                    startButton
-                        .classList
-                        .add("active");
-
-                }
-
-            }
-
-
-            window.addEventListener(
-                "scroll",
-                updateNavigation,
-                {
-                    passive: true
-                }
-            );
-
-
-            updateNavigation();
-
-
-
-            /* =====================================================
-               STORY REVEAL
-            ====================================================== */
-
-            const revealElements =
-                document.querySelectorAll(
-                    ".story-reveal"
-                );
-
-
-            const revealObserver =
-                new IntersectionObserver(
-
-                    function (entries) {
-
-                        entries.forEach(
-                            function (entry) {
-
-                                if (
-                                    entry.isIntersecting
-                                ) {
-
-                                    entry.target
-                                        .classList
-                                        .add("is-visible");
-
-
-                                    revealObserver
-                                        .unobserve(
-                                            entry.target
-                                        );
-
-                                }
-
-                            }
-                        );
-
-                    },
-
-                    {
-                        threshold: 0.15,
-
-                        rootMargin:
-                            "0px 0px -80px 0px"
-                    }
-
-                );
-
-
-            revealElements.forEach(
-                function (element) {
-
-                    revealObserver.observe(
-                        element
-                    );
-
-                }
-            );
-
-
-
-            /* =====================================================
-               ROTER FADEN
-            ====================================================== */
-
-            const redThread =
-                document.querySelector(
-                    "#continuous-thread-progress"
-                );
-
-
-            const storySection =
-                document.querySelector(
-                    "#story-data-wrapper"
-                );
-
-
-            if (
-                redThread &&
-                storySection
-            ) {
-
-                const threadContainer =
-                    document.querySelector("#continuous-thread");
-
-                function resizeRedThread() {
-                    if (threadContainer && storySection) {
-                        threadContainer.style.height =
-                            storySection.offsetHeight + "px";
-                    }
-                }
-
-                resizeRedThread();
-
-                const threadLength =
-                    redThread.getTotalLength();
-
-
-                redThread.style.strokeDasharray =
-                    threadLength;
-
-
-                redThread.style.strokeDashoffset =
-                    threadLength;
-
-
-                function updateRedThread() {
-
-                    const storyRect =
-                        storySection
-                            .getBoundingClientRect();
-
-
-                    const viewportHeight =
-                        window.innerHeight;
-
-
-                    const startPoint =
-                        viewportHeight * 0.65;
-
-
-                    const amountScrolled =
-                        startPoint -
-                        storyRect.top;
-
-
-                    const drawingDistance =
-                        storySection.offsetHeight;
-
-
-                    let progress =
-                        amountScrolled /
-                        drawingDistance;
-
-
-                    progress =
-                        Math.max(
-                            0,
-                            Math.min(
-                                1,
-                                progress
-                            )
-                        );
-
-
-                    redThread.style.strokeDashoffset =
-                        threadLength *
-                        (1 - progress);
-
-                }
-
-
-                window.addEventListener(
-                    "scroll",
-                    updateRedThread,
-                    {
-                        passive: true
-                    }
-                );
-
-
-                window.addEventListener(
-                    "resize",
-                    function () {
-                        resizeRedThread();
-                        updateRedThread();
-                    }
-                );
-
-
-                updateRedThread();
-
-            }
-
-
         }
 
-    );
+        window.addEventListener(
+            "scroll",
+            updateHeader,
+            { passive: true }
+        );
 
+        updateHeader();
+
+        const startButton = document.querySelector("#start-button");
+        const aboutButton = document.querySelector("#about-button");
+        const aboutSection = document.querySelector("#about");
+
+        function updateNavigation() {
+            if (
+                !startButton ||
+                !aboutButton ||
+                !aboutSection
+            ) {
+                return;
+            }
+
+            const aboutTop =
+                aboutSection.getBoundingClientRect().top;
+
+            if (aboutTop < window.innerHeight * 0.45) {
+                startButton.classList.remove("active");
+                aboutButton.classList.add("active");
+            } else {
+                aboutButton.classList.remove("active");
+                startButton.classList.add("active");
+            }
+        }
+
+        window.addEventListener(
+            "scroll",
+            updateNavigation,
+            { passive: true }
+        );
+
+        updateNavigation();
+
+        const revealElements = document.querySelectorAll(
+            ".story-reveal"
+        );
+
+        const revealObserver = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+                rootMargin: "0px 0px -80px 0px"
+            }
+        );
+
+        revealElements.forEach(function (element) {
+            revealObserver.observe(element);
+        });
+
+        /* Genug Platz für beide Absätze vor der ersten Grafik */
+
+        const storyTextSection = document.getElementById("story");
+
+        const storyCopy = document.querySelector(
+            "#story .story-copy"
+        );
+
+        function fitStoryText() {
+            if (!storyTextSection || !storyCopy) return;
+
+            storyTextSection.style.removeProperty("padding-top");
+
+            const basePadding = parseFloat(
+                window.getComputedStyle(storyTextSection).paddingTop
+            ) || 0;
+
+            const position = window.getComputedStyle(
+                storyCopy
+            ).position;
+
+            if (position === "absolute") {
+                const textBottom =
+                    storyCopy.offsetTop + storyCopy.offsetHeight;
+
+                storyTextSection.style.paddingTop =
+                    Math.ceil(
+                        Math.max(basePadding, textBottom + 60)
+                    ) + "px";
+            }
+        }
+
+        fitStoryText();
+
+        window.addEventListener("resize", fitStoryText);
+
+        if (
+            storyCopy &&
+            typeof ResizeObserver !== "undefined"
+        ) {
+            new ResizeObserver(() => {
+                fitStoryText();
+
+                const thread = document.getElementById(
+                    "continuous-thread"
+                );
+
+                const wrapper = document.getElementById(
+                    "story-data-wrapper"
+                );
+
+                if (thread && wrapper) {
+                    thread.style.height =
+                        wrapper.offsetHeight + "px";
+                }
+            }).observe(storyCopy);
+        }
+
+        /* Roter Faden */
+
+        const redThread = document.querySelector(
+            "#continuous-thread-progress"
+        );
+
+        const storySection = document.querySelector(
+            "#story-data-wrapper"
+        );
+
+        if (redThread && storySection) {
+            const threadContainer = document.querySelector(
+                "#continuous-thread"
+            );
+
+            function resizeRedThread() {
+                if (threadContainer && storySection) {
+                    threadContainer.style.height =
+                        storySection.offsetHeight + "px";
+                }
+            }
+
+            resizeRedThread();
+
+            const threadLength = redThread.getTotalLength();
+
+            redThread.style.strokeDasharray = threadLength;
+            redThread.style.strokeDashoffset = threadLength;
+
+            function updateRedThread() {
+                const storyRect =
+                    storySection.getBoundingClientRect();
+
+                const viewportHeight = window.innerHeight;
+                const startPoint = viewportHeight * 0.65;
+
+                const amountScrolled =
+                    startPoint - storyRect.top;
+
+                const drawingDistance =
+                    storySection.offsetHeight;
+
+                let progress =
+                    amountScrolled / drawingDistance;
+
+                progress = Math.max(
+                    0,
+                    Math.min(1, progress)
+                );
+
+                redThread.style.strokeDashoffset =
+                    threadLength * (1 - progress);
+            }
+
+            window.addEventListener(
+                "scroll",
+                updateRedThread,
+                { passive: true }
+            );
+
+            window.addEventListener("resize", function () {
+                resizeRedThread();
+                updateRedThread();
+            });
+
+            updateRedThread();
+        }
+    });
 </script>
 
+<!-- DIAGRAMME UND DATEN -->
 
-
-<!-- =========================================================
-     EXTERNES JAVASCRIPT
-     DONUT + PHP DATEN
-========================================================== -->
-
-<script src="script.js"></script>
-
+<script src="script.js?v=20261014-3"></script>
 
 </body>
-
 </html>
