@@ -11841,3 +11841,312 @@ a {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+/* Abstand zwischen erster und zweiter Grafik verkleinern */
+
+.story-data-wrapper > #story {
+    min-height: 0 !important;
+    height: auto;
+    padding-top: 1750px;
+    padding-bottom: 0;
+}
+
+/* Erste Grafik im normalen Seitenfluss platzieren */
+#story > #ten-year-donut {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0;
+}
+
+/* Zweite Grafik näher anschliessen */
+.story-data-wrapper > #ten-year-development {
+    margin-top: 0 !important;
+    padding-top: 35px !important;
+}
+
+@media (max-width: 1000px) {
+    .story-data-wrapper > #story {
+        padding-top: 1650px;
+    }
+}
+
+@media (max-width: 600px) {
+    .story-data-wrapper > #story {
+        padding-top: 1500px;
+    }
+}
+/* ==========================================================
+   ZWEITE GRAFIK — HOVER-EFFEKT
+========================================================== */
+
+/* Säule und Trennlinien gemeinsam animieren */
+
+#development-chart .development-bar-visual {
+    transform-box: view-box;
+    transform: scale(1);
+    opacity: 1;
+
+    pointer-events: none;
+
+    transition:
+            transform 220ms ease,
+            opacity 220ms ease;
+}
+
+#development-chart .development-bar-visual * {
+    pointer-events: none;
+}
+
+/* Stabile Mausfläche */
+
+#development-chart .development-bar-hitarea {
+    fill: transparent;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+/* Andere Säulen kleiner und dunkler darstellen */
+
+#development-chart.has-hover .development-bar-visual {
+    transform: scale(0.94, 0.97);
+    opacity: 0.25;
+}
+
+/* Aktive Säule hervorheben */
+
+#development-chart.has-hover
+.is-active .development-bar-visual {
+    transform: scale(1.3, 1.04);
+    opacity: 1;
+}
+
+/* Bisherigen Hover-Effekt überschreiben */
+
+#development-chart .development-bar {
+    opacity: 1;
+}
+
+/* Sichtbare Markierung bei Tastaturbedienung */
+
+#development-chart
+.development-bar-group:focus-visible
+.development-bar-hitarea {
+    stroke: #fff;
+    stroke-width: 2;
+}
+
+
+/* ==========================================================
+   INFOBOX — GESTALTUNG WIE BEIM DONUT
+========================================================== */
+
+#development-tooltip {
+    box-sizing: border-box;
+
+    width: 340px;
+    max-width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+
+    padding: 22px 24px;
+
+    overflow-y: auto;
+    pointer-events: auto;
+
+    z-index: 10000;
+}
+
+/* Jahr und Geschlecht */
+
+#development-tooltip .development-tooltip-context {
+    margin-top: 8px;
+
+    color: #aaa;
+    font-size: 12px;
+}
+
+/* Fallzahl und Prozentwert */
+
+#development-tooltip .donut-tooltip-total {
+    font-size: 18px;
+}
+
+/* Erklärung des Prozentwertes */
+
+#development-tooltip .development-tooltip-note {
+    margin: -5px 0 18px;
+
+    color: #888;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* Deliktbezeichnungen und Zahlen */
+
+#development-tooltip .donut-subcategory-name {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+
+    overflow-wrap: anywhere;
+}
+
+#development-tooltip .donut-subcategory-value {
+    flex-shrink: 0;
+}
+
+/* Systemeinstellung für reduzierte Bewegung beachten */
+
+@media (prefers-reduced-motion: reduce) {
+    #development-chart .development-bar-visual {
+        transition: none;
+    }
+}
+/* Hover-Fläche transparent machen */
+#development-chart .development-bar-hitarea {
+    fill: transparent !important;
+    stroke: none !important;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+/* Ursprüngliche Säulenfarben */
+#development-chart .development-bar-girl {
+    fill: #ff0000;
+}
+
+#development-chart .development-bar-boy {
+    fill: #ff7777;
+}
+
+/* Normalzustand: alle Säulen sichtbar */
+#development-chart .development-bar-visual {
+    transform-box: view-box;
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: none;
+
+    transition:
+            transform 220ms ease,
+            opacity 220ms ease;
+}
+
+#development-chart .development-bar-visual * {
+    pointer-events: none;
+}
+
+#development-chart .development-bar {
+    opacity: 1;
+}
+
+/* Beim Hover: andere Säulen dunkler und etwas kleiner */
+#development-chart.has-hover .development-bar-visual {
+    transform: scale(0.94, 0.97);
+    opacity: 0.25;
+}
+
+/* Ausgewählte Säule grösser und vollständig sichtbar */
+#development-chart.has-hover
+.development-bar-group.is-active
+.development-bar-visual {
+    transform: scale(1.3, 1.04);
+    opacity: 1;
+}
+/* Farben der sichtbaren Säulen */
+#development-chart .development-bar,
+#development-chart .development-bar-girl {
+    fill: #ff0000 !important;
+    opacity: 1 !important;
+    transform: none;
+}
+
+#development-chart .development-bar-boy {
+    fill: #ff7777 !important;
+}
+
+/* Mausfläche bleibt unsichtbar und unverändert gross */
+#development-chart .development-bar-hitarea {
+    fill: transparent !important;
+    stroke: none !important;
+    opacity: 1 !important;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+/* Normalzustand – überschreibt auch die bisherigen Hover-Regeln */
+#development-chart .development-bar-visual,
+#development-chart.has-hover .development-bar-visual,
+#development-chart.has-hover
+.development-bar-group.is-active .development-bar-visual {
+    transform-box: fill-box;
+    transform-origin: center bottom !important;
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: none;
+
+    transition:
+            transform 250ms ease,
+            opacity 250ms ease;
+}
+
+#development-chart .development-bar-visual * {
+    pointer-events: none;
+}
+
+/* Nur abdunkeln, wenn tatsächlich eine Säule berührt wird */
+#development-chart:has(.development-bar-group:hover)
+.development-bar-group:not(:hover) .development-bar-visual {
+    opacity: 0.25;
+    transform: scale(1);
+}
+
+/* Aktive Säule verbreitern und nach oben vergrössern */
+#development-chart:has(.development-bar-group:hover)
+.development-bar-group:hover .development-bar-visual {
+    opacity: 1;
+    transform: scale(1.2, 1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #development-chart .development-bar-visual {
+        transition: none;
+    }
+}
+/* Punkte im Normalzustand */
+#age-comparison-chart .age-data-point {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(1);
+    opacity: 1;
+
+    cursor: pointer;
+    pointer-events: all;
+
+    transition:
+            transform 250ms ease,
+            opacity 250ms ease;
+}
+
+/* Andere Punkte beim Hover abdunkeln */
+#age-comparison-chart:has(.age-data-point:hover)
+.age-data-point:not(:hover) {
+    opacity: 0.25;
+}
+
+/* Berührten Punkt vergrössern */
+#age-comparison-chart .age-data-point:hover {
+    transform: scale(1.8);
+    opacity: 1;
+}
+
+/* Verbindungslinien beim Hover abdunkeln;
+   Achsen und Rasterlinien bleiben unverändert */
+#age-comparison-chart:has(.age-data-point:hover)
+:is(path, polyline, line):not(.age-axis-line):not(.age-grid-line) {
+    opacity: 0.25;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #age-comparison-chart .age-data-point {
+        transition: none;
+    }
+}
