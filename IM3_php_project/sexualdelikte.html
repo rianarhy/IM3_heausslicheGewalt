@@ -133,13 +133,14 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Altersgruppen exakt wie von unload.php geliefert.
-        // youngAdult wird ausgeschlossen, da dieses Cluster nur unter 18-Jährige zeigt.
+        // Berücksichtigt werden alle drei Altersgruppen unter 18 Jahren.
         const ageLabels = {
-            "kids": "Kinder",
-            "teens": "Jugendliche"
+            "kids": "Unter 10 Jahre",
+            "teens": "10–14 Jahre",
+            "youngadult": "15–17 Jahre"
         };
 
-        const ageOrder = ["kids", "teens"];
+        const ageOrder = ["kids", "teens", "youngadult"];
         // Nur Straftaten aus Cluster 04 berücksichtigen.
         const offenceMatches = [
             "Sexuelle Handlungen mit Kindern (Art. 187)",
@@ -542,7 +543,7 @@
                 renderPieChart(
                     document.getElementById("age-chart"),
                     ageOrder.map(key => ({ label: ageLabels[key], value: byAge.get(key) || 0 })),
-                    "Kreisdiagramm: Fälle nach Altersgruppe"
+                    "Kreisdiagramm: Fälle nach Altersgruppe unter 18 Jahren"
                 );
 
                 const byOffence = sumBy(rows, row => String(row.straftat ?? "").trim());

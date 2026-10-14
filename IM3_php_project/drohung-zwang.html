@@ -135,13 +135,14 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Altersgruppen exakt wie von unload.php geliefert.
-        // youngAdult wird ausgeschlossen, da dieses Cluster nur unter 18-Jährige zeigt.
+        // Berücksichtigt werden alle drei Altersgruppen unter 18 Jahren.
         const ageLabels = {
-            "kids": "Kinder",
-            "teens": "Jugendliche"
+            "kids": "Unter 10 Jahre",
+            "teens": "10–14 Jahre",
+            "youngadult": "15–17 Jahre"
         };
 
-        const ageOrder = ["kids", "teens"];
+        const ageOrder = ["kids", "teens", "youngadult"];
         // Nur Straftaten aus Cluster 03 berücksichtigen.
         const offenceMatches = [
             "Drohung (Art. 180)",
@@ -202,13 +203,10 @@
             container.setAttribute("role", "img");
             container.setAttribute("aria-label", chartLabel);
 
+            // Alle drei Altersgruppen in der Legende anzeigen – auch wenn eine Gruppe 0 Fälle hat.
+            const legendEntries = entries;
             const validEntries = entries.filter(entry => entry.value > 0);
             const total = validEntries.reduce((sum, entry) => sum + entry.value, 0);
-
-            if (!total) {
-                container.innerHTML = '<p class="empty-message">Für diese Auswahl liegen keine Daten vor.</p>';
-                return;
-            }
 
             const colors = ["#ff1212", "#f1f1f1", "#777777", "#444444", "#bcbcbc", "#8b0000"];
             let currentAngle = 0;
@@ -223,13 +221,17 @@
                 stops.push(`${color} ${start}deg ${currentAngle}deg`);
             });
 
-            pie.style.background = `conic-gradient(${stops.join(", ")})`;
+            if (total > 0) {
+                pie.style.background = `conic-gradient(${stops.join(", ")})`;
+            } else {
+                pie.style.background = "#e5e5e5";
+            }
             pie.setAttribute("aria-hidden", "true");
 
             const legend = document.createElement("div");
             legend.className = "pie-chart-legend";
 
-            validEntries.forEach((entry, index) => {
+            legendEntries.forEach((entry, index) => {
                 const row = document.createElement("div");
                 row.className = "pie-legend-row";
 
@@ -254,7 +256,7 @@
 
                 const percentage = document.createElement("span");
                 percentage.className = "pie-legend-percentage";
-                percentage.textContent = `${(entry.value / total * 100).toLocaleString("de-CH", { maximumFractionDigits: 1 })}%`;
+                percentage.textContent = `${(total ? entry.value / total * 100 : 0).toLocaleString("de-CH", { maximumFractionDigits: 1 })}%`;
 
                 left.append(swatch, label);
                 right.append(value, percentage);
