@@ -1,15 +1,13 @@
-```
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
-    <title>DROHUNG, ZWANG & FREIHEITSENTZUG
-        — VOICES</title>
+    <title>Drohung, Zwang &amp; Freiheitsentzug — VOICES</title>
     <link rel="stylesheet" href="category-pages.css">
 </head>
-<body class="category-page verbal-page">
+<body class="category-page threat-page">
 <header class="site-header" id="header">
     <nav class="main-nav" aria-label="Hauptnavigation">
         <a class="nav-pill" href="index.html">START</a>
@@ -21,14 +19,14 @@
 <main>
     <section class="category-hero" id="top">
         <video class="category-hero-video" autoplay muted loop playsinline aria-hidden="true">
-            <source src="assets/Videos/Lesendes Mädchen.mp4" type="video/mp4">
+            <source src="assets/Videos/Trottinett.mp4" type="video/mp4">
         </video>
         <div class="hero-shade"></div>
 
         <nav class="category-nav" aria-label="Gewaltkategorien">
             <a class="category-link" href="koerperliche-gewalt.html"><span class="category-number">01</span><span class="category-title">KÖRPERLICHE GEWALT<br>&amp; TÖTUNG</span></a>
-            <a class="category-link active" href="verbale-gewalt.html" aria-current="page"><span class="category-number">02</span><span class="category-title">VERBALE/DIGITALE GEWALT<br>&amp; EHRVERLETZUNG</span></a>
-            <a class="category-link" href="drohung-zwang.html"><span class="category-number">03</span><span class="category-title">DROHUNG, ZWANG<br>&amp; FREIHEITSENTZUG</span></a>
+            <a class="category-link" href="verbale-gewalt.html"><span class="category-number">02</span><span class="category-title">VERBALE/DIGITALE GEWALT<br>&amp; EHRVERLETZUNG</span></a>
+            <a class="category-link active" href="drohung-zwang.html" aria-current="page"><span class="category-number">03</span><span class="category-title">DROHUNG, ZWANG<br>&amp; FREIHEITSENTZUG</span></a>
             <a class="category-link" href="sexualdelikte.html"><span class="category-number">04</span><span class="category-title">SEXUALDELIKTE</span></a>
             <a class="category-link" href="uebrige-straftaten.html"><span class="category-number">05</span><span class="category-title">ÜBRIGE STRAFTATEN</span></a>
         </nav>
@@ -46,7 +44,7 @@
 
     <section class="category-story" id="category-story">
         <div class="chapter-intro reveal">
-            <span class="chapter-small">02 / DIE KATEGORIE</span>
+            <span class="chapter-small">03 / DIE KATEGORIE</span>
             <h2>WENN DER<br>SPIELRAUM<br>KLEINER WIRD.</h2>
             <p>Drohung und Zwang können Kontrolle erzeugen, ohne dass sie von aussen unmittelbar sichtbar sind. Die folgenden Daten zeigen unterschiedliche Ebenen dieser Kategorie.</p>
         </div>
@@ -118,14 +116,14 @@
             </div>
         </section>
 
-        <p class="data-note">Datenquelle: Datenbank zur häuslichen Gewalt. Berücksichtigt werden die letzten zehn verfügbaren Jahre und die Altersgruppen unter 18 Jahren. Die Kategorien werden anhand der Straftatbezeichnungen zugeordnet.</p>
+        <p class="data-note">Datenquelle: Datenbank zur häuslichen Gewalt. Berücksichtigt werden die letzten zehn verfügbaren Jahre und die Altersgruppen unter 18 Jahren. Berücksichtigt werden Drohung (Art. 180), Nötigung (Art. 181) sowie Freiheitsberaubung und Entführung (Art. 183/184).</p>
 
         <div class="category-outro reveal">
-            <span>02 / ENDE DES KAPITELS</span>
+            <span>03 / ENDE DES KAPITELS</span>
             <h2>FREIHEIT<br>BEGINNT DORT,<br><em>WO ZWANG ENDET.</em></h2>
-            <a href="drohung-zwang.html" class="next-category">
-                <span>NÄCHSTE KATEGORIE</span><strong>03</strong>
-                <p>DROHUNG, ZWANG<br>&amp; FREIHEITSENTZUG</p><b aria-hidden="true">→</b>
+            <a href="sexualdelikte.html" class="next-category">
+                <span>NÄCHSTE KATEGORIE</span><strong>04</strong>
+                <p>SEXUALDELIKTE</p><b aria-hidden="true">→</b>
             </a>
             <a class="back-link" href="index.html#story">← ZURÜCK ZUR GESAMTÜBERSICHT</a>
         </div>
@@ -136,18 +134,19 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        // Altersgruppen exakt wie von unload.php geliefert.
+        // youngAdult wird ausgeschlossen, da dieses Cluster nur unter 18-Jährige zeigt.
         const ageLabels = {
-            kids: "Unter 10 Jahre",
-            teens: "10–14 Jahre",
-            youngadult: "15–17 Jahre"
+            "kids": "Kinder",
+            "teens": "Jugendliche"
         };
 
-        const ageOrder = ["kids", "teens", "youngadult"];
+        const ageOrder = ["kids", "teens"];
+        // Nur Straftaten aus Cluster 03 berücksichtigen.
         const offenceMatches = [
-            "Drohung",
-            "Nötigung",
-            "Freiheitsberaubung",
-            "Entführung"
+            "Drohung (Art. 180)",
+            "Nötigung (Art. 181)",
+            "Freiheitsberaubung und Entführung (Art. 183/184)"
         ];
 
         const normalize = value => String(value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
@@ -478,14 +477,18 @@
                 const data = await response.json();
                 if (!Array.isArray(data)) throw new Error("Die API hat kein Daten-Array zurückgegeben.");
 
-                const allYears = data.map(row => Number(row.jahr)).filter(Number.isFinite);
-                if (!allYears.length) throw new Error("In der Datenbank wurden keine Jahresangaben gefunden.");
-                const latestYear = Math.max(...allYears);
+                // Erst auf diesen Cluster und unter 18 Jahre filtern, dann den
+                // Zeitraum aus den tatsächlich vorhandenen passenden Daten ableiten.
+                const relevantRows = data.filter(row => isUnder18(row) && isRelevantOffence(row.straftat));
+                const availableYears = relevantRows.map(row => Number(row.jahr)).filter(Number.isFinite);
+                if (!availableYears.length) {
+                    throw new Error("Keine passenden Daten für Drohung, Nötigung oder Freiheitsberaubung/Entführung bei unter 18-Jährigen gefunden.");
+                }
+                const latestYear = Math.max(...availableYears);
                 const firstYear = latestYear - 9;
-
-                const rows = data.filter(row => {
+                const rows = relevantRows.filter(row => {
                     const year = Number(row.jahr);
-                    return year >= firstYear && year <= latestYear && isUnder18(row) && isRelevantOffence(row.straftat);
+                    return year >= firstYear && year <= latestYear;
                 });
 
                 const total = rows.reduce((sum, row) => sum + number(row.anzahl), 0);
@@ -557,5 +560,3 @@
 </script>
 </body>
 </html>
-
-```
