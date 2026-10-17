@@ -1,69 +1,13 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>VOICES</title>
 
     <link rel="stylesheet" href="Style.css">
 
     <style>
-        /* Abstand zwischen erster und zweiter Grafik */
-
-        #story > #ten-year-donut {
-            min-height: 0 !important;
-            grid-template-rows: auto;
-            padding-bottom: 120px;
-        }
-
-        @media (max-width: 850px) {
-            #story > #ten-year-donut {
-                padding-bottom: 90px;
-            }
-        }
-
-        /* Text unter der ersten Grafik */
-
-        .voices-donut-summary {
-            grid-column: 1 / -1;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-
-            color: #aaa;
-            font-size: 17px;
-            line-height: 1.6;
-        }
-
-        .voices-donut-summary p {
-            margin: 0;
-        }
-
-        /* Abschluss nach der letzten Grafik */
-
-        .voices-closing {
-            position: relative;
-            z-index: 20;
-            background: #000;
-            padding: 50px 7vw 0;
-        }
-
-        .voices-closing-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .voices-closing p {
-            margin: 0;
-            color: #aaa;
-            font-size: 17px;
-            line-height: 1.6;
-        }
-
-        /* Hilfe und weitere Informationen */
-
         .voices-support {
             position: relative;
             z-index: 20;
@@ -83,7 +27,6 @@
             grid-template-columns: auto minmax(0, 1fr);
             gap: clamp(30px, 5vw, 80px);
             align-items: center;
-
             padding: 40px 0;
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
@@ -92,12 +35,10 @@
         .voices-support-phone {
             display: inline-block;
             color: #ff1212;
-
             font-size: clamp(80px, 10vw, 150px);
             font-weight: 700;
             line-height: 1;
             letter-spacing: -0.06em;
-
             text-decoration: none;
             transition: color 180ms ease;
         }
@@ -116,7 +57,6 @@
             max-width: 750px;
             margin: 0 0 16px;
             color: #fff;
-
             font-size: clamp(24px, 2.8vw, 42px);
             font-weight: 600;
             line-height: 1.1;
@@ -166,15 +106,6 @@
         }
 
         @media (max-width: 800px) {
-            .voices-closing {
-                padding: 35px 25px 0;
-            }
-
-            .voices-donut-summary,
-            .voices-closing p {
-                font-size: 16px;
-            }
-
             .voices-support {
                 padding: 50px 25px 0;
             }
@@ -199,58 +130,451 @@
                 transition: none;
             }
         }
+
+        /* Abstand zwischen erster und zweiter Grafik */
+        #story > #ten-year-donut {
+            min-height: 0 !important;
+            grid-template-rows: auto;
+            padding-bottom: 120px;
+        }
+
+        @media (max-width: 850px) {
+            #story > #ten-year-donut {
+                padding-bottom: 90px;
+            }
+        }
+
+        /* Text unter der ersten Grafik */
+        .voices-donut-summary {
+            grid-column: 1 / -1;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .voices-donut-summary p {
+            margin: 0;
+        }
+
+        @media (max-width: 800px) {
+            .voices-donut-summary {
+                font-size: 16px;
+            }
+        }
+
+        /* Abschluss im gleichen Schriftbild wie die Einleitung */
+        .voices-closing {
+            position: relative;
+            z-index: 20;
+            background: #000;
+            padding: clamp(64px, 7vw, 120px) 14vw 48px;
+        }
+
+        .voices-closing-inner {
+            width: min(650px, 48vw);
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .voices-closing p {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(25px, 2.7vw, 43px);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            overflow-wrap: break-word;
+        }
+
+        .voices-closing p + p {
+            max-width: 540px;
+            margin-top: 45px;
+            color: #9d9d9d;
+            font-size: clamp(17px, 1.45vw, 23px);
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+        }
+
+        @media (max-width: 1000px) {
+            .voices-closing {
+                padding: 64px 7vw 40px;
+            }
+
+            .voices-closing-inner {
+                width: min(650px, 80vw);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .voices-closing {
+                padding: 56px 20px 32px;
+            }
+
+            .voices-closing-inner {
+                width: 100%;
+                max-width: 650px;
+            }
+
+            .voices-closing p {
+                font-size: 22px;
+                line-height: 1.4;
+            }
+
+            .voices-closing p + p {
+                max-width: none;
+                margin-top: 24px;
+                font-size: 17px;
+                line-height: 1.6;
+            }
+        }
+
+        /* Datenquelle und Aufbereitung */
+        .voices-data-note {
+            position: relative;
+            z-index: 20;
+            background: #000;
+            padding: 44px 7vw 0;
+        }
+
+        .voices-data-note-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 28px;
+            border-top: 1px solid #333;
+        }
+
+        .voices-data-note h2 {
+            margin: 0 0 18px;
+            color: #ff1212;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: 0.12em;
+        }
+
+        .voices-data-note p {
+            margin: 0;
+            color: #aaa;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .voices-data-note p + p {
+            margin-top: 18px;
+        }
+
+        .voices-data-note strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .voices-data-note a {
+            color: #fff;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            overflow-wrap: anywhere;
+        }
+
+        .voices-data-note a:hover {
+            color: #ff7777;
+        }
+
+        .voices-data-note a:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 5px;
+        }
+
+        @media (max-width: 850px) {
+            .voices-data-note {
+                padding: 36px 20px 0;
+            }
+
+            .voices-data-note p {
+                font-size: 16px;
+            }
+        }
+
+        /* Donut: Bedienung auf dem Handy */
+        #ten-year-donut-svg .donut-percentage {
+            pointer-events: none;
+        }
+
+        #ten-year-donut-svg .donut-segment.is-touch-selected {
+            opacity: 1;
+            transform: scale(1.035);
+        }
+
+        #ten-year-donut-svg .donut-segment:focus-visible {
+            outline: none;
+            filter: drop-shadow(0 0 3px #fff);
+        }
+
+        #donut-tooltip .voices-donut-actions {
+            display: none;
+        }
+
+        #donut-tooltip.is-touch-open {
+            display: block;
+            position: fixed;
+            z-index: 10000;
+            inset: auto !important;
+            left: 12px !important;
+            bottom: max(12px, env(safe-area-inset-bottom)) !important;
+            width: min(420px, calc(100vw - 24px)) !important;
+            max-width: calc(100vw - 24px) !important;
+            max-height: min(55dvh, 440px);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: 20px;
+            transform: none !important;
+            pointer-events: auto;
+        }
+
+        #donut-tooltip.is-touch-open .donut-tooltip-title {
+            padding-right: 48px;
+            font-size: 14px;
+            line-height: 1.45;
+            overflow-wrap: anywhere;
+        }
+
+        #donut-tooltip.is-touch-open .donut-tooltip-total {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        #donut-tooltip.is-touch-open .donut-subcategory {
+            gap: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        #donut-tooltip.is-touch-open .donut-subcategory-name {
+            flex: 1;
+            min-width: 0;
+            max-width: none;
+            overflow-wrap: anywhere;
+        }
+
+        #donut-tooltip.is-touch-open .donut-subcategory-value {
+            flex: 0 0 auto;
+            white-space: nowrap;
+        }
+
+        #donut-tooltip.is-touch-open .voices-donut-actions {
+            display: flex;
+            margin-top: 16px;
+        }
+
+        #donut-tooltip .voices-donut-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #555;
+            background: #111;
+            color: #fff;
+            font: inherit;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        #donut-tooltip .voices-donut-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.5;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        #donut-tooltip .voices-donut-close:focus-visible,
+        #donut-tooltip .voices-donut-link:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 850px) {
+            #story > #ten-year-donut {
+                position: relative !important;
+                inset: auto !important;
+                display: grid !important;
+                grid-template-columns: minmax(0, 1fr) !important;
+                grid-template-rows: auto !important;
+                width: 100% !important;
+                max-width: 100%;
+                min-height: 0 !important;
+                margin: 0 !important;
+                padding: 48px 0 56px !important;
+                gap: 28px;
+                transform: none !important;
+                overflow: visible;
+            }
+
+            #ten-year-donut .ten-year-donut-intro,
+            #ten-year-donut .donut-wrapper,
+            #ten-year-donut .voices-donut-summary {
+                grid-column: 1;
+                grid-row: auto;
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            #ten-year-donut .ten-year-donut-intro {
+                width: 100%;
+                padding: 0;
+            }
+
+            #ten-year-donut .ten-year-donut-intro h3 {
+                font-size: clamp(32px, 10vw, 48px);
+                line-height: 1;
+            }
+
+            #ten-year-donut .ten-year-donut-intro p,
+            #ten-year-donut .voices-donut-summary {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            #ten-year-donut .donut-wrapper {
+                position: relative;
+                width: min(100%, 420px) !important;
+                aspect-ratio: 1;
+                height: auto;
+                margin: 0;
+                justify-self: center;
+                transform: none !important;
+            }
+
+            #ten-year-donut-svg {
+                display: block;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1;
+                touch-action: manipulation;
+                overflow: visible;
+            }
+
+            #ten-year-donut-svg .donut-segment {
+                transform: scale(1);
+                transform-origin: 300px 300px;
+            }
+
+            #ten-year-donut-svg .donut-segment.is-touch-selected {
+                transform: scale(1.035);
+            }
+
+            #ten-year-donut-svg .donut-percentage {
+                font-size: 20px;
+            }
+
+            #ten-year-donut-svg .donut-center-number {
+                font-size: 46px;
+            }
+
+            #ten-year-donut-svg .donut-center-label {
+                font-size: 16px;
+            }
+
+            #ten-year-donut #donut-legend {
+                display: grid !important;
+                grid-column: 1;
+                grid-row: auto;
+                width: 100%;
+                gap: 8px;
+            }
+
+            #ten-year-donut #donut-legend .donut-legend-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                min-height: 56px;
+                margin: 0;
+                padding: 12px;
+                border: 1px solid #333;
+                border-radius: 4px;
+                cursor: pointer;
+                touch-action: manipulation;
+            }
+
+            #ten-year-donut #donut-legend .donut-legend-item.is-touch-selected {
+                border-color: #ff1212;
+                background: #161616;
+            }
+
+            #ten-year-donut #donut-legend .donut-legend-item:focus-visible {
+                outline: 2px solid #fff;
+                outline-offset: 3px;
+            }
+
+            #ten-year-donut #donut-legend .donut-legend-number {
+                flex: 0 0 32px;
+                width: 32px;
+                height: 32px;
+            }
+
+            #ten-year-donut #donut-legend .donut-legend-text {
+                min-width: 0;
+                color: #fff;
+                font-size: 13px;
+                line-height: 1.45;
+                overflow-wrap: anywhere;
+            }
+
+            #ten-year-donut #donut-legend .donut-legend-percent {
+                display: block;
+                margin-top: 4px;
+                color: #aaa;
+                font-size: 13px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #ten-year-donut-svg .donut-segment {
+                transition: none;
+            }
+        }
     </style>
 </head>
 
 <body>
-
-<!-- HEADER -->
-
 <header class="header" id="header">
     <nav class="navigation">
         <a href="#start" class="nav-button active" id="start-button">
             START
         </a>
-
         <a href="#about" class="nav-button" id="about-button">
             ABOUT US
         </a>
     </nav>
 
-    <a href="#start" class="logo">
-        VOICES
-    </a>
+    <a href="#start" class="logo">VOICES</a>
 </header>
 
 <main>
-
-    <!-- HERO -->
-
     <section class="hero" id="start">
         <video class="hero-video" autoplay muted loop playsinline>
-            <source
-                    src="assets/Videos/Seifenblasen.mp4"
-                    type="video/mp4"
-            >
+            <source src="assets/Videos/Seifenblasen.mp4" type="video/mp4">
         </video>
 
         <div class="hero-sequence">
-            <div class="hero-text hero-text-1">
-                22’368
-            </div>
-
+            <div class="hero-text hero-text-1">22’368</div>
             <div class="hero-text hero-text-2">
                 FÄLLE HÄUSLICHER GEWALT
             </div>
-
             <div class="hero-text hero-text-3">
                 AN KINDERN UND JUGENDLICHEN
             </div>
-
             <div class="hero-text hero-text-4">
                 IN DER SCHWEIZ 2016 – 2025
             </div>
-
             <div class="hero-text hero-text-final">
                 HINTER JEDER ZAHL STEHT EINE STIMME.
             </div>
@@ -262,12 +586,7 @@
         </div>
     </section>
 
-    <!-- STORY UND DATEN -->
-
     <div class="story-data-wrapper" id="story-data-wrapper">
-
-        <!-- ROTER FADEN -->
-
         <div class="continuous-thread" id="continuous-thread">
             <svg
                     class="continuous-thread-svg"
@@ -324,9 +643,7 @@
 
         <section class="story-section" id="story">
             <div class="story-number-wrap story-reveal">
-                <div class="story-number">
-                    22’368
-                </div>
+                <div class="story-number">22’368</div>
             </div>
 
             <div class="story-lead story-reveal">
@@ -336,41 +653,34 @@
                 </p>
             </div>
 
-            <!-- NEUE EINLEITUNG UND BEIBEHALTENER ABSATZ -->
-
             <div class="story-copy story-reveal">
                 <p>
-                    Jahrelang wurden Sophie und Lukas (Namen geändert) von ihren
-                    Eltern misshandelt, vernachlässigt und im Keller eingesperrt.
-                    Obwohl Lehrpersonen die Verletzungen und den Hunger der Kinder
-                    bemerkten und mehrfach Meldung erstatteten, blieb Hilfe
-                    weitgehend aus. Erst als die beiden elf und zwölf Jahre alt
-                    waren, kamen sie in ein Kinderheim. Die Folgen der jahrelangen
-                    Gewalt begleiten sie bis ins Erwachsenenalter. Erst 2018,
-                    nachdem eine weitere Tochter den Vater wegen sexuellen
-                    Missbrauchs angezeigt hatte, wurden Ermittlungen gegen die
-                    Eltern aufgenommen.
+                    Jahrelang wurden Sophie und Lukas (Namen geändert) von ihren Eltern
+                    misshandelt, vernachlässigt und im Keller eingesperrt. Obwohl
+                    Lehrpersonen die Verletzungen und den Hunger der Kinder bemerkten
+                    und mehrfach Meldung erstatteten, blieb Hilfe weitgehend aus.
+                    Erst als die beiden elf und zwölf Jahre alt waren, kamen sie in
+                    ein Kinderheim. Die Folgen der jahrelangen Gewalt begleiten sie
+                    bis ins Erwachsenenalter. Erst 2018, nachdem eine weitere Tochter
+                    den Vater wegen sexuellen Missbrauchs angezeigt hatte, wurden
+                    Ermittlungen gegen die Eltern aufgenommen.
                 </p>
 
                 <p>
-                    Hinter solchen
-                    Schlagzeilen stehen keine Einzelfälle, sondern ein gesellschaftliches Problem, das viele Kinder und Jugendliche in der Schweiz betrifft. Häusliche Gewalt hat unterschiedliche Formen und prägt den Alltag der Betroffenen oft über Jahre. Unsere Datenvisualisierung zeigt, wie sich die registrierten Fälle zwischen 2016 und 2025 nach Alter, Geschlecht und Gewaltform verteilen und wie sich die Zahlen in diesem Zeitraum entwickelt haben.
+                    Hinter diesen Zahlen stehen unterschiedliche Geschichten: Kinder
+                    und Jugendliche verschiedenen Alters, Mädchen und Jungen sowie
+                    unterschiedliche Formen von Gewalt. Unsere Datenvisualisierung
+                    zeigt, wie sich die registrierten Fälle verteilen und wie sich
+                    die Zahlen im Zeitraum von 2016 bis 2025 entwickelt haben.
                 </p>
             </div>
 
-            <!-- ERSTE GRAFIK: DONUT -->
-
+            <!-- Erste Grafik: Donut -->
             <section class="ten-year-donut" id="ten-year-donut">
                 <div class="ten-year-donut-intro">
-            <span class="donut-label">
-              2016 — 2025
-            </span>
+                    <span class="donut-label">2016 — 2025</span>
 
-                    <h3>
-                        DIE LETZTEN
-                        <br>
-                        10 JAHRE
-                    </h3>
+                    <h3>DIE LETZTEN<br>10 JAHRE</h3>
 
                     <p>
                         Die registrierten Fälle verteilen sich auf fünf
@@ -402,18 +712,14 @@
                                 text-anchor="middle"
                                 class="donut-center-number"
                                 id="donut-total"
-                        >
-                            —
-                        </text>
+                        >—</text>
 
                         <text
                                 x="300"
                                 y="320"
                                 text-anchor="middle"
                                 class="donut-center-label"
-                        >
-                            FÄLLE
-                        </text>
+                        >FÄLLE</text>
                     </svg>
 
                     <div class="donut-tooltip" id="donut-tooltip">
@@ -421,12 +727,10 @@
                                 class="donut-tooltip-title"
                                 id="donut-tooltip-title"
                         ></div>
-
                         <div
                                 class="donut-tooltip-total"
                                 id="donut-tooltip-total"
                         ></div>
-
                         <div
                                 class="donut-tooltip-list"
                                 id="donut-tooltip-list"
@@ -434,27 +738,24 @@
                     </div>
                 </div>
 
-                <div id="donut-legend" style="display:none;"></div>
-
-                <!-- TEXT 1 -->
+                <div id="donut-legend" style="display: none;"></div>
 
                 <div class="voices-donut-summary">
                     <p>
-                        Die Zahlen zeigen, wie viele Fälle von häuslicher Gewalt
-                        gegen Kinder und Jugendliche in der Schweiz registriert
-                        wurden. Doch hinter jeder Zahl steht ein junger Mensch,
-                        dessen Alltag von Gewalt, Angst oder Kontrolle geprägt sein
-                        kann. Die Statistik macht das Ausmass sichtbar – aber nicht
-                        alles, was die Betroffenen erleben. Nicht jede
-                        Gewalterfahrung wird erkannt oder gemeldet. Die erfassten
-                        Fälle zeigen deshalb nur einen Teil der Realität.
+                        Die Zahlen zeigen, wie viele Fälle von häuslicher Gewalt gegen
+                        Kinder und Jugendliche in der Schweiz registriert wurden.
+                        Doch hinter jeder Zahl steht ein junger Mensch, dessen Alltag
+                        von Gewalt, Angst oder Kontrolle geprägt sein kann.
+                        Die Statistik macht das Ausmass sichtbar – aber nicht alles,
+                        was die Betroffenen erleben. Nicht jede Gewalterfahrung wird
+                        erkannt oder gemeldet. Die erfassten Fälle zeigen deshalb nur
+                        einen Teil der Realität.
                     </p>
                 </div>
             </section>
         </section>
 
-        <!-- ZWEITE GRAFIK: ENTWICKLUNG -->
-
+        <!-- Zweite Grafik: Säulen -->
         <section class="ten-year-development" id="ten-year-development">
             <div class="development-chart-area">
                 <div class="development-chart-column">
@@ -543,41 +844,33 @@
                     </div>
                 </div>
 
-                <!-- TEXT 2 -->
-
                 <div class="development-intro">
-            <span class="development-label">
-              10 JAHRE IM VERGLEICH
-            </span>
+                    <span class="development-label">10 JAHRE IM VERGLEICH</span>
 
-                    <h3>
-                        WIE VERÄNDERT<br>
-                        SICH GEWALT?
-                    </h3>
+                    <h3>WIE VERÄNDERT<br>SICH GEWALT?</h3>
 
                     <p>
                         Die Zahlen steigen – besonders deutlich bei körperlicher
-                        Gewalt, verbaler und digitaler Gewalt sowie bei
-                        Sexualdelikten. Doch was steckt hinter dieser Entwicklung?
-                        Ein Teil des Anstiegs bei Sexualdelikten lässt sich durch
-                        die Revision des Schweizer Sexualstrafrechts erklären, die
-                        am 1. Juli 2024 in Kraft trat. Seither gilt eine erweiterte
-                        Definition der Vergewaltigung: Auch sexuelle Handlungen,
-                        bei denen keine Nötigung durch Gewalt oder Drohung vorliegt,
-                        können darunterfallen, wenn sie gegen den Willen einer
-                        Person erfolgen. Dadurch werden gewisse Taten statistisch
-                        anders erfasst als zuvor. Gleichzeitig können eine höhere
+                        Gewalt, verbaler und digitaler Gewalt sowie bei Sexualdelikten.
+                        Doch was steckt hinter dieser Entwicklung? Ein Teil des
+                        Anstiegs bei Sexualdelikten lässt sich durch die Revision des
+                        Schweizer Sexualstrafrechts erklären, die am 1. Juli 2024 in
+                        Kraft trat. Seither gilt eine erweiterte Definition der
+                        Vergewaltigung: Auch sexuelle Handlungen, bei denen keine
+                        Nötigung durch Gewalt oder Drohung vorliegt, können
+                        darunterfallen, wenn sie gegen den Willen einer Person
+                        erfolgen. Dadurch werden gewisse Taten statistisch anders
+                        erfasst als zuvor. Gleichzeitig können eine höhere
                         Sensibilisierung und eine grössere Bereitschaft, Vorfälle
-                        zu melden, die registrierten Zahlen beeinflussen. Die
-                        Statistik zeigt deshalb eine Entwicklung, deren Ursachen
-                        differenziert betrachtet werden müssen.
+                        zu melden, die registrierten Zahlen beeinflussen.
+                        Die Statistik zeigt deshalb eine Entwicklung, deren
+                        Ursachen differenziert betrachtet werden müssen.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- DRITTE GRAFIK: ALTER -->
-
+        <!-- Dritte Grafik: Linien -->
         <section class="age-comparison" id="age-comparison">
             <div class="age-comparison-heading">
           <span
@@ -587,9 +880,7 @@
             LETZTE 10 JAHRE · ALLE DELIKTE
           </span>
 
-                <h2>
-                    DISKREPANZ MÄDCHEN UND JUNGEN NACH ALTER
-                </h2>
+                <h2>DISKREPANZ MÄDCHEN UND JUNGEN NACH ALTER</h2>
             </div>
 
             <div class="age-comparison-layout">
@@ -614,19 +905,18 @@
                     </div>
 
                     <p>
-                        Wie verändert sich die Anzahl registrierter
-                        Delikte bei Mädchen und Jungen mit zunehmendem
-                        Alter? Die Grafik vergleicht die drei
-                        Altersgruppen anhand aller Delikte der letzten
-                        zehn verfügbaren Jahre.
+                        Wie verändert sich die Anzahl registrierter Delikte bei
+                        Mädchen und Jungen mit zunehmendem Alter? Die Grafik
+                        vergleicht die drei Altersgruppen anhand aller Delikte
+                        der letzten zehn verfügbaren Jahre.
                     </p>
                 </div>
             </div>
 
             <p class="age-chart-note">
-                Hinweis: Die Grafik vergleicht die aufsummierten
-                Deliktszahlen verschiedener Altersgruppen. Sie zeigt
-                nicht die Entwicklung derselben Kinder über die Zeit.
+                Hinweis: Die Grafik vergleicht die aufsummierten Deliktszahlen
+                verschiedener Altersgruppen. Sie zeigt nicht die Entwicklung
+                derselben Kinder über die Zeit.
             </p>
 
             <h3 class="chart-explanation-title">
@@ -666,7 +956,6 @@
 
                 <div class="chart-source">
                     Quelle:
-
                     <a
                             href="https://www.unicef.org/media/92376/file/child-protection-gender-dimension"
                             target="_blank"
@@ -678,29 +967,55 @@
             </div>
         </section>
 
-        <!-- ABSCHLUSS -->
-
+        <!-- Abschlusstext -->
         <div class="voices-closing">
             <div class="voices-closing-inner">
                 <p>
-                    Der Fall von Sophie und Lukas zeigt, dass häusliche Gewalt
-                    oft jahrelang im Verborgenen bleibt – selbst dann, wenn es
-                    Warnsignale gibt. Hinter den Statistiken stehen Kinder, deren
-                    Leid nicht rechtzeitig erkannt oder verhindert wurde. Zahlen
-                    machen das Ausmass sichtbar. Doch sie erzählen nicht alles
-                    über die Schicksale dahinter. Umso wichtiger ist es,
-                    hinzusehen, Warnsignale ernst zu nehmen und betroffenen
-                    Kindern eine Stimme zu geben.
+                    Der Fall von Sophie und Lukas zeigt, dass häusliche Gewalt oft
+                    jahrelang im Verborgenen bleibt – selbst dann, wenn es Warnsignale
+                    gibt. Hinter den Statistiken stehen Kinder, deren Leid nicht
+                    rechtzeitig erkannt oder verhindert wurde. Zahlen machen das
+                    Ausmass sichtbar. Doch sie erzählen nicht alles über die
+                    Schicksale dahinter.
+                </p>
+
+                <p>
+                    Umso wichtiger ist es, hinzusehen, Warnsignale ernst zu nehmen
+                    und betroffenen Kindern eine Stimme zu geben.
                 </p>
             </div>
         </div>
 
-        <!-- HILFE UND WEITERE INFORMATIONEN -->
+        <!-- Datenhinweis -->
+        <section class="voices-data-note" aria-labelledby="voices-data-note-title">
+            <div class="voices-data-note-inner">
+                <h2 id="voices-data-note-title">
+                    DATENQUELLE UND AUFBEREITUNG
+                </h2>
 
-        <section
-                class="voices-support"
-                aria-labelledby="voices-support-title"
-        >
+                <p>
+                    Die Daten stammen vom Bundesamt für Statistik (BFS), aus der Tabelle
+                    <a
+                            href="https://www.bfs.admin.ch/bfs/rm/home.assetdetail.36456003.html"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                    >Häusliche Gewalt: Geschädigte Personen nach Alter und Geschlecht
+                        (2009–2025)</a>. Für unsere Visualisierung betrachten wir die Jahre
+                    2016 bis 2025 und die Altersgruppen unter 18 Jahren.
+                </p>
+
+                <p>
+                    <strong>X = aus Datenschutzgründen nicht ausgewiesene Fallzahl
+                        zwischen 1 und 3.</strong> Für unsere Auswertung haben wir alle mit
+                    «X» gekennzeichneten Werte durch den mittleren Wert 2 ersetzt.
+                    Diese Ersatzwerte sind Näherungen. Darauf beruhende Summen und
+                    Prozentanteile können deshalb von den tatsächlichen Werten abweichen.
+                </p>
+            </div>
+        </section>
+
+        <!-- Hilfsangebot -->
+        <section class="voices-support" aria-labelledby="voices-support-title">
             <div class="voices-support-inner">
                 <div class="voices-support-help">
                     <a
@@ -710,9 +1025,7 @@
                     >142</a>
 
                     <div class="voices-support-copy">
-                        <h2 id="voices-support-title">
-                            HILFE BEI HÄUSLICHER GEWALT
-                        </h2>
+                        <h2 id="voices-support-title">HILFE BEI HÄUSLICHER GEWALT</h2>
 
                         <p>
                             Du erlebst Gewalt oder machst dir Sorgen um jemanden?
@@ -725,17 +1038,12 @@
                                 href="https://www.opferhilfe-schweiz.ch/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                        >
-                            Mehr zur Opferhilfe Schweiz
-                        </a>
+                        >Mehr zur Opferhilfe Schweiz</a>
                     </div>
                 </div>
 
                 <div class="voices-support-future">
-                    <h3>
-                        WEITERE INFORMATIONEN FOLGEN
-                    </h3>
-
+                    <h3>WEITERE INFORMATIONEN FOLGEN</h3>
                     <p>
                         Hier folgen weitere Informationen zu den einzelnen
                         Unterkategorien häuslicher Gewalt.
@@ -744,62 +1052,44 @@
             </div>
         </section>
 
-        <!-- KATEGORIEN -->
-
+        <!-- Links zu den Unterseiten -->
         <nav class="category-end-nav" aria-label="Gewaltkategorien">
             <a href="koerperliche-gewalt.html" class="category-end-link">
                 <span class="category-end-number">01</span>
-
                 <span class="category-end-title">
-            KÖRPERLICHE GEWALT
-            <br>
-            &amp; TÖTUNG
+            KÖRPERLICHE GEWALT<br>&amp; TÖTUNG
           </span>
             </a>
 
             <a href="verbale-gewalt.html" class="category-end-link">
                 <span class="category-end-number">02</span>
-
                 <span class="category-end-title">
-            VERBALE/DIGITALE GEWALT
-            <br>
-            &amp; EHRVERLETZUNG
+            VERBALE/DIGITALE GEWALT<br>&amp; EHRVERLETZUNG
           </span>
             </a>
 
             <a href="drohung-zwang.html" class="category-end-link">
                 <span class="category-end-number">03</span>
-
                 <span class="category-end-title">
-            DROHUNG, ZWANG
-            <br>
-            &amp; FREIHEITSENTZUG
+            DROHUNG, ZWANG<br>&amp; FREIHEITSENTZUG
           </span>
             </a>
 
             <a href="sexualdelikte.html" class="category-end-link">
                 <span class="category-end-number">04</span>
-
-                <span class="category-end-title">
-            SEXUALDELIKTE
-          </span>
+                <span class="category-end-title">SEXUALDELIKTE</span>
             </a>
 
             <a href="uebrige-straftaten.html" class="category-end-link">
                 <span class="category-end-number">05</span>
-
-                <span class="category-end-title">
-            ÜBRIGE STRAFTATEN
-          </span>
+                <span class="category-end-title">ÜBRIGE STRAFTATEN</span>
             </a>
         </nav>
 
-        <!-- ABOUT -->
-
+        <!-- About us -->
         <section class="about" id="about">
             <div class="about-inner">
                 <div class="team-grid">
-
                     <div class="team-card">
                         <img
                                 src="assets/About us/About us_kira.png"
@@ -809,11 +1099,8 @@
 
                         <div class="team-info">
                             <p class="team-name">KIRA GERSCHLER</p>
-
                             <p class="team-role">
-                                FRONT END
-                                <br>
-                                MULTIMEDIA PRODUCER
+                                FRONT END<br>MULTIMEDIA PRODUCER
                             </p>
                         </div>
                     </div>
@@ -827,11 +1114,8 @@
 
                         <div class="team-info">
                             <p class="team-name">ILONA HUTMACHER</p>
-
                             <p class="team-role">
-                                FRONT END
-                                <br>
-                                MULTIMEDIA PRODUCER
+                                FRONT END<br>MULTIMEDIA PRODUCER
                             </p>
                         </div>
                     </div>
@@ -845,11 +1129,8 @@
 
                         <div class="team-info">
                             <p class="team-name">LUNA STEINER</p>
-
                             <p class="team-role">
-                                BACK END
-                                <br>
-                                MULTIMEDIA PRODUCER
+                                BACK END<br>MULTIMEDIA PRODUCER
                             </p>
                         </div>
                     </div>
@@ -863,15 +1144,11 @@
 
                         <div class="team-info">
                             <p class="team-name">RIANA RHYNER</p>
-
                             <p class="team-role">
-                                BACK END
-                                <br>
-                                MULTIMEDIA PRODUCER
+                                BACK END<br>MULTIMEDIA PRODUCER
                             </p>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="about-editorial">
@@ -882,11 +1159,7 @@
                     </div>
 
                     <div class="about-headline">
-                        <h2>
-                            WHO
-                            <br>
-                            ARE WE?
-                        </h2>
+                        <h2>WHO<br>ARE WE?</h2>
                     </div>
 
                     <div class="about-intro">
@@ -900,13 +1173,10 @@
                     <div class="about-description">
                         <p>
                             Mit diesem Projekt möchten wir ein Thema
-                            sichtbar machen, das häufig im Verborgenen
-                            bleibt.
-
+                            sichtbar machen, das häufig im Verborgenen bleibt.
                             Wir übersetzen Daten und Informationen
                             in eine visuelle Geschichte, die
-                            verständlich macht, was hinter den
-                            Zahlen steht.
+                            verständlich macht, was hinter den Zahlen steht.
                         </p>
                     </div>
 
@@ -915,15 +1185,10 @@
                             <span class="role-number">01</span>
                             <span class="role-title">FRONT END</span>
 
-                            <p>
-                                KIRA GERSCHLER
-                                <br>
-                                ILONA HUTMACHER
-                            </p>
+                            <p>KIRA GERSCHLER<br>ILONA HUTMACHER</p>
 
                             <span class="role-description">
-                  Design, visuelle Gestaltung und
-                  Entwicklung der Website.
+                  Design, visuelle Gestaltung und Entwicklung der Website.
                 </span>
                         </div>
 
@@ -931,41 +1196,26 @@
                             <span class="role-number">02</span>
                             <span class="role-title">BACK END</span>
 
-                            <p>
-                                RIANA RHYNER
-                                <br>
-                                LUNA STEINER
-                            </p>
+                            <p>RIANA RHYNER<br>LUNA STEINER</p>
 
                             <span class="role-description">
-                  Daten, Quellen, Strukturierung und
-                  Aufbereitung der Inhalte.
+                  Daten, Quellen, Strukturierung und Aufbereitung der Inhalte.
                 </span>
                         </div>
                     </div>
 
                     <div class="about-statement">
-                        <p>
-                            HINTER JEDER ZAHL
-                            <br>
-                            STEHT EIN KIND.
-                        </p>
+                        <p>HINTER JEDER ZAHL<br>STEHT EIN KIND.</p>
 
                         <p class="about-statement-second">
-                            HINTER JEDER GESCHICHTE
-                            <br>
-                            STEHT EIN MENSCH.
+                            HINTER JEDER GESCHICHTE<br>STEHT EIN MENSCH.
                         </p>
                     </div>
                 </div>
-
             </div>
         </section>
-
     </div>
 </main>
-
-<!-- SEITENANIMATIONEN -->
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -973,20 +1223,10 @@
 
         function updateHeader() {
             if (!header) return;
-
-            if (window.scrollY > 80) {
-                header.classList.add("visible");
-            } else {
-                header.classList.remove("visible");
-            }
+            header.classList.toggle("visible", window.scrollY > 80);
         }
 
-        window.addEventListener(
-            "scroll",
-            updateHeader,
-            { passive: true }
-        );
-
+        window.addEventListener("scroll", updateHeader, { passive: true });
         updateHeader();
 
         const startButton = document.querySelector("#start-button");
@@ -994,64 +1234,40 @@
         const aboutSection = document.querySelector("#about");
 
         function updateNavigation() {
-            if (
-                !startButton ||
-                !aboutButton ||
-                !aboutSection
-            ) {
-                return;
-            }
+            if (!startButton || !aboutButton || !aboutSection) return;
 
-            const aboutTop =
-                aboutSection.getBoundingClientRect().top;
+            const aboutActive =
+                aboutSection.getBoundingClientRect().top <
+                window.innerHeight * 0.45;
 
-            if (aboutTop < window.innerHeight * 0.45) {
-                startButton.classList.remove("active");
-                aboutButton.classList.add("active");
-            } else {
-                aboutButton.classList.remove("active");
-                startButton.classList.add("active");
-            }
+            startButton.classList.toggle("active", !aboutActive);
+            aboutButton.classList.toggle("active", aboutActive);
         }
 
-        window.addEventListener(
-            "scroll",
-            updateNavigation,
-            { passive: true }
-        );
-
+        window.addEventListener("scroll", updateNavigation, { passive: true });
         updateNavigation();
 
-        const revealElements = document.querySelectorAll(
-            ".story-reveal"
-        );
+        const revealElements = document.querySelectorAll(".story-reveal");
 
-        const revealObserver = new IntersectionObserver(
-            function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("is-visible");
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.15,
-                rootMargin: "0px 0px -80px 0px"
-            }
-        );
+        const revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -80px 0px"
+        });
 
         revealElements.forEach(function (element) {
             revealObserver.observe(element);
         });
 
-        /* Genug Platz für beide Absätze vor der ersten Grafik */
-
+        /* Platz für die Einleitung */
         const storyTextSection = document.getElementById("story");
-
-        const storyCopy = document.querySelector(
-            "#story .story-copy"
-        );
+        const storyCopy = document.querySelector("#story .story-copy");
 
         function fitStoryText() {
             if (!storyTextSection || !storyCopy) return;
@@ -1062,61 +1278,38 @@
                 window.getComputedStyle(storyTextSection).paddingTop
             ) || 0;
 
-            const position = window.getComputedStyle(
-                storyCopy
-            ).position;
+            const position = window.getComputedStyle(storyCopy).position;
 
             if (position === "absolute") {
-                const textBottom =
-                    storyCopy.offsetTop + storyCopy.offsetHeight;
+                const textBottom = storyCopy.offsetTop + storyCopy.offsetHeight;
 
                 storyTextSection.style.paddingTop =
-                    Math.ceil(
-                        Math.max(basePadding, textBottom + 60)
-                    ) + "px";
+                    Math.ceil(Math.max(basePadding, textBottom + 60)) + "px";
             }
         }
 
         fitStoryText();
-
         window.addEventListener("resize", fitStoryText);
 
-        if (
-            storyCopy &&
-            typeof ResizeObserver !== "undefined"
-        ) {
-            new ResizeObserver(() => {
+        if (storyCopy && typeof ResizeObserver !== "undefined") {
+            new ResizeObserver(function () {
                 fitStoryText();
 
-                const thread = document.getElementById(
-                    "continuous-thread"
-                );
-
-                const wrapper = document.getElementById(
-                    "story-data-wrapper"
-                );
+                const thread = document.getElementById("continuous-thread");
+                const wrapper = document.getElementById("story-data-wrapper");
 
                 if (thread && wrapper) {
-                    thread.style.height =
-                        wrapper.offsetHeight + "px";
+                    thread.style.height = wrapper.offsetHeight + "px";
                 }
             }).observe(storyCopy);
         }
 
         /* Roter Faden */
-
-        const redThread = document.querySelector(
-            "#continuous-thread-progress"
-        );
-
-        const storySection = document.querySelector(
-            "#story-data-wrapper"
-        );
+        const redThread = document.querySelector("#continuous-thread-progress");
+        const storySection = document.querySelector("#story-data-wrapper");
 
         if (redThread && storySection) {
-            const threadContainer = document.querySelector(
-                "#continuous-thread"
-            );
+            const threadContainer = document.querySelector("#continuous-thread");
 
             function resizeRedThread() {
                 if (threadContainer && storySection) {
@@ -1133,35 +1326,21 @@
             redThread.style.strokeDashoffset = threadLength;
 
             function updateRedThread() {
-                const storyRect =
-                    storySection.getBoundingClientRect();
+                const storyRect = storySection.getBoundingClientRect();
+                const startPoint = window.innerHeight * 0.65;
+                const amountScrolled = startPoint - storyRect.top;
+                const drawingDistance = storySection.offsetHeight;
 
-                const viewportHeight = window.innerHeight;
-                const startPoint = viewportHeight * 0.65;
-
-                const amountScrolled =
-                    startPoint - storyRect.top;
-
-                const drawingDistance =
-                    storySection.offsetHeight;
-
-                let progress =
-                    amountScrolled / drawingDistance;
-
-                progress = Math.max(
+                const progress = Math.max(
                     0,
-                    Math.min(1, progress)
+                    Math.min(1, amountScrolled / drawingDistance)
                 );
 
                 redThread.style.strokeDashoffset =
                     threadLength * (1 - progress);
             }
 
-            window.addEventListener(
-                "scroll",
-                updateRedThread,
-                { passive: true }
-            );
+            window.addEventListener("scroll", updateRedThread, { passive: true });
 
             window.addEventListener("resize", function () {
                 resizeRedThread();
@@ -1173,9 +1352,735 @@
     });
 </script>
 
-<!-- DIAGRAMME UND DATEN -->
-
+<!-- Bestehende Daten und Diagramme -->
 <script src="script.js?v=20261014-3"></script>
 
+<!-- Donut: Antippen, Auswahl und Schliessen -->
+<script>
+    (function enableDonutTouch() {
+        function init() {
+            const svg = document.getElementById("ten-year-donut-svg");
+            const chart = document.getElementById("donut-chart");
+            const tooltip = document.getElementById("donut-tooltip");
+            const legend = document.getElementById("donut-legend");
+
+            if (!svg || !chart || !tooltip || !legend || svg.dataset.touchReady) {
+                return;
+            }
+
+            svg.dataset.touchReady = "true";
+
+            const pages = [
+                "koerperliche-gewalt.html",
+                "verbale-gewalt.html",
+                "drohung-zwang.html",
+                "sexualdelikte.html",
+                "uebrige-straftaten.html"
+            ];
+
+            const compact = window.matchMedia("(max-width: 850px)");
+            const touchDevice = window.matchMedia(
+                "(hover: none), (pointer: coarse)"
+            );
+
+            const originalViewBox =
+                svg.getAttribute("viewBox") || "0 0 600 600";
+
+            const instruction = document.querySelector(
+                "#ten-year-donut .ten-year-donut-intro p"
+            );
+
+            const originalInstruction =
+                instruction ? instruction.textContent : "";
+
+            let active = null;
+            let trigger = null;
+            let lastPointer = "mouse";
+            let replaying = false;
+
+            const touchMode = () =>
+                compact.matches ||
+                touchDevice.matches ||
+                lastPointer === "touch";
+
+            const segments = () =>
+                Array.from(chart.querySelectorAll(".donut-segment"));
+
+            const legendItems = () =>
+                Array.from(legend.querySelectorAll(".donut-legend-item"));
+
+            /* Infofeld ausserhalb des Diagramm-Containers platzieren */
+            document.body.appendChild(tooltip);
+
+            const actions = document.createElement("div");
+            actions.className = "voices-donut-actions";
+
+            const closeButton = document.createElement("button");
+            closeButton.type = "button";
+            closeButton.className = "voices-donut-close";
+            closeButton.setAttribute("aria-label", "Infofeld schliessen");
+            closeButton.textContent = "×";
+
+            const link = document.createElement("a");
+            link.className = "voices-donut-link";
+            link.textContent = "Mehr zu dieser Gewaltkategorie →";
+
+            actions.append(closeButton, link);
+            tooltip.appendChild(actions);
+
+            function replay(segment, type) {
+                const rect = segment.getBoundingClientRect();
+                replaying = true;
+
+                try {
+                    segment.dispatchEvent(new MouseEvent(type, {
+                        clientX: rect.left + rect.width / 2,
+                        clientY: rect.top + rect.height / 2,
+                        bubbles: false
+                    }));
+                } finally {
+                    replaying = false;
+                }
+            }
+
+            function close(returnFocus = false) {
+                const previous = active;
+                const returnTarget = trigger;
+
+                active = null;
+                trigger = null;
+
+                if (previous) replay(previous, "mouseleave");
+
+                tooltip.classList.remove("is-touch-open", "is-visible");
+                tooltip.setAttribute("aria-hidden", "true");
+                tooltip.setAttribute("role", "tooltip");
+
+                segments().forEach(segment => {
+                    segment.classList.remove("is-touch-selected", "is-dimmed");
+                    segment.setAttribute("aria-expanded", "false");
+                });
+
+                legendItems().forEach(item => {
+                    item.classList.remove("is-touch-selected");
+                    item.setAttribute("aria-expanded", "false");
+                });
+
+                if (returnFocus && returnTarget && returnTarget.isConnected) {
+                    returnTarget.focus({ preventScroll: true });
+                }
+            }
+
+            function toggle(segment, source) {
+                if (active === segment) {
+                    close();
+                    return;
+                }
+
+                close();
+
+                active = segment;
+                trigger = source;
+
+                replay(segment, "mouseenter");
+
+                const index = Number(segment.dataset.index);
+                link.href = pages[index] || "index.html#story";
+
+                segments().forEach(other => {
+                    other.classList.toggle("is-touch-selected", other === segment);
+                    other.classList.toggle("is-dimmed", other !== segment);
+                    other.setAttribute("aria-expanded", String(other === segment));
+                });
+
+                legendItems().forEach((item, itemIndex) => {
+                    item.classList.toggle("is-touch-selected", itemIndex === index);
+                    item.setAttribute("aria-expanded", String(itemIndex === index));
+                });
+
+                tooltip.setAttribute("role", "dialog");
+                tooltip.setAttribute("aria-labelledby", "donut-tooltip-title");
+                tooltip.setAttribute("aria-hidden", "false");
+                tooltip.classList.add("is-visible", "is-touch-open");
+            }
+
+            function decorate() {
+                if (active && !active.isConnected) close();
+
+                const items = legendItems();
+
+                segments().forEach(segment => {
+                    const index = Number(segment.dataset.index);
+
+                    const label = items[index]
+                        ? items[index].textContent.trim()
+                        : "Gewaltkategorie";
+
+                    segment.setAttribute("tabindex", "0");
+                    segment.setAttribute("role", "button");
+                    segment.setAttribute(
+                        "aria-label",
+                        label + ". Angaben öffnen oder schliessen."
+                    );
+                    segment.setAttribute("aria-controls", tooltip.id);
+                    segment.setAttribute("aria-haspopup", "dialog");
+                    segment.setAttribute("aria-expanded", String(segment === active));
+                });
+
+                items.forEach(item => {
+                    item.setAttribute("tabindex", "0");
+                    item.setAttribute("role", "button");
+                    item.setAttribute("aria-controls", tooltip.id);
+                    item.setAttribute("aria-haspopup", "dialog");
+
+                    if (!active) item.setAttribute("aria-expanded", "false");
+                });
+            }
+
+            function updateLayout() {
+                svg.setAttribute(
+                    "viewBox",
+                    compact.matches ? "88 88 424 424" : originalViewBox
+                );
+
+                if (instruction) {
+                    instruction.textContent = touchMode()
+                        ? "Tippe auf ein Segment oder eine Kategorie, um die Angaben zu sehen. Erneutes Antippen schliesst das Infofeld."
+                        : originalInstruction;
+                }
+            }
+
+            function stopLegacyMouse(event) {
+                if (!replaying && (touchMode() || active)) {
+                    event.stopImmediatePropagation();
+                }
+            }
+
+            [
+                "mouseenter",
+                "mousemove",
+                "mouseleave",
+                "mouseover",
+                "mouseout"
+            ].forEach(type => {
+                svg.addEventListener(type, stopLegacyMouse, true);
+                legend.addEventListener(type, stopLegacyMouse, true);
+            });
+
+            svg.addEventListener("pointerdown", event => {
+                lastPointer = event.pointerType || "mouse";
+                updateLayout();
+            }, { passive: true });
+
+            svg.addEventListener("click", event => {
+                const segment = event.target.closest(".donut-segment");
+
+                if (!touchMode() && !active) return;
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
+                if (segment && chart.contains(segment)) {
+                    toggle(segment, segment);
+                } else {
+                    close();
+                }
+            }, true);
+
+            legend.addEventListener("click", event => {
+                const item = event.target.closest(".donut-legend-item");
+
+                if (!item || !legend.contains(item)) return;
+
+                const segment = segments().find(path =>
+                    Number(path.dataset.index) === legendItems().indexOf(item)
+                );
+
+                if (!segment) return;
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                toggle(segment, item);
+            }, true);
+
+            function keyToggle(event) {
+                if (event.key !== "Enter" && event.key !== " ") return;
+
+                const segment = event.target.closest(".donut-segment");
+                const item = event.target.closest(".donut-legend-item");
+
+                const selected = segment || (
+                    item && segments().find(path =>
+                        Number(path.dataset.index) === legendItems().indexOf(item)
+                    )
+                );
+
+                if (!selected) return;
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                toggle(selected, item || selected);
+            }
+
+            svg.addEventListener("keydown", keyToggle);
+            legend.addEventListener("keydown", keyToggle);
+
+            closeButton.addEventListener("click", () => close(true));
+
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape" && active) close(true);
+            });
+
+            document.addEventListener("pointerdown", event => {
+                if (
+                    active &&
+                    !svg.contains(event.target) &&
+                    !legend.contains(event.target) &&
+                    !tooltip.contains(event.target)
+                ) {
+                    close();
+                }
+            });
+
+            document.addEventListener("focusin", event => {
+                if (
+                    active &&
+                    !svg.contains(event.target) &&
+                    !legend.contains(event.target) &&
+                    !tooltip.contains(event.target)
+                ) {
+                    close();
+                }
+            });
+
+            window.addEventListener("resize", () => {
+                close();
+                updateLayout();
+            });
+
+            if (touchDevice.addEventListener) {
+                touchDevice.addEventListener("change", () => {
+                    close();
+                    updateLayout();
+                });
+            }
+
+            const observer = new MutationObserver(decorate);
+            observer.observe(chart, { childList: true, subtree: true });
+            observer.observe(legend, { childList: true, subtree: true });
+
+            decorate();
+            updateLayout();
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init, { once: true });
+        } else {
+            init();
+        }
+    })();
+</script>
+
+<!-- Animationen für alle drei Grafiken -->
+<script>
+    (function enableChartEntrance() {
+        function init() {
+            if (
+                !window.IntersectionObserver ||
+                !window.MutationObserver ||
+                !window.requestAnimationFrame ||
+                document.documentElement.dataset.chartEntranceReady
+            ) {
+                return;
+            }
+
+            document.documentElement.dataset.chartEntranceReady = "true";
+
+            const ns = "http://www.w3.org/2000/svg";
+            const reduced = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            );
+
+            const controllers = [];
+            let nextClip = 0;
+
+            const clamp = value => Math.max(0, Math.min(1, value));
+            const ease = value => 1 - Math.pow(1 - clamp(value), 3);
+
+            function create(svg, type) {
+                const selector = type === "donut"
+                    ? ".donut-segment"
+                    : type === "bars"
+                        ? ".development-bar-visual"
+                        : ".age-series-visual";
+
+                let nodes = [];
+                let visible = false;
+                let played = false;
+                let prepared = false;
+                let frame = null;
+                let defs = null;
+                let clips = [];
+                let update = null;
+                let duration = 1200;
+
+                function finish() {
+                    if (frame !== null) {
+                        window.cancelAnimationFrame(frame);
+                    }
+
+                    frame = null;
+
+                    clips.forEach(({ target, previous }) => {
+                        if (previous === null) {
+                            target.removeAttribute("clip-path");
+                        } else {
+                            target.setAttribute("clip-path", previous);
+                        }
+                    });
+
+                    clips = [];
+
+                    if (defs) defs.remove();
+
+                    defs = null;
+                    prepared = false;
+                    update = null;
+                }
+
+                function element(tag, attrs = {}) {
+                    const node = document.createElementNS(ns, tag);
+
+                    Object.entries(attrs).forEach(([key, value]) => {
+                        node.setAttribute(key, String(value));
+                    });
+
+                    return node;
+                }
+
+                function clip(targets, shape) {
+                    const id = "voices-chart-reveal-" + (++nextClip);
+
+                    const path = element("clipPath", {
+                        id,
+                        clipPathUnits: "userSpaceOnUse"
+                    });
+
+                    path.appendChild(shape);
+                    defs.appendChild(path);
+
+                    targets.forEach(target => {
+                        clips.push({
+                            target,
+                            previous: target.getAttribute("clip-path")
+                        });
+
+                        target.setAttribute("clip-path", "url(#" + id + ")");
+                    });
+                }
+
+                function prepare() {
+                    defs = element("defs", {
+                        "data-voices-chart-animation": "true"
+                    });
+
+                    svg.appendChild(defs);
+
+                    if (type === "donut") {
+                        /* Donut im Uhrzeigersinn aufbauen */
+                        const chart = document.getElementById("donut-chart");
+                        const hole = svg.querySelector(".donut-hole");
+
+                        const cx = Number(hole && hole.getAttribute("cx")) || 300;
+                        const cy = Number(hole && hole.getAttribute("cy")) || 300;
+
+                        const box = (
+                            svg.getAttribute("viewBox") || "0 0 600 600"
+                        ).trim().split(/[\s,]+/).map(Number);
+
+                        const radius = Math.hypot(
+                            box[2] || 600,
+                            box[3] || 600
+                        );
+
+                        const wedge = element("path", {
+                            d: "M " + cx + " " + cy + " Z"
+                        });
+
+                        clip([chart], wedge);
+                        duration = 1350;
+
+                        update = progress => {
+                            const angle = ease(progress) * Math.PI * 2;
+                            const x = cx + radius * Math.sin(angle);
+                            const y = cy - radius * Math.cos(angle);
+
+                            wedge.setAttribute("d", [
+                                "M", cx, cy,
+                                "L", cx, cy - radius,
+                                "A", radius, radius,
+                                0,
+                                angle > Math.PI ? 1 : 0,
+                                1,
+                                x, y,
+                                "Z"
+                            ].join(" "));
+                        };
+                    } else if (type === "bars") {
+                        /* Säulen nacheinander von unten einblenden */
+                        const bars = nodes.map(target => {
+                            const bar = target.querySelector(".development-bar");
+
+                            if (!bar) return null;
+
+                            const x = Number(bar.getAttribute("x"));
+                            const y = Number(bar.getAttribute("y"));
+                            const width = Number(bar.getAttribute("width"));
+                            const height = Number(bar.getAttribute("height"));
+
+                            if (![x, y, width, height].every(Number.isFinite)) {
+                                return null;
+                            }
+
+                            const bottom = y + height + 8;
+                            const fullHeight = height + 16;
+
+                            const rect = element("rect", {
+                                x: x - 8,
+                                y: bottom,
+                                width: width + 16,
+                                height: 0
+                            });
+
+                            clip([target], rect);
+
+                            return {
+                                rect,
+                                x,
+                                bottom,
+                                fullHeight
+                            };
+                        })
+                            .filter(Boolean)
+                            .sort((a, b) => a.x - b.x);
+
+                        const stagger = 38;
+                        const growTime = 650;
+
+                        duration =
+                            growTime + Math.max(0, bars.length - 1) * stagger;
+
+                        update = progress => {
+                            const elapsed = progress * duration;
+
+                            bars.forEach((bar, index) => {
+                                const height = bar.fullHeight * ease(
+                                    (elapsed - index * stagger) / growTime
+                                );
+
+                                bar.rect.setAttribute("height", String(height));
+                                bar.rect.setAttribute("y", String(bar.bottom - height));
+                            });
+                        };
+                    } else {
+                        /* Linien von links nach rechts aufbauen */
+                        const xs = Array.from(
+                            svg.querySelectorAll(".age-data-line")
+                        ).flatMap(line =>
+                            (line.getAttribute("points") || "")
+                                .trim()
+                                .split(/\s+/)
+                                .map(pair => Number(pair.split(",")[0]))
+                        ).filter(Number.isFinite);
+
+                        const box = (
+                            svg.getAttribute("viewBox") || "0 0 1000 560"
+                        ).trim().split(/[\s,]+/).map(Number);
+
+                        const start = xs.length
+                            ? Math.min(...xs) - 18
+                            : box[0] - 18;
+
+                        const end = xs.length
+                            ? Math.max(...xs) + 18
+                            : box[0] + box[2] + 18;
+
+                        const rect = element("rect", {
+                            x: start,
+                            y: box[1] - 30,
+                            width: 0,
+                            height: box[3] + 60
+                        });
+
+                        clip(nodes, rect);
+                        duration = 1250;
+
+                        update = progress => {
+                            rect.setAttribute(
+                                "width",
+                                String((end - start) * ease(progress))
+                            );
+                        };
+                    }
+
+                    prepared = true;
+                    update(0);
+                }
+
+                function play() {
+                    if (!prepared || played || !visible || reduced.matches) {
+                        return;
+                    }
+
+                    played = true;
+                    let started = null;
+
+                    function tick(now) {
+                        if (!prepared) return;
+
+                        if (started === null) started = now;
+
+                        const progress = clamp((now - started) / duration);
+
+                        if (progress >= 1 || reduced.matches || !visible) {
+                            finish();
+                            return;
+                        }
+
+                        update(progress);
+                        frame = window.requestAnimationFrame(tick);
+                    }
+
+                    frame = window.requestAnimationFrame(tick);
+                }
+
+                function refresh() {
+                    const current = Array.from(svg.querySelectorAll(selector));
+
+                    if (
+                        current.length === nodes.length &&
+                        current.every((node, index) => node === nodes[index])
+                    ) {
+                        return;
+                    }
+
+                    finish();
+                    nodes = current;
+                    played = false;
+
+                    if (!nodes.length || reduced.matches) return;
+
+                    try {
+                        prepare();
+                        play();
+                    } catch (error) {
+                        finish();
+                        console.warn("Diagrammanimation übersprungen:", error);
+                    }
+                }
+
+                const visibility = new window.IntersectionObserver(entries => {
+                    const entry = entries.find(item => item.target === svg);
+
+                    if (!entry) return;
+
+                    visible =
+                        entry.isIntersecting &&
+                        entry.intersectionRatio >= 0.12;
+
+                    if (visible) {
+                        play();
+                    } else if (frame !== null) {
+                        finish();
+                    }
+                }, {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -5% 0px"
+                });
+
+                /* Auch nach dem Laden der Daten und bei Kategorienwechseln */
+                const changes = new window.MutationObserver(refresh);
+
+                changes.observe(svg, {
+                    childList: true,
+                    subtree: true
+                });
+
+                visibility.observe(svg);
+
+                /* Beim Antippen sofort die vollständige Grafik anzeigen */
+                function revealForInteraction() {
+                    if (!prepared) return;
+
+                    played = true;
+                    finish();
+                }
+
+                svg.addEventListener(
+                    "pointerdown",
+                    revealForInteraction,
+                    true
+                );
+
+                svg.addEventListener(
+                    "keydown",
+                    revealForInteraction,
+                    true
+                );
+
+                if (type === "donut") {
+                    const legend = document.getElementById("donut-legend");
+
+                    if (legend) {
+                        legend.addEventListener(
+                            "pointerdown",
+                            revealForInteraction,
+                            true
+                        );
+
+                        legend.addEventListener(
+                            "keydown",
+                            revealForInteraction,
+                            true
+                        );
+                    }
+                }
+
+                controllers.push({
+                    finish: revealForInteraction
+                });
+
+                refresh();
+            }
+
+            [
+                ["ten-year-donut-svg", "donut"],
+                ["development-chart", "bars"],
+                ["age-comparison-chart", "lines"]
+            ].forEach(([id, type]) => {
+                const svg = document.getElementById(id);
+
+                if (svg) create(svg, type);
+            });
+
+            /* Systemeinstellung «Bewegung reduzieren» beachten */
+            if (reduced.addEventListener) {
+                reduced.addEventListener("change", () => {
+                    if (reduced.matches) {
+                        controllers.forEach(controller => controller.finish());
+                    }
+                });
+            }
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init, {
+                once: true
+            });
+        } else {
+            init();
+        }
+    })();
+</script>
 </body>
 </html>

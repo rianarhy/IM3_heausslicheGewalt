@@ -4,144 +4,2083 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
+
     <title>Sexualdelikte — VOICES</title>
-    <link rel="stylesheet" href="category-pages.css">
+
+    <style>
+        :root {
+            --red: #ff1212;
+            --white: #fff;
+            --grey: #999;
+            --muted: #666;
+            --black: #000;
+            --line: rgba(255,255,255,.16);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        /* HEADER */
+
+        .site-header {
+            position: fixed;
+            z-index: 100;
+            top: 28px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .site-header a {
+            pointer-events: auto;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-pill {
+            padding: 7px 18px;
+            border: 1px solid rgba(255,255,255,.6);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: .05em;
+            transition: background .25s ease, color .25s ease;
+        }
+
+        .nav-pill:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .site-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: .08em;
+        }
+
+        /* HERO */
+
+        .category-hero {
+            position: relative;
+            width: 100%;
+            min-height: 720px;
+            height: 100svh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .category-hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-shade {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.62),
+                    rgba(0,0,0,.1) 68%,
+                    rgba(0,0,0,.28)
+            );
+        }
+
+        .category-nav {
+            position: absolute;
+            z-index: 10;
+            top: 76px;
+            left: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+
+        .category-link {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-height: 35px;
+            padding: 5px 14px 5px 6px;
+            border-radius: 100px;
+            color: rgba(255,255,255,.58);
+            transition:
+                    color .3s ease,
+                    background .3s ease,
+                    transform .35s ease;
+        }
+
+        .category-link:hover,
+        .category-link.active {
+            color: #fff;
+            background: rgba(0,0,0,.32);
+        }
+
+        .category-link:hover {
+            transform: translateX(5px);
+        }
+
+        .category-number {
+            width: 27px;
+            height: 27px;
+            flex: 0 0 27px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255,255,255,.35);
+            border-radius: 50%;
+            font-size: 8px;
+            font-weight: 700;
+        }
+
+        .category-link.active .category-number,
+        .category-link:hover .category-number {
+            color: #000;
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        .category-title {
+            font-size: 9px;
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: .12em;
+        }
+
+        .hero-content {
+            position: absolute;
+            z-index: 5;
+            left: 7vw;
+            right: 7vw;
+            bottom: 7vh;
+        }
+
+        .eyebrow,
+        .chapter-small,
+        .stat-label,
+        .section-marker {
+            display: block;
+            color: var(--red);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .2em;
+        }
+
+        .eyebrow {
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 {
+            max-width: 1200px;
+            font-size: clamp(72px, 9.4vw, 155px);
+            font-weight: 500;
+            line-height: .78;
+            letter-spacing: -.065em;
+        }
+
+        .hero-content h1 span {
+            color: var(--red);
+        }
+
+        .hero-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 60px;
+            margin-top: 55px;
+        }
+
+        .hero-bottom p {
+            width: min(460px, 42vw);
+            color: rgba(255,255,255,.78);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .scroll-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--red);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .17em;
+            white-space: nowrap;
+        }
+
+        .scroll-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--red);
+            border-radius: 50%;
+            font-size: 22px;
+            transition:
+                    color .25s ease,
+                    background .25s ease,
+                    transform .25s ease;
+        }
+
+        .scroll-link:hover .scroll-icon {
+            background: var(--red);
+            color: #000;
+            transform: translateY(4px);
+        }
+
+        .hero-index {
+            position: absolute;
+            z-index: 3;
+            right: 5vw;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,.12);
+            font-size: clamp(130px, 24vw, 360px);
+            line-height: .8;
+            letter-spacing: -.08em;
+            pointer-events: none;
+        }
+
+        /* INHALTE */
+
+        .category-story {
+            position: relative;
+            padding: 150px 8vw 100px;
+            background: #000;
+        }
+
+        .chapter-intro {
+            position: relative;
+            z-index: 1;
+            width: min(1000px, 90%);
+            margin: 0 0 180px 4vw;
+        }
+
+        .chapter-intro h2 {
+            margin: 35px 0;
+            font-size: clamp(65px, 8.8vw, 140px);
+            font-weight: 500;
+            line-height: .83;
+            letter-spacing: -.06em;
+        }
+
+        .chapter-intro p {
+            width: min(520px, 90%);
+            margin-left: 34%;
+            color: #aaa;
+            font-size: clamp(20px, 2vw, 30px);
+            line-height: 1.25;
+            letter-spacing: -.02em;
+        }
+
+        .data-section {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 95px 0 115px;
+            border-top: 1px solid rgba(255,255,255,.14);
+        }
+
+        .section-marker {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 65px;
+        }
+
+        .section-marker > span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--red);
+        }
+
+        .total-layout {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: end;
+            gap: 8vw;
+        }
+
+        .stat-label {
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .big-number {
+            display: block;
+            margin-top: 20px;
+            color: var(--red);
+            font-size: clamp(100px, 17vw, 260px);
+            font-weight: 500;
+            line-height: .82;
+            letter-spacing: -.08em;
+            overflow-wrap: anywhere;
+        }
+
+        .total-copy h3,
+        .section-heading h3 {
+            font-size: clamp(42px, 5vw, 78px);
+            font-weight: 500;
+            line-height: .9;
+            letter-spacing: -.05em;
+        }
+
+        .total-copy p,
+        .section-heading p {
+            max-width: 500px;
+            margin-top: 28px;
+            color: #999;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: .7fr 1.3fr;
+            column-gap: 5vw;
+            align-items: start;
+            margin-bottom: 55px;
+        }
+
+        .section-heading .stat-label {
+            padding-top: 8px;
+        }
+
+        .section-heading p {
+            grid-column: 2;
+            margin-top: 25px;
+        }
+
+        .chart-panel {
+            margin-top: 35px;
+        }
+
+        .chart-panel-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--line);
+            color: #777;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        /* JAHRESSÄULEN */
+
+        .year-chart {
+            min-height: 320px;
+            display: grid;
+            grid-template-columns: repeat(10, minmax(0, 1fr));
+            align-items: stretch;
+            gap: clamp(8px, 1.5vw, 22px);
+            padding-top: 28px;
+        }
+
+        .year-bar-item {
+            min-width: 0;
+            display: grid;
+            grid-template-rows: 24px 1fr 24px;
+            justify-items: center;
+            gap: 12px;
+        }
+
+        .year-bar-value {
+            color: #888;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .year-bar-track {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            display: flex;
+            align-items: flex-end;
+            background: linear-gradient(
+                    to top,
+                    rgba(255,255,255,.035),
+                    transparent
+            );
+            border-bottom: 1px solid rgba(255,255,255,.2);
+        }
+
+        .year-bar-fill {
+            display: block;
+            width: 100%;
+            min-height: 2px;
+            background: var(--red);
+            transition: height .8s cubic-bezier(.22,1,.36,1);
+        }
+
+        .year-bar-label {
+            color: #777;
+            font-size: 10px;
+        }
+
+        /* HORIZONTALE BALKEN */
+
+        .horizontal-chart {
+            display: grid;
+            gap: 30px;
+            padding-top: 30px;
+        }
+
+        .bar-row {
+            min-width: 0;
+        }
+
+        .bar-row-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+
+        .bar-label {
+            color: #eee;
+            font-size: 14px;
+        }
+
+        .bar-value {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .bar-track {
+            height: 5px;
+            overflow: hidden;
+            background: #1b1b1b;
+        }
+
+        .bar-fill {
+            display: block;
+            width: 0;
+            height: 100%;
+            background: rgba(255,255,255,.65);
+            animation: grow-bar 1s ease forwards;
+        }
+
+        .bar-fill.red {
+            background: var(--red);
+        }
+
+        @keyframes grow-bar {
+            from { width: 0; }
+        }
+
+        /* STRAFTATEN */
+
+        .offence-list {
+            margin-top: 30px;
+        }
+
+        .offence-row {
+            display: grid;
+            grid-template-columns: 50px minmax(0, 1fr) 120px;
+            align-items: center;
+            gap: 20px;
+            min-height: 82px;
+            border-top: 1px solid var(--line);
+            transition: padding .25s ease;
+        }
+
+        .offence-row:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .offence-row:hover {
+            padding-left: 12px;
+        }
+
+        .offence-rank {
+            color: var(--red);
+            font-size: 10px;
+            letter-spacing: .12em;
+        }
+
+        .offence-name {
+            color: #eee;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .offence-value {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .data-note {
+            max-width: 800px;
+            margin: 30px 0 120px 4vw;
+            color: #666;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* ABSCHLUSS */
+
+        .category-outro {
+            position: relative;
+            padding: 70px 0 0;
+            border-top: 1px solid rgba(255,255,255,.14);
+        }
+
+        .category-outro > span {
+            color: var(--red);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .2em;
+        }
+
+        .category-outro h2 {
+            margin: 40px 0 85px;
+            font-size: clamp(55px, 8vw, 120px);
+            font-weight: 500;
+            line-height: .85;
+            letter-spacing: -.06em;
+        }
+
+        .category-outro h2 em {
+            color: var(--red);
+            font-style: normal;
+        }
+
+        .next-category {
+            display: grid;
+            grid-template-columns: 150px 90px minmax(0, 1fr) 50px;
+            align-items: center;
+            gap: 25px;
+            padding: 28px 0;
+            border-top: 1px solid rgba(255,255,255,.25);
+            border-bottom: 1px solid rgba(255,255,255,.25);
+            transition: padding .3s ease;
+        }
+
+        .next-category:hover {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .next-category > span {
+            color: #777;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        .next-category strong {
+            color: var(--red);
+            font-size: 42px;
+            font-weight: 500;
+        }
+
+        .next-category p {
+            font-size: clamp(17px, 2vw, 28px);
+            line-height: 1.1;
+        }
+
+        .next-category b {
+            color: var(--red);
+            font-size: 30px;
+            font-weight: 300;
+            text-align: right;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 35px;
+            color: #888;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .15em;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        /* STATUS UND EINBLENDUNG */
+
+        .data-status {
+            position: fixed;
+            z-index: 120;
+            right: 18px;
+            bottom: 18px;
+            max-width: calc(100vw - 36px);
+            padding: 10px 13px;
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(0,0,0,.88);
+            color: #999;
+            font-size: 10px;
+            line-height: 1.4;
+            transition: opacity .5s ease;
+        }
+
+        .data-status.loaded {
+            opacity: .45;
+        }
+
+        .empty-message,
+        .loading-message,
+        .error-message {
+            padding: 25px 0;
+            color: #888;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .error-message {
+            color: #ff7777;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            filter: blur(4px);
+            transition:
+                    opacity .9s ease,
+                    transform 1s cubic-bezier(.22,1,.36,1),
+                    filter .9s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        @media (max-width: 800px) {
+            .site-header { top: 18px; left: 18px; right: 18px; }
+            .nav-pill { padding: 6px 10px; font-size: 9px; }
+            .site-logo { font-size: 17px; }
+
+            .category-hero { min-height: 760px; height: 100svh; }
+            .category-nav { top: 70px; left: 15px; gap: 1px; }
+            .category-link { gap: 8px; min-height: 30px; padding: 3px 8px 3px 4px; }
+            .category-number { width: 23px; height: 23px; flex-basis: 23px; font-size: 7px; }
+            .category-title { font-size: 7px; letter-spacing: .07em; }
+
+            .hero-content { left: 6vw; right: 6vw; bottom: 6vh; }
+            .eyebrow { font-size: 8px; margin-bottom: 20px; }
+            .hero-content h1 { font-size: clamp(48px, 14vw, 90px); }
+            .hero-bottom { display: block; margin-top: 35px; }
+            .hero-bottom p { width: min(420px, 100%); font-size: 14px; }
+            .scroll-link { margin-top: 28px; font-size: 9px; }
+            .hero-index { top: 48%; right: 3vw; font-size: 42vw; }
+
+            .category-story { padding: 100px 6vw 60px; }
+            .chapter-intro { width: 100%; margin: 0 0 100px; }
+            .chapter-intro h2 { font-size: clamp(55px, 13vw, 90px); }
+            .chapter-intro p { width: 94%; margin: 30px 0 0 6%; font-size: 19px; }
+
+            .data-section { padding: 65px 0 75px; }
+            .section-marker { margin-bottom: 40px; font-size: 9px; }
+            .total-layout { grid-template-columns: 1fr; gap: 45px; }
+            .big-number { font-size: clamp(95px, 27vw, 180px); }
+            .total-copy h3,
+            .section-heading h3 { font-size: clamp(42px, 10vw, 65px); }
+            .section-heading { display: block; margin-bottom: 35px; }
+            .section-heading .stat-label { margin-bottom: 25px; }
+            .section-heading p { margin-top: 20px; font-size: 14px; }
+
+            .chart-panel-heading { font-size: 7px; letter-spacing: .1em; }
+            .year-chart { min-height: 240px; gap: 5px; padding-top: 20px; }
+            .year-bar-item { grid-template-rows: 22px 1fr 20px; gap: 8px; }
+            .year-bar-value { font-size: 8px; writing-mode: vertical-rl; transform: rotate(180deg); }
+            .year-bar-track { min-height: 165px; }
+            .year-bar-label { font-size: 8px; transform: rotate(-45deg); transform-origin: center; }
+
+            .horizontal-chart { gap: 25px; }
+            .bar-label { font-size: 12px; }
+            .bar-value { font-size: 17px; }
+
+            .offence-row { grid-template-columns: 28px minmax(0,1fr) 68px; gap: 10px; min-height: 72px; }
+            .offence-name { font-size: 12px; }
+            .offence-value { font-size: 18px; }
+
+            .data-note { margin: 10px 0 80px; }
+            .category-outro h2 { font-size: clamp(45px, 11vw, 75px); margin-bottom: 55px; }
+            .next-category { grid-template-columns: 1fr 45px 2fr 20px; gap: 10px; padding: 22px 0; }
+            .next-category > span { font-size: 7px; line-height: 1.4; }
+            .next-category strong { font-size: 28px; }
+            .next-category p { font-size: 12px; }
+            .next-category b { font-size: 20px; }
+            .back-link { line-height: 1.5; }
+            .data-status { right: 10px; bottom: 10px; font-size: 9px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
+        }
+
+        /* AUFKLAPPBARE GESETZESTEXTE */
+
+        .offence-item {
+            border-top: 1px solid var(--line);
+        }
+
+        .offence-item:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .offence-item .offence-row {
+            width: 100%;
+            min-height: 82px;
+            display: grid;
+            grid-template-columns: 50px minmax(0, 1fr) 120px 24px;
+            align-items: center;
+            gap: 20px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            text-align: left;
+            cursor: pointer;
+            transition: padding .25s ease;
+        }
+
+        .offence-item .offence-row:hover {
+            padding-left: 12px;
+        }
+
+        .offence-item .offence-row:focus-visible {
+            outline: 1px solid var(--red);
+            outline-offset: -2px;
+        }
+
+        .offence-item .offence-row[aria-expanded="true"] .offence-toggle-icon {
+            transform: rotate(45deg);
+            color: var(--red);
+        }
+
+        .offence-item .offence-row.no-article {
+            cursor: default;
+        }
+
+        .offence-item .offence-row.no-article:hover {
+            padding-left: 0;
+        }
+
+        .offence-toggle-icon {
+            color: #888;
+            font-size: 25px;
+            font-weight: 300;
+            text-align: center;
+            transition: transform .25s ease, color .25s ease;
+        }
+
+        .offence-detail {
+            padding: 0 8% 32px 70px;
+            color: #aaa;
+            animation: article-reveal .3s ease both;
+        }
+
+        .offence-detail[hidden] {
+            display: none;
+        }
+
+        .offence-article-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .offence-article-heading h4 {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .offence-article-heading span {
+            color: var(--red);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+
+        .offence-detail p {
+            max-width: 900px;
+            margin: 0 0 14px;
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .offence-detail p:last-child {
+            margin-bottom: 0;
+        }
+
+        @keyframes article-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .offence-item .offence-row {
+                grid-template-columns: 28px minmax(0, 1fr) 68px 18px;
+                gap: 10px;
+                min-height: 72px;
+            }
+
+            .offence-item .offence-row:hover { padding-left: 5px; }
+            .offence-toggle-icon { font-size: 21px; }
+            .offence-detail { padding: 0 4px 26px 38px; }
+            .offence-article-heading h4 { font-size: 15px; }
+            .offence-detail p { font-size: 12px; line-height: 1.65; }
+        }
+
+        /* INFOFELD DER SÄULEN */
+
+        .year-bar-item {
+            position: relative;
+            cursor: help;
+            outline: none;
+        }
+
+        .year-bar-item:hover .year-chart-tooltip,
+        .year-bar-item:focus-visible .year-chart-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        .year-chart-tooltip {
+            position: absolute;
+            z-index: 30;
+            left: 50%;
+            bottom: calc(100% - 30px);
+            width: max-content;
+            min-width: 220px;
+            max-width: min(330px, 80vw);
+            padding: 15px 16px;
+            background: #151515;
+            border: 1px solid rgba(255,255,255,.2);
+            box-shadow: 0 12px 35px rgba(0,0,0,.55);
+            color: #eee;
+            text-align: left;
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 8px);
+            transition:
+                    opacity .18s ease,
+                    transform .18s ease,
+                    visibility .18s ease;
+            pointer-events: none;
+        }
+
+        .year-chart-tooltip-title {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--red);
+            font-size: 12px;
+            letter-spacing: .08em;
+        }
+
+        .year-chart-tooltip-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 18px;
+            padding: 7px 0;
+            border-top: 1px solid rgba(255,255,255,.1);
+            align-items: start;
+        }
+
+        .year-chart-tooltip-name {
+            color: #ccc;
+            font-size: 11px;
+            line-height: 1.35;
+            white-space: normal;
+        }
+
+        .year-chart-tooltip-value {
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .year-chart-tooltip-empty {
+            color: #999;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 800px) {
+            .year-chart-tooltip {
+                min-width: 190px;
+                max-width: min(260px, 76vw);
+                padding: 12px;
+            }
+
+            .year-chart-tooltip-name {
+                font-size: 10px;
+            }
+        }
+
+        /* KREISDIAGRAMME */
+
+        .pie-chart-layout {
+            display: grid;
+            grid-template-columns:
+                minmax(170px, 240px)
+                minmax(220px, 1fr)
+                110px;
+            align-items: center;
+            column-gap: clamp(25px, 5vw, 70px);
+            row-gap: 28px;
+            padding-top: 35px;
+        }
+
+        .pie-chart {
+            width: min(100%, 240px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.14);
+            box-shadow: 0 0 0 8px rgba(255,255,255,.015);
+        }
+
+        .pie-chart-legend {
+            display: grid;
+            gap: 0;
+            min-width: 0;
+        }
+
+        .pie-legend-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .pie-legend-row:first-child {
+            border-top: 1px solid var(--line);
+        }
+
+        .pie-legend-left {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .pie-legend-swatch {
+            width: 10px;
+            height: 10px;
+            flex: 0 0 10px;
+            margin-top: 4px;
+            border-radius: 50%;
+        }
+
+        .pie-legend-label {
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .pie-legend-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            flex: 0 0 auto;
+        }
+
+        .pie-legend-value {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .pie-legend-percentage {
+            color: #888;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .pie-chart-total {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            padding-left: 15px;
+        }
+
+        .pie-chart-total span {
+            color: #777;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        .pie-chart-total strong {
+            color: var(--red);
+            font-size: clamp(28px, 3vw, 44px);
+            font-weight: 500;
+            letter-spacing: -.04em;
+        }
+
+        @media (max-width: 800px) {
+            .pie-chart-layout {
+                grid-template-columns:
+                    minmax(120px, 160px)
+                    minmax(0, 1fr);
+                column-gap: 22px;
+                row-gap: 25px;
+                padding-top: 25px;
+            }
+
+            .pie-chart { width: 100%; }
+            .pie-legend-row { gap: 10px; padding: 12px 0; }
+            .pie-legend-left { gap: 8px; }
+            .pie-legend-label { font-size: 11px; }
+            .pie-legend-value { font-size: 14px; }
+            .pie-legend-percentage { font-size: 10px; }
+
+            .pie-chart-total {
+                grid-column: 1 / -1;
+                align-items: flex-start;
+                padding: 0;
+            }
+
+            .pie-chart-total strong {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pie-chart-layout {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+
+            .pie-chart { width: min(65vw, 210px); }
+            .pie-chart-legend { width: 100%; }
+            .pie-chart-total { justify-self: stretch; }
+        }
+
+        #gender-chart,
+        #gender-chart canvas,
+        #gender-chart svg,
+        #gender-chart .pie-chart,
+        #gender-chart .pie-slice {
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        #gender-chart svg path {
+            stroke: none !important;
+            stroke-width: 0 !important;
+        }
+
+        #gender-chart canvas {
+            border: none !important;
+            background: transparent !important;
+        }
+
+        .category-page .category-nav {
+            display: none !important;
+        }
+
+        /* HOVER UND RESPONSIVE DARSTELLUNG */
+
+        .category-page img,
+        .category-page video,
+        .category-page svg {
+            max-width: 100%;
+        }
+
+        .category-page .chapter-intro,
+        .category-page .total-layout > *,
+        .category-page .section-heading > *,
+        .category-page .chart-panel,
+        .category-page .pie-chart-layout > * {
+            min-width: 0;
+        }
+
+        .category-page .reveal.is-visible {
+            transform: none;
+            filter: none;
+        }
+
+        #year-chart .year-bar-fill {
+            transform: scale(1);
+            transform-origin: center bottom;
+            opacity: 1;
+            pointer-events: none;
+            transition:
+                    height .8s cubic-bezier(.22, 1, .36, 1),
+                    transform 220ms ease,
+                    opacity 220ms ease;
+        }
+
+        #year-chart .year-bar-item.is-dimmed .year-bar-fill {
+            opacity: .25;
+        }
+
+        #year-chart .year-bar-item.is-active {
+            z-index: 5;
+        }
+
+        #year-chart .year-bar-item.is-active .year-bar-fill {
+            opacity: 1;
+            transform: scale(1.2, 1.04);
+        }
+
+        #year-chart .year-bar-item.is-active .year-bar-value {
+            color: #fff;
+        }
+
+        #year-chart .year-bar-item:focus-visible .year-bar-fill {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+        }
+
+        #category-year-tooltip {
+            position: fixed;
+            inset: auto;
+            z-index: 10000;
+            width: min(360px, calc(100vw - 24px));
+            min-width: 0;
+            max-width: calc(100vw - 24px);
+            max-height: calc(100dvh - 24px);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transform: none;
+            pointer-events: auto;
+            transition: opacity 160ms ease, visibility 160ms ease;
+        }
+
+        #category-year-tooltip.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .category-tooltip-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        #category-year-tooltip .year-chart-tooltip-title {
+            min-width: 0;
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .category-tooltip-close {
+            flex: 0 0 44px;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #555;
+            background: transparent;
+            color: #fff;
+            font: inherit;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .category-tooltip-close:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+        }
+
+        #category-year-tooltip .year-chart-tooltip-row {
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 16px;
+        }
+
+        #category-year-tooltip .year-chart-tooltip-name {
+            font-size: 13px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        #category-year-tooltip .year-chart-tooltip-value {
+            font-size: 14px;
+        }
+
+        .category-page .pie-legend-left,
+        .category-page .pie-legend-label {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 1024px) {
+            .category-page .pie-chart-layout {
+                grid-template-columns:
+                    minmax(160px, 220px)
+                    minmax(0, 1fr);
+                column-gap: 32px;
+            }
+
+            .category-page .pie-chart-total {
+                grid-column: 1 / -1;
+                padding: 0;
+                align-items: flex-start;
+            }
+
+            .category-page .hero-content h1 {
+                font-size: clamp(40px, 7.4vw, 88px);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .category-page .site-header {
+                top: max(12px, env(safe-area-inset-top));
+                left: 16px;
+                right: 16px;
+                gap: 12px;
+            }
+
+            .category-page .main-nav {
+                gap: 6px;
+                min-width: 0;
+            }
+
+            .category-page .nav-pill {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 44px;
+                padding: 10px 12px;
+                font-size: 10px;
+                white-space: nowrap;
+            }
+
+            .category-page .site-logo {
+                position: static;
+                flex: 0 0 auto;
+                transform: none;
+                font-size: 18px;
+            }
+
+            .category-page .category-hero {
+                display: flex;
+                align-items: flex-end;
+                min-height: 100svh;
+                height: auto;
+            }
+
+            .category-page .hero-content {
+                position: relative;
+                inset: auto;
+                width: 100%;
+                min-width: 0;
+                padding: 140px 20px 48px;
+            }
+
+            .category-page .hero-content h1 {
+                font-size: clamp(30px, 8.4vw, 64px);
+                line-height: .95;
+                overflow-wrap: anywhere;
+                hyphens: auto;
+            }
+
+            .category-page .hero-bottom {
+                display: grid;
+                gap: 24px;
+                margin-top: 28px;
+            }
+
+            .category-page .hero-bottom p {
+                width: 100%;
+                max-width: 44ch;
+                font-size: 16px;
+                line-height: 1.55;
+            }
+
+            .category-page .eyebrow,
+            .category-page .chapter-small,
+            .category-page .stat-label,
+            .category-page .section-marker {
+                font-size: 11px;
+                line-height: 1.5;
+                letter-spacing: .12em;
+            }
+
+            .category-page .scroll-link {
+                min-height: 44px;
+                margin-top: 0;
+                font-size: 11px;
+                line-height: 1.5;
+                white-space: normal;
+            }
+
+            .category-page .hero-index {
+                top: 35%;
+            }
+
+            .category-page .category-story {
+                padding: 64px 20px;
+            }
+
+            .category-page .chapter-intro {
+                width: 100%;
+                margin: 0 0 72px;
+            }
+
+            .category-page .chapter-intro h2 {
+                font-size: clamp(34px, 10vw, 68px);
+                line-height: .98;
+                overflow-wrap: anywhere;
+            }
+
+            .category-page .chapter-intro p {
+                width: 100%;
+                margin: 24px 0 0;
+                font-size: 18px;
+                line-height: 1.55;
+            }
+
+            .category-page .data-section {
+                padding: 48px 0 56px;
+            }
+
+            .category-page .section-marker {
+                margin-bottom: 28px;
+            }
+
+            .category-page .total-layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 32px;
+            }
+
+            .category-page .big-number {
+                font-size: clamp(64px, 22vw, 140px);
+                white-space: nowrap;
+                overflow-wrap: normal;
+                letter-spacing: -.055em;
+            }
+
+            .category-page .total-copy h3,
+            .category-page .section-heading h3 {
+                font-size: clamp(28px, 8vw, 48px);
+                line-height: 1.04;
+                overflow-wrap: anywhere;
+            }
+
+            .category-page .total-copy p,
+            .category-page .section-heading p {
+                font-size: 16px;
+                line-height: 1.65;
+            }
+
+            .category-page .section-heading {
+                display: block;
+                margin-bottom: 28px;
+            }
+
+            .category-page .chart-panel-heading {
+                flex-wrap: wrap;
+                gap: 8px 16px;
+                font-size: 11px;
+                line-height: 1.5;
+                letter-spacing: .08em;
+            }
+
+            .category-page #year-chart {
+                grid-template-columns: repeat(10, minmax(48px, 1fr));
+                gap: 12px;
+                min-height: 300px;
+                width: 100%;
+                overflow-x: auto;
+                overflow-y: hidden;
+                overscroll-behavior-x: contain;
+                padding: 24px 8px 20px;
+                scrollbar-width: thin;
+                scrollbar-color: #ff1212 #222;
+            }
+
+            .category-page .year-bar-item {
+                grid-template-rows: 28px 1fr 28px;
+                gap: 10px;
+                touch-action: pan-x pan-y;
+            }
+
+            .category-page .year-bar-value {
+                font-size: 12px;
+                line-height: 1.5;
+                writing-mode: horizontal-tb;
+                transform: none;
+                white-space: nowrap;
+            }
+
+            .category-page .year-bar-label {
+                font-size: 12px;
+                line-height: 1.5;
+                transform: none;
+                white-space: nowrap;
+            }
+
+            .category-page .year-bar-track {
+                min-height: 190px;
+            }
+
+            .category-page .chart-panel:has(.year-chart)::after {
+                content: "Seitlich wischen, um alle Jahre zu sehen.";
+                display: block;
+                margin-top: 12px;
+                color: #aaa;
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .category-page .pie-chart-layout {
+                grid-template-columns: minmax(0, 1fr);
+                justify-items: center;
+                gap: 28px;
+                padding-top: 28px;
+            }
+
+            .category-page .pie-chart {
+                width: min(76vw, 280px);
+                max-width: 100%;
+            }
+
+            .category-page .pie-chart-legend {
+                width: 100%;
+            }
+
+            .category-page .pie-legend-row {
+                gap: 16px;
+                padding: 16px 0;
+            }
+
+            .category-page .pie-legend-label {
+                font-size: 15px;
+                line-height: 1.5;
+            }
+
+            .category-page .pie-legend-value {
+                font-size: 21px;
+            }
+
+            .category-page .pie-legend-percentage {
+                font-size: 13px;
+            }
+
+            .category-page .pie-chart-total {
+                justify-self: stretch;
+                gap: 8px;
+            }
+
+            .category-page .pie-chart-total span {
+                font-size: 11px;
+            }
+
+            .category-page .offence-item .offence-row {
+                grid-template-columns: 24px minmax(0, 1fr) auto 24px;
+                gap: 8px;
+                min-height: 76px;
+                padding: 12px 0;
+            }
+
+            .category-page .offence-item .offence-row:hover {
+                padding-left: 0;
+            }
+
+            .category-page .offence-name {
+                font-size: 14px;
+                line-height: 1.5;
+                overflow-wrap: anywhere;
+            }
+
+            .category-page .offence-value {
+                font-size: 18px;
+                white-space: nowrap;
+            }
+
+            .category-page .offence-detail {
+                padding: 4px 0 24px;
+            }
+
+            .category-page .offence-article-heading h4 {
+                font-size: 18px;
+                overflow-wrap: anywhere;
+            }
+
+            .category-page .offence-detail p {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+
+            .category-page .data-note,
+            .category-page .back-link {
+                font-size: 13px;
+                line-height: 1.65;
+            }
+
+            .category-page .back-link {
+                min-height: 44px;
+                padding: 12px 0;
+            }
+
+            .category-page .category-outro h2 {
+                font-size: clamp(32px, 9vw, 60px);
+                line-height: 1.02;
+                overflow-wrap: anywhere;
+            }
+
+            .category-page .next-category {
+                grid-template-columns: 44px minmax(0, 1fr) 24px;
+                gap: 12px;
+            }
+
+            .category-page .next-category > span {
+                grid-column: 1 / -1;
+                font-size: 11px;
+            }
+
+            .category-page .next-category p {
+                font-size: 14px;
+                line-height: 1.4;
+                overflow-wrap: anywhere;
+            }
+
+            #category-year-tooltip {
+                max-height: min(52dvh, 380px);
+            }
+
+            .category-page .data-status {
+                max-width: calc(100vw - 24px);
+                font-size: 11px;
+                bottom: max(12px, env(safe-area-inset-bottom));
+                pointer-events: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #year-chart .year-bar-fill,
+            #category-year-tooltip {
+                transition: none;
+            }
+        }
+    </style>
 </head>
+
 <body class="category-page sexual-page">
+
 <header class="site-header" id="header">
     <nav class="main-nav" aria-label="Hauptnavigation">
         <a class="nav-pill" href="index.html">START</a>
         <a class="nav-pill" href="index.html#about">ABOUT US</a>
     </nav>
-    <a class="site-logo" href="index.html" aria-label="VOICES – Startseite">VOICES</a>
+
+    <a
+            class="site-logo"
+            href="index.html"
+            aria-label="VOICES – Startseite"
+    >
+        VOICES
+    </a>
 </header>
 
 <main>
+
+    <!-- HERO -->
+
     <section class="category-hero" id="top">
-        <video class="category-hero-video" autoplay muted loop playsinline aria-hidden="true">
-            <source src="assets/Videos/Trampolin.mp4" type="video/mp4">
+        <video
+                class="category-hero-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                aria-hidden="true"
+        >
+            <source
+                    src="assets/Videos/Trampolin.mp4"
+                    type="video/mp4"
+            >
         </video>
+
         <div class="hero-shade"></div>
 
         <nav class="category-nav" aria-label="Gewaltkategorien">
-            <a class="category-link" href="koerperliche-gewalt.html"><span class="category-number">01</span><span class="category-title">KÖRPERLICHE GEWALT<br>&amp; TÖTUNG</span></a>
-            <a class="category-link" href="verbale-gewalt.html"><span class="category-number">02</span><span class="category-title">VERBALE/DIGITALE GEWALT<br>&amp; EHRVERLETZUNG</span></a>
-            <a class="category-link" href="drohung-zwang.html"><span class="category-number">03</span><span class="category-title">DROHUNG, ZWANG<br>&amp; FREIHEITSENTZUG</span></a>
-            <a class="category-link active" href="sexualdelikte.html" aria-current="page"><span class="category-number">04</span><span class="category-title">SEXUALDELIKTE</span></a>
-            <a class="category-link" href="uebrige-straftaten.html"><span class="category-number">05</span><span class="category-title">ÜBRIGE STRAFTATEN</span></a>
+            <a class="category-link" href="koerperliche-gewalt.html">
+                <span class="category-number">01</span>
+                <span class="category-title">
+                    KÖRPERLICHE GEWALT<br>&amp; TÖTUNG
+                </span>
+            </a>
+
+            <a class="category-link" href="verbale-gewalt.html">
+                <span class="category-number">02</span>
+                <span class="category-title">
+                    VERBALE/DIGITALE GEWALT<br>&amp; EHRVERLETZUNG
+                </span>
+            </a>
+
+            <a class="category-link" href="drohung-zwang.html">
+                <span class="category-number">03</span>
+                <span class="category-title">
+                    DROHUNG, ZWANG<br>&amp; FREIHEITSENTZUG
+                </span>
+            </a>
+
+            <a
+                    class="category-link active"
+                    href="sexualdelikte.html"
+                    aria-current="page"
+            >
+                <span class="category-number">04</span>
+                <span class="category-title">SEXUALDELIKTE</span>
+            </a>
+
+            <a class="category-link" href="uebrige-straftaten.html">
+                <span class="category-number">05</span>
+                <span class="category-title">ÜBRIGE STRAFTATEN</span>
+            </a>
         </nav>
 
         <div class="hero-content">
             <span class="eyebrow">04 / GEWALTKATEGORIE</span>
-            <h1>SEXUAL-<br><span>DELIKTE</span></h1>
+
+            <h1>
+                SEXUAL-<br>
+                <span>DELIKTE</span>
+            </h1>
+
             <div class="hero-bottom">
-                <p>Sexualisierte Gewalt kann viele Formen annehmen. Die Daten zeigen registrierte Fälle bei Kindern und Jugendlichen – und damit nur einen Teil der Realität.</p>
-                <a class="scroll-link" href="#category-story"><span class="scroll-icon">↓</span> DATEN ENTDECKEN</a>
+                <p>
+                    Sexualisierte Gewalt kann viele Formen annehmen.
+                    Die Daten zeigen registrierte Fälle bei Kindern
+                    und Jugendlichen – und damit nur einen Teil der Realität.
+                </p>
+
+                <a class="scroll-link" href="#category-story">
+                    <span class="scroll-icon">↓</span>
+                    DATEN ENTDECKEN
+                </a>
             </div>
         </div>
+
         <span class="hero-index" aria-hidden="true">04</span>
     </section>
 
+    <!-- INHALTE -->
+
     <section class="category-story" id="category-story">
+
         <div class="chapter-intro reveal">
             <span class="chapter-small">04 / DIE KATEGORIE</span>
-            <h2>WENN GRENZEN<br>VERLETZT<br>WERDEN.</h2>
-            <p>Sexualdelikte unterscheiden sich in ihrer Form und ihren rechtlichen Voraussetzungen. Die folgenden Daten zeigen, welche Delikte bei Kindern und Jugendlichen registriert wurden.</p>
+
+            <h2>
+                WENN GRENZEN<br>
+                VERLETZT<br>
+                WERDEN.
+            </h2>
+
+            <p>
+                Sexualdelikte unterscheiden sich in ihrer Form und
+                ihren rechtlichen Voraussetzungen. Die folgenden Daten
+                zeigen, welche Delikte bei Kindern und Jugendlichen
+                registriert wurden.
+            </p>
         </div>
 
-        <section class="data-section reveal" aria-labelledby="total-heading">
-            <div class="section-marker"><span></span>01 / GESAMTZAHL</div>
+        <!-- ERSTE GRAFIK -->
+
+        <section
+                class="data-section reveal"
+                aria-labelledby="total-heading"
+        >
+            <div class="section-marker">
+                <span></span>
+                01 / GESAMTZAHL
+            </div>
+
             <div class="total-layout">
                 <div>
-                    <span class="stat-label">REGISTRIERTE OPFERFÄLLE · LETZTE 10 JAHRE</span>
+                    <span class="stat-label">
+                        REGISTRIERTE OPFERFÄLLE · LETZTE 10 JAHRE
+                    </span>
+
                     <strong class="big-number" id="total-cases">—</strong>
                 </div>
+
                 <div class="total-copy">
-                    <h3 id="total-heading">JEDER FALL<br>IST EINE STIMME.</h3>
-                    <p>Gezählt werden die in der Datenbank erfassten Fälle der zugeordneten Straftaten bei Kindern und Jugendlichen unter 18 Jahren.</p>
+                    <h3 id="total-heading">
+                        JEDER FALL<br>
+                        IST EINE STIMME.
+                    </h3>
+
+                    <p>
+                        Gezählt werden die in der Datenbank erfassten
+                        Fälle der zugeordneten Straftaten bei Kindern
+                        und Jugendlichen unter 18 Jahren.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <section class="data-section reveal" aria-labelledby="trend-heading">
-            <div class="section-marker"><span></span>02 / ENTWICKLUNG</div>
+        <!-- ZWEITE GRAFIK -->
+
+        <section
+                class="data-section reveal"
+                aria-labelledby="trend-heading"
+        >
+            <div class="section-marker">
+                <span></span>
+                02 / ENTWICKLUNG
+            </div>
+
             <div class="section-heading">
                 <span class="stat-label">ZEITVERLAUF</span>
-                <h3 id="trend-heading">WIE VERÄNDERN<br>SICH DIE ZAHLEN?</h3>
-                <p>Die jährliche Summe zeigt, wie sich die registrierten Fälle der ausgewählten Straftaten im betrachteten Zeitraum verändern.</p>
+
+                <h3 id="trend-heading">
+                    WIE VERÄNDERN<br>
+                    SICH DIE ZAHLEN?
+                </h3>
+
+                <p>
+                    Die jährliche Summe zeigt, wie sich die
+                    registrierten Fälle der ausgewählten Straftaten
+                    im betrachteten Zeitraum verändern.
+                </p>
             </div>
+
             <div class="chart-panel">
-                <div class="chart-panel-heading"><span>FÄLLE PRO JAHR</span><span id="period-label">—</span></div>
-                <div id="year-chart" class="bar-chart year-chart" role="img" aria-label="Registrierte Fälle pro Jahr"></div>
+                <div class="chart-panel-heading">
+                    <span>FÄLLE PRO JAHR</span>
+                    <span id="period-label">—</span>
+                </div>
+
+                <div
+                        id="year-chart"
+                        class="bar-chart year-chart"
+                        role="group"
+                        aria-label="Registrierte Fälle pro Jahr"
+                ></div>
             </div>
         </section>
 
-        <section class="data-section reveal" aria-labelledby="gender-heading">
-            <div class="section-marker"><span></span>03 / GESCHLECHT</div>
+        <!-- DRITTE GRAFIK -->
+
+        <section
+                class="data-section reveal"
+                aria-labelledby="gender-heading"
+        >
+            <div class="section-marker">
+                <span></span>
+                03 / GESCHLECHT
+            </div>
+
             <div class="section-heading">
                 <span class="stat-label">VERTEILUNG</span>
-                <h3 id="gender-heading">WER WIRD<br>REGISTRIERT?</h3>
-                <p>Die Aufteilung nach Geschlecht basiert auf den Geschlechtsangaben, die in den Quelldaten erfasst sind.</p>
+
+                <h3 id="gender-heading">
+                    WER WIRD<br>
+                    REGISTRIERT?
+                </h3>
+
+                <p>
+                    Die Aufteilung nach Geschlecht basiert auf den
+                    Geschlechtsangaben, die in den Quelldaten erfasst sind.
+                </p>
             </div>
+
             <div class="chart-panel">
-                <div class="chart-panel-heading"><span>FÄLLE NACH GESCHLECHT</span><span>ALLE JAHRE IM ZEITRAUM</span></div>
-                <div id="gender-chart" class="horizontal-chart" role="img" aria-label="Registrierte Fälle nach Geschlecht"></div>
+                <div class="chart-panel-heading">
+                    <span>FÄLLE NACH GESCHLECHT</span>
+                    <span>ALLE JAHRE IM ZEITRAUM</span>
+                </div>
+
+                <div
+                        id="gender-chart"
+                        class="horizontal-chart"
+                        role="img"
+                        aria-label="Registrierte Fälle nach Geschlecht"
+                ></div>
             </div>
         </section>
 
-        <section class="data-section reveal" aria-labelledby="age-heading">
-            <div class="section-marker"><span></span>04 / ALTER</div>
+        <!-- VIERTE GRAFIK -->
+
+        <section
+                class="data-section reveal"
+                aria-labelledby="age-heading"
+        >
+            <div class="section-marker">
+                <span></span>
+                04 / ALTER
+            </div>
+
             <div class="section-heading">
                 <span class="stat-label">ALTERSGRUPPEN</span>
-                <h3 id="age-heading">WANN WERDEN<br>FÄLLE ERFASST?</h3>
-                <p>Der Vergleich zeigt die Summe der Fälle in den Altersgruppen, wie sie in der Datenbank geführt werden. Er bildet nicht die Entwicklung einzelner Kinder ab.</p>
+
+                <h3 id="age-heading">
+                    WANN WERDEN<br>
+                    FÄLLE ERFASST?
+                </h3>
+
+                <p>
+                    Der Vergleich zeigt die Summe der Fälle in den
+                    Altersgruppen, wie sie in der Datenbank geführt
+                    werden. Er bildet nicht die Entwicklung einzelner
+                    Kinder ab.
+                </p>
             </div>
+
             <div class="chart-panel">
-                <div class="chart-panel-heading"><span>FÄLLE NACH ALTERSGRUPPE</span><span>UNTER 18 JAHRE</span></div>
-                <div id="age-chart" class="horizontal-chart" role="img" aria-label="Registrierte Fälle nach Altersgruppe"></div>
+                <div class="chart-panel-heading">
+                    <span>FÄLLE NACH ALTERSGRUPPE</span>
+                    <span>UNTER 18 JAHRE</span>
+                </div>
+
+                <div
+                        id="age-chart"
+                        class="horizontal-chart pie-chart-layout"
+                        role="img"
+                        aria-label="Registrierte Fälle nach Altersgruppe"
+                >
+                    <div
+                            class="pie-chart"
+                            style="background: #333"
+                            aria-hidden="true"
+                    ></div>
+
+                    <div class="pie-chart-legend">
+                        <div class="pie-legend-row">
+                            <div class="pie-legend-left">
+                                <span
+                                        class="pie-legend-swatch"
+                                        style="background: #ff1212"
+                                        aria-hidden="true"
+                                ></span>
+
+                                <span class="pie-legend-label">
+                                    Unter 10 Jahre
+                                </span>
+                            </div>
+
+                            <div class="pie-legend-right">
+                                <strong class="pie-legend-value">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="pie-legend-row">
+                            <div class="pie-legend-left">
+                                <span
+                                        class="pie-legend-swatch"
+                                        style="background: #f1f1f1"
+                                        aria-hidden="true"
+                                ></span>
+
+                                <span class="pie-legend-label">
+                                    10–14 Jahre
+                                </span>
+                            </div>
+
+                            <div class="pie-legend-right">
+                                <strong class="pie-legend-value">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="pie-legend-row">
+                            <div class="pie-legend-left">
+                                <span
+                                        class="pie-legend-swatch"
+                                        style="background: #777777"
+                                        aria-hidden="true"
+                                ></span>
+
+                                <span class="pie-legend-label">
+                                    15–17 Jahre
+                                </span>
+                            </div>
+
+                            <div class="pie-legend-right">
+                                <strong class="pie-legend-value">—</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pie-chart-total">
+                        <span>GESAMT</span>
+                        <strong>—</strong>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="data-section reveal" aria-labelledby="offence-heading">
-            <div class="section-marker"><span></span>05 / STRAFTATEN</div>
+        <!-- STRAFTATEN -->
+
+        <section
+                class="data-section reveal"
+                aria-labelledby="offence-heading"
+        >
+            <div class="section-marker">
+                <span></span>
+                05 / STRAFTATEN
+            </div>
+
             <div class="section-heading">
                 <span class="stat-label">UNTERKATEGORIEN</span>
-                <h3 id="offence-heading">VERSCHIEDENE DELIKTE.<br>VERLETZTE GRENZEN.</h3>
-                <p>Die Straftaten innerhalb des Clusters sind nach der Anzahl der registrierten Fälle geordnet. Klicke auf einen Eintrag, um den zugehörigen Gesetzestext zu öffnen.</p>
+
+                <h3 id="offence-heading">
+                    VERSCHIEDENE DELIKTE.<br>
+                    VERLETZTE GRENZEN.
+                </h3>
+
+                <p>
+                    Die Straftaten innerhalb des Clusters sind nach
+                    der Anzahl der registrierten Fälle geordnet.
+                    Klicke auf einen Eintrag, um den zugehörigen
+                    Gesetzestext zu öffnen.
+                </p>
             </div>
-            <div class="offence-list" id="offence-chart" role="list" aria-label="Registrierte Fälle nach Straftat">
+
+            <div
+                    class="offence-list"
+                    id="offence-chart"
+                    role="list"
+                    aria-label="Registrierte Fälle nach Straftat"
+            >
                 <p class="loading-message">Daten werden geladen …</p>
             </div>
         </section>
 
-        <p class="data-note">Datenquelle: Datenbank zur häuslichen Gewalt. Berücksichtigt werden die letzten zehn verfügbaren Jahre und die Altersgruppen unter 18 Jahren. Berücksichtigt werden sexuelle Handlungen mit Kindern (Art. 187), sexuelle Handlungen mit Abhängigen (Art. 188), sexueller Übergriff und sexuelle Nötigung (Art. 189), Vergewaltigung (Art. 190), Missbrauch einer urteilsunfähigen oder zum Widerstand unfähigen Person (Art. 191) sowie sexuelle Belästigungen (Art. 198).</p>
+        <p class="data-note">
+            Datenquelle: Datenbank zur häuslichen Gewalt.
+            Berücksichtigt werden die letzten zehn verfügbaren Jahre
+            und die Altersgruppen unter 18 Jahren. Berücksichtigt
+            werden sexuelle Handlungen mit Kindern (Art. 187),
+            sexuelle Handlungen mit Abhängigen (Art. 188),
+            sexueller Übergriff und sexuelle Nötigung (Art. 189),
+            Vergewaltigung (Art. 190), Missbrauch einer urteilsunfähigen
+            oder zum Widerstand unfähigen Person (Art. 191) sowie
+            sexuelle Belästigungen (Art. 198).
+        </p>
+
+        <!-- KAPITELENDE -->
 
         <div class="category-outro reveal">
             <span>04 / ENDE DES KAPITELS</span>
-            <h2>SELBSTBESTIMMUNG<br>BEGINNT MIT<br><em>RESPEKT.</em></h2>
+
+            <h2>
+                SELBSTBESTIMMUNG<br>
+                BEGINNT MIT<br>
+                <em>RESPEKT.</em>
+            </h2>
+
             <a href="uebrige-straftaten.html" class="next-category">
-                <span>NÄCHSTE KATEGORIE</span><strong>05</strong>
-                <p>ÜBRIGE STRAFTATEN</p><b aria-hidden="true">→</b>
+                <span>NÄCHSTE KATEGORIE</span>
+                <strong>05</strong>
+                <p>ÜBRIGE STRAFTATEN</p>
+                <b aria-hidden="true">→</b>
             </a>
-            <a class="back-link" href="index.html#story">← ZURÜCK ZUR GESAMTÜBERSICHT</a>
+
+            <a class="back-link" href="index.html#story">
+                ← ZURÜCK ZUR GESAMTÜBERSICHT
+            </a>
         </div>
     </section>
 </main>
 
-<div id="data-status" class="data-status" role="status" aria-live="polite">Daten werden geladen …</div>
+<div
+        id="data-status"
+        class="data-status"
+        role="status"
+        aria-live="polite"
+>
+    Daten werden geladen …
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Altersgruppen exakt wie von unload.php geliefert.
-        // Berücksichtigt werden alle drei Altersgruppen unter 18 Jahren.
+
+        /* ALTERSGRUPPEN */
+
         const ageLabels = {
-            "kids": "Unter 10 Jahre",
-            "teens": "10–14 Jahre",
-            "youngadult": "15–17 Jahre"
+            kids: "Unter 10 Jahre",
+            teens: "10–14 Jahre",
+            youngadult: "15–17 Jahre"
         };
 
         const ageOrder = ["kids", "teens", "youngadult"];
-        // Nur Straftaten aus Cluster 04 berücksichtigen.
+
+        /* STRAFTATEN DIESER KATEGORIE */
+
         const offenceMatches = [
             "Sexuelle Handlungen mit Kindern (Art. 187)",
             "Sexuelle Handlungen mit Abhängigen (Art. 188)",
@@ -151,52 +2090,127 @@
             "Sexuelle Belästigungen (Art. 198)"
         ];
 
-        const normalize = value => String(value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+        /* HILFSFUNKTIONEN */
+
+        const normalize = value =>
+            String(value ?? "")
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, " ");
+
         const number = value => {
-            const parsed = Number(String(value ?? "0").replace(/'/g, "").replace(/,/g, "").trim());
+            const parsed = Number(
+                String(value ?? "0")
+                    .replace(/'/g, "")
+                    .replace(/,/g, "")
+                    .trim()
+            );
+
             return Number.isFinite(parsed) ? parsed : 0;
         };
-        const format = value => Math.round(value).toLocaleString("de-CH");
-        const isRelevantOffence = name => offenceMatches.some(term => normalize(name).includes(normalize(term)));
-        const isUnder18 = row => ageOrder.includes(normalize(row.altersgruppe));
+
+        const format = value =>
+            Math.round(value).toLocaleString("de-CH");
+
+        const isRelevantOffence = name =>
+            offenceMatches.some(
+                term => normalize(name).includes(normalize(term))
+            );
+
+        const normalizeAge = value => {
+            const key = normalize(value)
+                .replace(/[‐‑‒–—−]/g, "-")
+                .replace(/\s*-\s*/g, "-");
+
+            const aliases = {
+                "kids": "kids",
+                "<10": "kids",
+                "unter 10": "kids",
+                "unter 10 jahre": "kids",
+                "0-9": "kids",
+                "0-9 jahre": "kids",
+
+                "teens": "teens",
+                "10-14": "teens",
+                "10-14 jahre": "teens",
+
+                "youngadult": "youngadult",
+                "15-17": "youngadult",
+                "15-17 jahre": "youngadult"
+            };
+
+            return aliases[key] || key;
+        };
+
+        const isUnder18 = row =>
+            ageOrder.includes(normalizeAge(row.altersgruppe));
+
         const sumBy = (rows, keyFn) => {
             const result = new Map();
+
             rows.forEach(row => {
                 const key = keyFn(row);
-                result.set(key, (result.get(key) || 0) + number(row.anzahl));
+
+                result.set(
+                    key,
+                    (result.get(key) || 0) + number(row.anzahl)
+                );
             });
+
             return result;
         };
 
+        /* HORIZONTALE BALKEN */
+
         function renderBars(container, entries, options = {}) {
             container.replaceChildren();
+
             if (!entries.length) {
-                container.innerHTML = '<p class="empty-message">Für diese Auswahl liegen keine Daten vor.</p>';
+                container.innerHTML =
+                    '<p class="empty-message">Für diese Auswahl liegen keine Daten vor.</p>';
                 return;
             }
-            const max = Math.max(...entries.map(entry => entry.value), 1);
+
+            const max = Math.max(
+                ...entries.map(entry => entry.value),
+                1
+            );
+
             entries.forEach((entry, index) => {
                 const row = document.createElement("div");
                 row.className = "bar-row";
+
                 const top = document.createElement("div");
                 top.className = "bar-row-top";
+
                 const label = document.createElement("span");
                 label.className = "bar-label";
                 label.textContent = entry.label;
+
                 const value = document.createElement("strong");
                 value.className = "bar-value";
                 value.textContent = format(entry.value);
+
                 top.append(label, value);
+
                 const track = document.createElement("div");
                 track.className = "bar-track";
+
                 const fill = document.createElement("span");
-                fill.className = "bar-fill" + (options.redFirst && index === 0 ? " red" : "");
-                fill.style.width = `${(entry.value / max) * 100}%`;
+                fill.className =
+                    "bar-fill" +
+                    (options.redFirst && index === 0 ? " red" : "");
+
+                fill.style.width =
+                    `${(entry.value / max) * 100}%`;
+
                 track.append(fill);
                 row.append(top, track);
                 container.append(row);
             });
         }
+
+        /* KREISDIAGRAMME MIT FALLZAHLEN UND PROZENTEN */
 
         function renderPieChart(container, entries, chartLabel) {
             container.replaceChildren();
@@ -204,34 +2218,55 @@
             container.setAttribute("role", "img");
             container.setAttribute("aria-label", chartLabel);
 
-            const validEntries = entries.filter(entry => entry.value > 0);
-            const total = validEntries.reduce((sum, entry) => sum + entry.value, 0);
+            const colors = [
+                "#ff1212",
+                "#f1f1f1",
+                "#777777",
+                "#444444",
+                "#bcbcbc",
+                "#8b0000"
+            ];
 
-            if (!total) {
-                container.innerHTML = '<p class="empty-message">Für diese Auswahl liegen keine Daten vor.</p>';
-                return;
-            }
+            const legendEntries = entries.map((entry, index) => ({
+                ...entry,
+                color: entry.color || colors[index % colors.length]
+            }));
 
-            const colors = ["#ff1212", "#f1f1f1", "#777777", "#444444", "#bcbcbc", "#8b0000"];
+            const validEntries = legendEntries.filter(
+                entry => entry.value > 0
+            );
+
+            const total = validEntries.reduce(
+                (sum, entry) => sum + entry.value,
+                0
+            );
+
             let currentAngle = 0;
             const stops = [];
+
             const pie = document.createElement("div");
             pie.className = "pie-chart";
 
-            validEntries.forEach((entry, index) => {
+            validEntries.forEach(entry => {
                 const start = currentAngle;
+
                 currentAngle += (entry.value / total) * 360;
-                const color = colors[index % colors.length];
-                stops.push(`${color} ${start}deg ${currentAngle}deg`);
+
+                stops.push(
+                    `${entry.color} ${start}deg ${currentAngle}deg`
+                );
             });
 
-            pie.style.background = `conic-gradient(${stops.join(", ")})`;
+            pie.style.background = total > 0
+                ? `conic-gradient(${stops.join(", ")})`
+                : "#e5e5e5";
+
             pie.setAttribute("aria-hidden", "true");
 
             const legend = document.createElement("div");
             legend.className = "pie-chart-legend";
 
-            validEntries.forEach((entry, index) => {
+            legendEntries.forEach(entry => {
                 const row = document.createElement("div");
                 row.className = "pie-legend-row";
 
@@ -240,7 +2275,7 @@
 
                 const swatch = document.createElement("span");
                 swatch.className = "pie-legend-swatch";
-                swatch.style.backgroundColor = colors[index % colors.length];
+                swatch.style.backgroundColor = entry.color;
                 swatch.setAttribute("aria-hidden", "true");
 
                 const label = document.createElement("span");
@@ -256,7 +2291,16 @@
 
                 const percentage = document.createElement("span");
                 percentage.className = "pie-legend-percentage";
-                percentage.textContent = `${(entry.value / total * 100).toLocaleString("de-CH", { maximumFractionDigits: 1 })}%`;
+
+                const share = total > 0
+                    ? entry.value / total * 100
+                    : 0;
+
+                percentage.textContent =
+                    share.toLocaleString("de-CH", {
+                        minimumFractionDigits: 1,
+                        maximumFractionDigits: 1
+                    }) + "%";
 
                 left.append(swatch, label);
                 right.append(value, percentage);
@@ -266,66 +2310,431 @@
 
             const totalLabel = document.createElement("div");
             totalLabel.className = "pie-chart-total";
-            totalLabel.innerHTML = `<span>GESAMT</span><strong>${format(total)}</strong>`;
+
+            totalLabel.innerHTML =
+                `<span>GESAMT</span><strong>${format(total)}</strong>`;
+
             container.append(pie, legend, totalLabel);
         }
 
+        /* ALTERSGRAFIK MIT GENAU DREI GRUPPEN */
+
+        function renderAgeChart(rows) {
+            const byAge = sumBy(
+                rows,
+                row => normalizeAge(row.altersgruppe)
+            );
+
+            const entries = ageOrder.map(key => ({
+                label: ageLabels[key],
+                value: byAge.get(key) || 0
+            }));
+
+            renderPieChart(
+                document.getElementById("age-chart"),
+                entries,
+                "Fälle nach Altersgruppe: " +
+                entries.map(entry =>
+                    `${entry.label}: ${format(entry.value)} Fälle`
+                ).join("; ")
+            );
+        }
+
+        /* JAHRESSÄULEN MIT HOVER UND INFOFELD */
+
         function renderYearChart(yearRows) {
             const container = document.getElementById("year-chart");
+
+            if (container._cleanupYearHover) {
+                container._cleanupYearHover();
+            }
+
             container.replaceChildren();
+            container.setAttribute("role", "group");
+
             if (!yearRows.length) {
-                container.innerHTML = '<p class="empty-message">Für diesen Zeitraum liegen keine Daten vor.</p>';
+                container.innerHTML =
+                    '<p class="empty-message">Für diesen Zeitraum liegen keine Daten vor.</p>';
                 return;
             }
-            const max = Math.max(...yearRows.map(row => row.value), 1);
-            yearRows.forEach(row => {
-                const item = document.createElement("div");
-                item.className = "year-bar-item";
-                const value = document.createElement("span");
-                value.className = "year-bar-value";
-                value.textContent = format(row.value);
-                const track = document.createElement("div");
-                track.className = "year-bar-track";
-                const fill = document.createElement("span");
-                fill.className = "year-bar-fill";
-                fill.style.height = `${Math.max(2, (row.value / max) * 100)}%`;
-                track.append(fill);
-                const year = document.createElement("span");
-                year.className = "year-bar-label";
-                year.textContent = row.label;
 
-                const tooltip = document.createElement("div");
-                tooltip.className = "year-chart-tooltip";
-                tooltip.setAttribute("role", "tooltip");
-                const tooltipTitle = document.createElement("strong");
-                tooltipTitle.className = "year-chart-tooltip-title";
-                tooltipTitle.textContent = `${row.label} · ${format(row.value)} Fälle`;
-                tooltip.append(tooltipTitle);
+            const previous =
+                document.getElementById("category-year-tooltip");
+
+            if (previous) {
+                previous.remove();
+            }
+
+            const tooltip = document.createElement("div");
+            tooltip.id = "category-year-tooltip";
+            tooltip.className = "year-chart-tooltip";
+            tooltip.setAttribute("role", "dialog");
+            tooltip.setAttribute(
+                "aria-label",
+                "Fälle nach Straftat im gewählten Jahr"
+            );
+            tooltip.setAttribute("aria-hidden", "true");
+
+            const heading = document.createElement("div");
+            heading.className = "category-tooltip-heading";
+
+            const title = document.createElement("strong");
+            title.className = "year-chart-tooltip-title";
+
+            const closeButton = document.createElement("button");
+            closeButton.type = "button";
+            closeButton.className = "category-tooltip-close";
+            closeButton.setAttribute(
+                "aria-label",
+                "Infofeld schliessen"
+            );
+            closeButton.textContent = "×";
+
+            heading.append(title, closeButton);
+
+            const content = document.createElement("div");
+            tooltip.append(heading, content);
+            document.body.append(tooltip);
+
+            const items = [];
+            const max = Math.max(
+                ...yearRows.map(row => row.value),
+                1
+            );
+
+            let active = null;
+            let hideTimer;
+            let suppressFocus = false;
+            let pinned = false;
+
+            const abort = new AbortController();
+
+            const cancelHide = () =>
+                window.clearTimeout(hideTimer);
+
+            const hide = () => {
+                cancelHide();
+
+                items.forEach(item => {
+                    item.classList.remove("is-active", "is-dimmed");
+                    item.setAttribute("aria-expanded", "false");
+                });
+
+                active = null;
+                pinned = false;
+
+                tooltip.classList.remove("is-visible");
+                tooltip.setAttribute("aria-hidden", "true");
+            };
+
+            const close = () => {
+                const returnTarget = active;
+
+                hide();
+
+                if (returnTarget) {
+                    suppressFocus = true;
+                    returnTarget.focus({ preventScroll: true });
+                    suppressFocus = false;
+                }
+            };
+
+            const move = (event, item) => {
+                const bounds = tooltip.getBoundingClientRect();
+                const anchor = item.getBoundingClientRect();
+                const gap = 12;
+
+                let left;
+                let top;
+
+                if (
+                    window.matchMedia("(max-width: 800px)").matches
+                ) {
+                    left = gap;
+                    top = window.innerHeight - bounds.height - gap;
+                } else {
+                    const x = event
+                        ? event.clientX
+                        : anchor.left + anchor.width / 2;
+
+                    const y = event
+                        ? event.clientY
+                        : anchor.top;
+
+                    left = x + 18;
+                    top = y + 18;
+
+                    if (
+                        left + bounds.width >
+                        window.innerWidth - gap
+                    ) {
+                        left = x - bounds.width - 18;
+                    }
+
+                    if (
+                        top + bounds.height >
+                        window.innerHeight - gap
+                    ) {
+                        top = y - bounds.height - 18;
+                    }
+                }
+
+                tooltip.style.left = Math.max(
+                    gap,
+                    Math.min(
+                        left,
+                        window.innerWidth - bounds.width - gap
+                    )
+                ) + "px";
+
+                tooltip.style.top = Math.max(
+                    gap,
+                    Math.min(
+                        top,
+                        window.innerHeight - bounds.height - gap
+                    )
+                ) + "px";
+            };
+
+            const show = (item, row, event) => {
+                cancelHide();
+                active = item;
+
+                pinned = !!(
+                    event &&
+                    (
+                        event.type === "click" ||
+                        event.pointerType === "touch"
+                    )
+                );
+
+                items.forEach(other => {
+                    other.classList.toggle(
+                        "is-active",
+                        other === item
+                    );
+
+                    other.classList.toggle(
+                        "is-dimmed",
+                        other !== item
+                    );
+
+                    other.setAttribute(
+                        "aria-expanded",
+                        String(other === item)
+                    );
+                });
+
+                title.textContent =
+                    `${row.label} · ${format(row.value)} Fälle`;
+
+                content.replaceChildren();
+
                 if (row.offences && row.offences.length) {
                     row.offences.forEach(offence => {
                         const line = document.createElement("div");
                         line.className = "year-chart-tooltip-row";
-                        const offenceName = document.createElement("span");
-                        offenceName.className = "year-chart-tooltip-name";
-                        offenceName.textContent = offence.label;
-                        const offenceValue = document.createElement("strong");
-                        offenceValue.className = "year-chart-tooltip-value";
-                        offenceValue.textContent = format(offence.value);
-                        line.append(offenceName, offenceValue);
-                        tooltip.append(line);
+
+                        const name = document.createElement("span");
+                        name.className = "year-chart-tooltip-name";
+                        name.textContent = offence.label;
+
+                        const value = document.createElement("strong");
+                        value.className = "year-chart-tooltip-value";
+                        value.textContent = format(offence.value);
+
+                        line.append(name, value);
+                        content.append(line);
                     });
                 } else {
-                    const noData = document.createElement("p");
-                    noData.className = "year-chart-tooltip-empty";
-                    noData.textContent = "Keine Fälle in diesem Jahr.";
-                    tooltip.append(noData);
+                    const empty = document.createElement("p");
+                    empty.className = "year-chart-tooltip-empty";
+                    empty.textContent = "Keine Fälle in diesem Jahr.";
+
+                    content.append(empty);
                 }
+
+                tooltip.classList.add("is-visible");
+                tooltip.setAttribute("aria-hidden", "false");
+
+                move(event, item);
+            };
+
+            const scheduleHide = () => {
+                cancelHide();
+
+                hideTimer = window.setTimeout(() => {
+                    if (
+                        !pinned &&
+                        active &&
+                        document.activeElement !== active &&
+                        !tooltip.contains(document.activeElement)
+                    ) {
+                        hide();
+                    }
+                }, 150);
+            };
+
+            yearRows.forEach(row => {
+                const item = document.createElement("div");
+                item.className = "year-bar-item";
                 item.tabIndex = 0;
-                item.setAttribute("aria-label", `${row.label}: ${format(row.value)} Fälle insgesamt. Hoovern oder fokussieren für die Aufschlüsselung nach Straftat.`);
-                item.append(value, track, year, tooltip);
+                item.setAttribute("role", "button");
+                item.setAttribute("aria-controls", tooltip.id);
+                item.setAttribute("aria-expanded", "false");
+                item.setAttribute(
+                    "aria-label",
+                    `${row.label}: ${format(row.value)} Fälle. Details anzeigen.`
+                );
+
+                const value = document.createElement("span");
+                value.className = "year-bar-value";
+                value.textContent = format(row.value);
+
+                const track = document.createElement("div");
+                track.className = "year-bar-track";
+
+                const fill = document.createElement("span");
+                fill.className = "year-bar-fill";
+                fill.style.height =
+                    `${Math.max(2, row.value / max * 100)}%`;
+
+                track.append(fill);
+
+                const year = document.createElement("span");
+                year.className = "year-bar-label";
+                year.textContent = row.label;
+
+                item.append(value, track, year);
+
+                items.push(item);
                 container.append(item);
+
+                item.addEventListener("pointerenter", event => {
+                    if (event.pointerType !== "touch") {
+                        show(item, row, event);
+                    }
+                });
+
+                item.addEventListener("pointermove", event => {
+                    if (
+                        active === item &&
+                        event.pointerType !== "touch"
+                    ) {
+                        cancelHide();
+                        move(event, item);
+                    }
+                });
+
+                item.addEventListener("pointerleave", event => {
+                    if (
+                        active === item &&
+                        !tooltip.contains(event.relatedTarget)
+                    ) {
+                        scheduleHide();
+                    }
+                });
+
+                item.addEventListener("focus", () => {
+                    if (!suppressFocus) {
+                        show(item, row, null);
+                    }
+                });
+
+                item.addEventListener("blur", event => {
+                    if (
+                        active === item &&
+                        !tooltip.contains(event.relatedTarget)
+                    ) {
+                        hide();
+                    }
+                });
+
+                item.addEventListener("click", event => {
+                    show(item, row, event);
+                });
+
+                item.addEventListener("keydown", event => {
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+                        event.preventDefault();
+
+                        if (active === item) {
+                            hide();
+                        } else {
+                            show(item, row, null);
+                        }
+                    }
+                });
             });
+
+            closeButton.addEventListener("click", close);
+
+            tooltip.addEventListener("pointerenter", cancelHide);
+            tooltip.addEventListener("pointerleave", scheduleHide);
+
+            document.addEventListener(
+                "keydown",
+                event => {
+                    if (event.key === "Escape" && active) {
+                        close();
+                    }
+                },
+                { signal: abort.signal }
+            );
+
+            document.addEventListener(
+                "pointerdown",
+                event => {
+                    if (
+                        !container.contains(event.target) &&
+                        !tooltip.contains(event.target)
+                    ) {
+                        hide();
+                    }
+                },
+                { signal: abort.signal }
+            );
+
+            window.addEventListener(
+                "resize",
+                hide,
+                { signal: abort.signal }
+            );
+
+            window.addEventListener(
+                "scroll",
+                event => {
+                    const target = event.target;
+
+                    if (
+                        target !== tooltip &&
+                        !(
+                            target &&
+                            target.nodeType &&
+                            tooltip.contains(target)
+                        )
+                    ) {
+                        hide();
+                    }
+                },
+                {
+                    passive: true,
+                    capture: true,
+                    signal: abort.signal
+                }
+            );
+
+            container._cleanupYearHover = () => {
+                hide();
+                abort.abort();
+                tooltip.remove();
+            };
         }
+
+        /* HINTERLEGTE GESETZESTEXTE */
 
         const legalArticles = [
             {
@@ -390,19 +2799,29 @@
 
         function articleForOffence(offenceName) {
             const normalizedName = normalize(offenceName);
-            return legalArticles.find(article => normalizedName.includes(article.match));
+
+            return legalArticles.find(
+                article => normalizedName.includes(article.match)
+            );
         }
 
+        /* AUFKLAPPBARE STRAFTATENLISTE */
+
         function renderOffences(entries) {
-            const container = document.getElementById("offence-chart");
+            const container =
+                document.getElementById("offence-chart");
+
             container.replaceChildren();
+
             if (!entries.length) {
-                container.innerHTML = '<p class="empty-message">Für diese Auswahl liegen keine Daten vor.</p>';
+                container.innerHTML =
+                    '<p class="empty-message">Für diese Auswahl liegen keine Daten vor.</p>';
                 return;
             }
 
             entries.forEach((entry, index) => {
                 const article = articleForOffence(entry.label);
+
                 const item = document.createElement("div");
                 item.className = "offence-item";
                 item.setAttribute("role", "listitem");
@@ -414,7 +2833,8 @@
 
                 const rank = document.createElement("span");
                 rank.className = "offence-rank";
-                rank.textContent = String(index + 1).padStart(2, "0");
+                rank.textContent =
+                    String(index + 1).padStart(2, "0");
 
                 const name = document.createElement("span");
                 name.className = "offence-name";
@@ -431,6 +2851,7 @@
 
                 button.append(rank, name, value, arrow);
                 item.append(button);
+
                 let panel = null;
 
                 if (article) {
@@ -444,7 +2865,9 @@
                     const articleTitle = document.createElement("h4");
                     articleTitle.textContent = article.title;
 
-                    const articleNumber = document.createElement("span");
+                    const articleNumber =
+                        document.createElement("span");
+
                     articleNumber.textContent = article.article;
 
                     heading.append(articleTitle, articleNumber);
@@ -456,75 +2879,165 @@
                         panel.append(paragraph);
                     });
 
-                    button.setAttribute("aria-controls", `article-panel-${index}`);
-                    panel.id = `article-panel-${index}`;
-                    button.addEventListener("click", () => {
-                        const isOpening = button.getAttribute("aria-expanded") !== "true";
+                    button.setAttribute(
+                        "aria-controls",
+                        `article-panel-${index}`
+                    );
 
-                        container.querySelectorAll(".offence-row[aria-expanded='true']").forEach(openButton => {
-                            openButton.setAttribute("aria-expanded", "false");
-                            const openPanel = document.getElementById(openButton.getAttribute("aria-controls"));
-                            if (openPanel) openPanel.hidden = true;
+                    panel.id = `article-panel-${index}`;
+
+                    button.addEventListener("click", () => {
+                        const isOpening =
+                            button.getAttribute("aria-expanded")
+                            !== "true";
+
+                        container.querySelectorAll(
+                            ".offence-row[aria-expanded='true']"
+                        ).forEach(openButton => {
+                            openButton.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                            const openPanel =
+                                document.getElementById(
+                                    openButton.getAttribute(
+                                        "aria-controls"
+                                    )
+                                );
+
+                            if (openPanel) {
+                                openPanel.hidden = true;
+                            }
                         });
 
                         if (isOpening) {
-                            button.setAttribute("aria-expanded", "true");
+                            button.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
                             panel.hidden = false;
                         }
                     });
+
                 } else {
                     button.disabled = true;
-                    button.title = "Für diese Straftat ist noch kein Gesetzestext hinterlegt.";
+
+                    button.title =
+                        "Für diese Straftat ist noch kein Gesetzestext hinterlegt.";
+
                     button.classList.add("no-article");
-                    const empty = document.createElement("span");
-                    empty.className = "offence-toggle-icon";
-                    empty.textContent = "–";
-                    button.append(empty);
+                    arrow.textContent = "–";
                 }
 
-                if (panel) item.append(panel);
+                if (panel) {
+                    item.append(panel);
+                }
+
                 container.append(item);
             });
         }
 
-        async function loadData() {
-            const status = document.getElementById("data-status");
-            try {
-                const response = await fetch("unload.php", { headers: { "Accept": "application/json" } });
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const data = await response.json();
-                if (!Array.isArray(data)) throw new Error("Die API hat kein Daten-Array zurückgegeben.");
+        /* DATEN LADEN */
 
-                // Erst auf diesen Cluster und unter 18 Jahre filtern, dann den
-                // Zeitraum aus den tatsächlich vorhandenen passenden Daten ableiten.
-                const relevantRows = data.filter(row => isUnder18(row) && isRelevantOffence(row.straftat));
-                const availableYears = relevantRows.map(row => Number(row.jahr)).filter(Number.isFinite);
-                if (!availableYears.length) {
-                    throw new Error("Keine passenden Daten für Sexualdelikte bei unter 18-Jährigen gefunden.");
-                }
-                const latestYear = Math.max(...availableYears);
-                const firstYear = latestYear - 9;
-                const rows = relevantRows.filter(row => {
-                    const year = Number(row.jahr);
-                    return year >= firstYear && year <= latestYear;
+        async function loadData() {
+            const status =
+                document.getElementById("data-status");
+
+            try {
+                const response = await fetch("unload.php", {
+                    cache: "no-store",
+                    headers: {
+                        "Accept": "application/json"
+                    }
                 });
 
-                const total = rows.reduce((sum, row) => sum + number(row.anzahl), 0);
-                document.getElementById("total-cases").textContent = format(total);
-                document.getElementById("period-label").textContent = `${firstYear}–${latestYear}`;
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
 
-                const years = Array.from({ length: 10 }, (_, i) => firstYear + i);
+                const data = await response.json();
+
+                if (!Array.isArray(data)) {
+                    throw new Error(
+                        "Die API hat kein Daten-Array zurückgegeben."
+                    );
+                }
+
+                const relevantRows = data.filter(
+                    row =>
+                        isUnder18(row) &&
+                        isRelevantOffence(row.straftat)
+                );
+
+                const availableYears = relevantRows
+                    .map(row => Number(row.jahr))
+                    .filter(Number.isFinite);
+
+                if (!availableYears.length) {
+                    throw new Error(
+                        "Keine passenden Daten für Sexualdelikte bei unter 18-Jährigen gefunden."
+                    );
+                }
+
+                const latestYear = Math.max(...availableYears);
+                const firstYear = latestYear - 9;
+
+                const rows = relevantRows.filter(row => {
+                    const year = Number(row.jahr);
+
+                    return (
+                        year >= firstYear &&
+                        year <= latestYear
+                    );
+                });
+
+                const total = rows.reduce(
+                    (sum, row) => sum + number(row.anzahl),
+                    0
+                );
+
+                document.getElementById(
+                    "total-cases"
+                ).textContent = format(total);
+
+                document.getElementById(
+                    "period-label"
+                ).textContent = `${firstYear}–${latestYear}`;
+
+                const years = Array.from(
+                    { length: 10 },
+                    (_, i) => firstYear + i
+                );
+
                 const yearRows = years.map(year => {
-                    const rowsForYear = rows.filter(row => Number(row.jahr) === year);
-                    const byOffenceForYear = sumBy(rowsForYear, row => String(row.straftat ?? "").trim());
+                    const rowsForYear = rows.filter(
+                        row => Number(row.jahr) === year
+                    );
+
+                    const byOffenceForYear = sumBy(
+                        rowsForYear,
+                        row => String(row.straftat ?? "").trim()
+                    );
+
                     return {
                         label: String(year),
-                        value: rowsForYear.reduce((sum, row) => sum + number(row.anzahl), 0),
+
+                        value: rowsForYear.reduce(
+                            (sum, row) => sum + number(row.anzahl),
+                            0
+                        ),
+
                         offences: [...byOffenceForYear.entries()]
-                            .map(([label, value]) => ({ label, value }))
+                            .map(([label, value]) => ({
+                                label,
+                                value
+                            }))
                             .sort((a, b) => b.value - a.value)
                     };
                 });
+
                 renderYearChart(yearRows);
 
                 const genderNames = new Map([
@@ -533,48 +3046,104 @@
                     ["divers", "Divers"],
                     ["unbekannt", "Unbekannt"]
                 ]);
-                const byGender = sumBy(rows, row => normalize(row.geschlecht) || "unbekannt");
-                const genderEntries = [...byGender.entries()]
-                    .map(([key, value]) => ({ label: genderNames.get(key) || key.charAt(0).toUpperCase() + key.slice(1), value }))
-                    .sort((a, b) => b.value - a.value);
-                renderPieChart(document.getElementById("gender-chart"), genderEntries, "Kreisdiagramm: Fälle nach Geschlecht");
 
-                const byAge = sumBy(rows, row => normalize(row.altersgruppe));
-                renderPieChart(
-                    document.getElementById("age-chart"),
-                    ageOrder.map(key => ({ label: ageLabels[key], value: byAge.get(key) || 0 })),
-                    "Kreisdiagramm: Fälle nach Altersgruppe unter 18 Jahren"
+                const byGender = sumBy(
+                    rows,
+                    row => normalize(row.geschlecht) || "unbekannt"
                 );
 
-                const byOffence = sumBy(rows, row => String(row.straftat ?? "").trim());
-                renderOffences([...byOffence.entries()]
-                    .map(([label, value]) => ({ label, value }))
-                    .sort((a, b) => b.value - a.value));
+                const genderEntries = [...byGender.entries()]
+                    .map(([key, value]) => ({
+                        label:
+                            genderNames.get(key) ||
+                            key.charAt(0).toUpperCase() +
+                            key.slice(1),
+                        value
+                    }))
+                    .sort((a, b) => b.value - a.value);
 
-                status.textContent = `Daten geladen · ${firstYear}–${latestYear}`;
+                renderPieChart(
+                    document.getElementById("gender-chart"),
+                    genderEntries,
+                    "Kreisdiagramm: Fälle nach Geschlecht"
+                );
+
+                renderAgeChart(rows);
+
+                const byOffence = sumBy(
+                    rows,
+                    row => String(row.straftat ?? "").trim()
+                );
+
+                renderOffences(
+                    [...byOffence.entries()]
+                        .map(([label, value]) => ({
+                            label,
+                            value
+                        }))
+                        .sort((a, b) => b.value - a.value)
+                );
+
+                status.textContent =
+                    `Daten geladen · ${firstYear}–${latestYear}`;
+
                 status.classList.add("loaded");
+
             } catch (error) {
-                console.error("Fehler beim Laden der Daten:", error);
-                status.textContent = "Die Daten konnten nicht geladen werden. Bitte API und Datenbankverbindung prüfen.";
-                document.getElementById("offence-chart").innerHTML = '<p class="error-message">Die Daten konnten nicht geladen werden. Prüfe, ob unload.php erreichbar ist und gültiges JSON zurückgibt.</p>';
-                document.getElementById("year-chart").innerHTML = '<p class="error-message">Keine Daten verfügbar.</p>';
-                document.getElementById("gender-chart").innerHTML = '<p class="error-message">Keine Daten verfügbar.</p>';
-                document.getElementById("age-chart").innerHTML = '<p class="error-message">Keine Daten verfügbar.</p>';
+                console.error(
+                    "Fehler beim Laden der Daten:",
+                    error
+                );
+
+                status.textContent =
+                    "Die Daten konnten nicht geladen werden. Bitte API und Datenbankverbindung prüfen.";
+
+                document.getElementById(
+                    "offence-chart"
+                ).innerHTML =
+                    '<p class="error-message">Die Daten konnten nicht geladen werden. Prüfe, ob unload.php erreichbar ist und gültiges JSON zurückgibt.</p>';
+
+                document.getElementById(
+                    "year-chart"
+                ).innerHTML =
+                    '<p class="error-message">Keine Daten verfügbar.</p>';
+
+                document.getElementById(
+                    "gender-chart"
+                ).innerHTML =
+                    '<p class="error-message">Keine Daten verfügbar.</p>';
+
+                document.getElementById(
+                    "age-chart"
+                ).innerHTML =
+                    '<p class="error-message">Keine Daten verfügbar.</p>';
             }
         }
 
-        const revealObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("is-visible");
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
-        document.querySelectorAll(".reveal").forEach(element => revealObserver.observe(element));
+        /* ELEMENTE BEIM SCROLLEN EINBLENDEN */
+
+        const revealObserver = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -60px 0px"
+            }
+        );
+
+        document.querySelectorAll(".reveal").forEach(
+            element => revealObserver.observe(element)
+        );
 
         loadData();
     });
 </script>
+
 </body>
 </html>
